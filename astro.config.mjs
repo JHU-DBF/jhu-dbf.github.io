@@ -25,7 +25,7 @@ const whenExternalScripts = (items = []) =>
     : [];
 
 export default defineConfig({
-  site: 'https://jhu-dbf.github.io/dbf-website',
+  site: 'https://jhu-dbf.github.io',
 //  base: 'dbf-website',
 //  output: 'static',
 
