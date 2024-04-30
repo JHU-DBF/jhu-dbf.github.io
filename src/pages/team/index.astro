@@ -1,12 +1,25 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+import Hero from '~/components/widgets/Hero.astro';
+import Steps from '~/components/widgets/Steps.astro';
+
 const metadata = {
-  title: 'Know The Team',
-  ignoreTitleTemplate: true,
+  title: 'The Team',
+  ignoreTitleTemplate: false,
 };
 ---
 
 <Layout metadata={metadata}>
-    <h1>Get to know the team...</h1>
+  <Hero>
+    <Fragment slot="title">
+      Come and meet our amazing 
+      <span class="text-accent dark:text-white highlight">team</span>!
+    </Fragment>
+    
+    <Fragment slot="subtitle">
+      We at <span class="font-semibold">Cloud Hoppers</span> come from all sorts of backgrounds,
+      so we can bring different perspectives in and learn from each other.
+    </Fragment>
+  </Hero>
 </Layout>

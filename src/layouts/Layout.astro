@@ -26,7 +26,7 @@ const { language, textDirection } = I18N;
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={language} dir={textDirection} class="2xl:text-[20px]" transition:animate="none">
   <head>
     <CommonMeta />
     <Favicons />
@@ -37,7 +37,7 @@ const { language, textDirection } = I18N;
     <Analytics />
 
     <!-- Comment the line below to disable View Transitions -->
-    <ViewTransitions fallback="swap" />
+    <ViewTransitions />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">

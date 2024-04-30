@@ -1,29 +1,75 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Brands from '~/components/widgets/Brands.astro';
 import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import Contact from '~/components/widgets/Contact.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import { Image } from 'astro:assets';
+import { twMerge } from "tailwind-merge";
+
+import imgFlightBanking from "../assets/images/flight_banking.jpg";
+import imgDrawingFly from "../assets/images/drawing_fly.png";
+import imgParked from "../assets/images/parked.jpg";
+import imgWorkingFuselage from "../assets/images/working_fuselage.jpg";
+import imgFlyday2Group from "../assets/images/flyday2_group.jpg";
+import imgLaserCutting from "../assets/images/lasercutting.jpg";
+import imgRunway from "../assets/images/runway_HD.jpg";
 
 const metadata = {
   title: 'Cloud Hoppers — Design Build Fly @ JHU',
   ignoreTitleTemplate: true,
 };
+
+const bentoImages = {
+  areas: "[grid-template-areas:'img1_img1_img1_img1''img3_img3_img2_img2''img4_img5_img2_img2']",
+  images: [
+    {
+      src: imgFlightBanking,
+      alt: "flight banking",
+      class: "[grid-area:img1]"
+    },
+    {
+      src: imgDrawingFly,
+      alt: "drawing flight config",
+      class: "[grid-area:img2]"
+    },
+    {
+      src: imgParked,
+      alt: "parked on grass",
+      class: "[grid-area:img3]"
+    },
+    {
+      src: imgWorkingFuselage,
+      alt: "working on fuselage",
+      class: "[grid-area:img4]"
+    },
+    {
+      src: imgFlyday2Group,
+      alt: "fly day group photo",
+      class: "[grid-area:img5]"
+    },
+    // {
+    //   src: imgLaserCutting,
+    //   alt: "laser cuting",
+    //   class: "[grid-area:img6]"
+    // },
+    // {
+    //   src: imgRunway,
+    //   alt: "on the runway",
+    //   class: "[grid-area:img7]"
+    // },
+  ]
+}
+
 ---
 
 <Layout metadata={metadata}>
-  
   <Hero>
     <Fragment slot="title">
-      Design Build Fly team at Johns Hopkins University -  
       <span class="text-accent dark:text-white highlight">Cloud Hoppers</span>
+      - Design Build Fly team at Johns Hopkins University
     </Fragment>
     
     <Fragment slot="subtitle">
@@ -32,7 +78,6 @@ const metadata = {
       <a class="underline text-accent" href="https://www.aiaa.org/dbf">AIAA DBF competition</a></span>
     </Fragment>
   </Hero>
- 
   <Steps
     isReversed
     title="Discover what we do!"
@@ -57,7 +102,7 @@ const metadata = {
         description:
           'Finally, we put our plane to the test! It may be more apt to call this step \'Crash,\' but each crashed prototype is experience \
           for both our flyers and designers to utilize for the next prototype.',
-        icon: 'tabler:plane-departure',
+        icon: 'tabler:plane-tilt',
       },
     ]}
     image={{
@@ -69,18 +114,71 @@ const metadata = {
   <!-- Stats Widget ****************** -->
 
   <Stats
-    stats={[
-      { title: 'Members', amount: '5' },
-      { title: 'Alumni', amount: '2' },
-      { title: 'Funding', amount: '$1,500' },
+  stats={[
+      { icon: 'tabler:users', title: 'Members', amount: '5' },
+      { icon: 'tabler:school', title: 'Alumni', amount: '2' },
+      { icon: 'tabler:brand-instagram', title: 'Followers', amount: '140' },
+      { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$1,500' },
     ]}
   />
 
+  <!-- Bento Box Images -->
+  <div class="flex">
+    <div class={twMerge("grid gap-2 grid-cols-4 p-2", bentoImages.areas)}>
+      {
+        bentoImages.images.map((img) => (
+          // <div class={img.class}>
+            <Image
+              src={img.src}
+              alt={img.alt}
+              class={twMerge("flex self-stretch rounded-md", img.class)}
+            />
+          // </div>
+        ))
+      }
+    </div>
+  </div>
+
   <!-- Add info on meeting times/location -->
-  <Contact>
-    <!-- Contact page -->
-  </Contact>
-  <Features2>
-    <!-- Add sponsors list -->
-  </Features2>
+  <Features3
+    title="Let's Connect!"
+    columns={3}
+    items={[
+      {
+        title: "Email us at dbf@jhu.edu",
+        description: "We'll get back to you as soon as possible!",
+        icon: "tabler:mail",
+      },
+      {
+        title: "Join us for a meeting",
+        description: "3100 Wyman Park Dr\nBaltimore, MD 21211",
+        icon: "tabler:map-pin",
+      },
+      {
+        title: "Follow us on Instagram @jhu_dbf",
+        description: "Stay up-to-date on upcoming events",
+        icon: "tabler:brand-instagram",
+      },
+    ]}
+  >
+  </Features3>
+
+  <Brands
+    title="A special thanks to our sponsors"
+    images={[
+      {
+        src: "https://www.lockheedmartin.com/content/dam/lockheed-martin/general/lm-logo.svg",
+        alt: "placeholder logo",
+      },
+      {
+        src: "https://www.lockheedmartin.com/content/dam/lockheed-martin/general/lm-logo.svg",
+        alt: "placeholder logo",
+      },
+      {
+        src: "https://www.lockheedmartin.com/content/dam/lockheed-martin/general/lm-logo.svg",
+        alt: "placeholder logo",
+      },
+    ]}
+  >  
+  </Brands>
 </Layout>
