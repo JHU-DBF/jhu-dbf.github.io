@@ -6,62 +6,21 @@ import Steps from '~/components/widgets/Steps.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Features3 from '~/components/widgets/Features3.astro';
-import { Image } from 'astro:assets';
-import { twMerge } from "tailwind-merge";
+import BentoImages from '~/components/widgets/BentoImages.astro';
 
-import imgFlightBanking from "../assets/images/flight_banking.jpg";
-import imgDrawingFly from "../assets/images/drawing_fly.png";
-import imgParked from "../assets/images/parked.jpg";
-import imgWorkingFuselage from "../assets/images/working_fuselage.jpg";
-import imgFlyday2Group from "../assets/images/flyday2_group.jpg";
-import imgLaserCutting from "../assets/images/lasercutting.jpg";
-import imgRunway from "../assets/images/runway_HD.jpg";
+import imgFlightBanking from "~/assets/images/flight_banking.jpg";
+import imgDrawingFly from "~/assets/images/drawing_fly.png";
+import imgParked from "~/assets/images/parked.jpg";
+import imgWorkingFuselage from "~/assets/images/working_fuselage.jpg";
+import imgFlyday2Group from "~/assets/images/flyday2_group.jpg";
+import imgFlightHD from "~/assets/images/flight_HD.jpg";
+import imgRunwayHD from "~/assets/images/runway_HD.jpg";
+import imgCAD from "~/assets/images/cad.png";
 
 const metadata = {
   title: 'Cloud Hoppers — Design Build Fly @ JHU',
   ignoreTitleTemplate: true,
 };
-
-const bentoImages = {
-  areas: "[grid-template-areas:'img1_img1_img1_img1''img3_img3_img2_img2''img4_img5_img2_img2']",
-  images: [
-    {
-      src: imgFlightBanking,
-      alt: "flight banking",
-      class: "[grid-area:img1]"
-    },
-    {
-      src: imgDrawingFly,
-      alt: "drawing flight config",
-      class: "[grid-area:img2]"
-    },
-    {
-      src: imgParked,
-      alt: "parked on grass",
-      class: "[grid-area:img3]"
-    },
-    {
-      src: imgWorkingFuselage,
-      alt: "working on fuselage",
-      class: "[grid-area:img4]"
-    },
-    {
-      src: imgFlyday2Group,
-      alt: "fly day group photo",
-      class: "[grid-area:img5]"
-    },
-    // {
-    //   src: imgLaserCutting,
-    //   alt: "laser cuting",
-    //   class: "[grid-area:img6]"
-    // },
-    // {
-    //   src: imgRunway,
-    //   alt: "on the runway",
-    //   class: "[grid-area:img7]"
-    // },
-  ]
-}
 
 ---
 
@@ -123,21 +82,43 @@ const bentoImages = {
   />
 
   <!-- Bento Box Images -->
-  <div class="flex">
-    <div class={twMerge("grid gap-2 grid-cols-4 p-2", bentoImages.areas)}>
-      {
-        bentoImages.images.map((img) => (
-          // <div class={img.class}>
-            <Image
-              src={img.src}
-              alt={img.alt}
-              class={twMerge("flex self-stretch rounded-md", img.class)}
-            />
-          // </div>
-        ))
-      }
-    </div>
-  </div>
+  <BentoImages
+    templateAreas={"[grid-template-areas:'img1_img1_img1_img1''img3_img3_img2_img2''img6_img5_img5_img4']"}
+    images={
+      [
+        {
+          src: imgFlightBanking,
+          alt: "flight banking",
+          area:"[grid-area:img1]"
+        },
+        {
+          src: imgRunwayHD,
+          alt: "about to fly at competition",
+          area:"[grid-area:img3]"
+        },
+        {
+          src: imgParked,
+          alt: "parked on grass",
+          area:"[grid-area:img2]"
+        },
+        {
+          src: imgDrawingFly,
+          alt: "CAD drawing in flight configuration",
+          area:"[grid-area:img4]"
+        },
+        {
+          src: imgCAD,
+          alt: "in-editor CAD screenshot",
+          area:"[grid-area:img5]"
+        },
+        {
+          src: imgFlyday2Group,
+          alt: "group photo during a fly day",
+          area:"[grid-area:img6]"
+        },
+      ]
+    }
+  />
 
   <!-- Add info on meeting times/location -->
   <Features3

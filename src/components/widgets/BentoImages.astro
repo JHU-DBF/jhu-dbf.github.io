@@ -1,0 +1,40 @@
+---
+import WidgetWrapper from "../ui/WidgetWrapper.astro";
+import { Image } from 'astro:assets';
+
+import { twMerge } from "tailwind-merge";
+
+const {
+    templateAreas, // ['', ''...]
+    images, // [{src, alt, area}...]
+
+    id,
+    isDark = false,
+    classes = {},
+    bg = await Astro.slots.render("bg"),
+} = Astro.props;
+
+---
+
+<WidgetWrapper 
+    id={id}
+    isDark={isDark}
+    containerClass={classes?.container ?? ""}
+    bg={bg}
+>
+    <div
+        class={twMerge("grid gap-2 grid-cols-4 p-2 overflow-hidden", templateAreas)}
+    >
+        {
+            images.map((img) => {
+                return (
+                    <Image
+                        src={img.src}
+                        alt={img.alt}
+                        class={twMerge("flex self-stretch rounded-md", img.area)}
+                    />
+                )
+            })
+        }
+    </div>
+</WidgetWrapper>
