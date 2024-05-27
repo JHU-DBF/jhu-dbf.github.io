@@ -1,5 +1,5 @@
 site:
-  name: Cloud Hoppers
+  name: Design Build Fly @ JHU
   site: 'https://jhu-dbf-website.pages.dev/'
   base: '/' # Change this if you need to deploy to Github Pages, for example
   trailingSlash: false
@@ -8,14 +8,14 @@ site:
 
 metadata:
   title:
-    default: Cloud Hoppers
-    template: '%s — JHU DBF'
+    default: Design Build Fly @ JHU
+    template: '%s - JHU DBF'
   description: "U/00002708 The official website for Design Build Fly at Johns Hopkins"
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Cloud Hoppers
+    site_name: Design Build Fly @ JHU
     images:
       - url: '~/assets/images/default.png'
         width: 1200

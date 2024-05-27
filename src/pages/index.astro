@@ -4,7 +4,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Brands from '~/components/widgets/Brands.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import BentoImages from '~/components/widgets/BentoImages.astro';
 
@@ -16,27 +16,29 @@ import imgFlyday2Group from "~/assets/images/flyday2_group.jpg";
 import imgFlightHD from "~/assets/images/flight_HD.jpg";
 import imgRunwayHD from "~/assets/images/runway_HD.jpg";
 import imgCAD from "~/assets/images/cad.png";
+import Button from '~/components/ui/Button.astro';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
-  title: 'Cloud Hoppers — Design Build Fly @ JHU',
+  title: 'Design Build Fly @ JHU',
   ignoreTitleTemplate: true,
 };
 
 ---
 
 <Layout metadata={metadata}>
-  <Hero>
+  <HeroText>
     <Fragment slot="title">
-      <span class="text-accent dark:text-white highlight">Cloud Hoppers</span>
-      - Design Build Fly team at Johns Hopkins University
+      <span class="text-accent dark:text-white highlight">Design Build Fly</span>
+      - RC plane building team at Johns Hopkins University
     </Fragment>
     
     <Fragment slot="subtitle">
-      We at <span class="font-semibold">Cloud Hoppers</span> are a multi-disciplinary club 
+      We at <span class="font-semibold">Design Build Fly</span> are a multi-disciplinary club 
       unified in our mission of designing and building an RC-plane from scratch to compete at the annual
       <a class="underline text-accent" href="https://www.aiaa.org/dbf">AIAA DBF competition</a></span>
     </Fragment>
-  </Hero>
+  </HeroText>
   <Steps
     isReversed
     title="Discover what we do!"
@@ -74,7 +76,7 @@ const metadata = {
 
   <Stats
   stats={[
-      { icon: 'tabler:users', title: 'Members', amount: '5' },
+      { icon: 'tabler:users', title: 'Members', amount: '7' },
       { icon: 'tabler:school', title: 'Alumni', amount: '2' },
       { icon: 'tabler:brand-instagram', title: 'Followers', amount: '140' },
       { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$1,500' },
@@ -118,7 +120,20 @@ const metadata = {
         },
       ]
     }
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+    <Fragment slot="below">
+      <Button
+        type="button"
+        text="See more images"
+        variant="primary"
+        href={getPermalink("/images")}
+        class="flex justify-self-center self-center"
+      />
+    </Fragment>
+  </BentoImages>
 
   <!-- Add info on meeting times/location -->
   <Features3

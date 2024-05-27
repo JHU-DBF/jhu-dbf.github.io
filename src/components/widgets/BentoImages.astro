@@ -23,7 +23,7 @@ const {
     bg={bg}
 >
     <div
-        class={twMerge("grid gap-2 grid-cols-4 p-2 overflow-hidden", templateAreas)}
+        class={twMerge("grid gap-2 grid-cols-4 p-8 overflow-hidden", templateAreas)}
     >
         {
             images.map((img) => {
@@ -31,10 +31,13 @@ const {
                     <Image
                         src={img.src}
                         alt={img.alt}
-                        class={twMerge("flex self-stretch rounded-md", img.area)}
+                        class={twMerge("flex object-cover self-stretch rounded-md drop-shadow-md", img.area)}
                     />
                 )
             })
         }
+    </div>
+    <div class="flex justify-center">
+        <slot name="below"/>
     </div>
 </WidgetWrapper>
