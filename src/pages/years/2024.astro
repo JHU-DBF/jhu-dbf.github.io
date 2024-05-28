@@ -7,6 +7,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import designdaypic from '~/assets/images/designday_2024.png'
 import drawingfly from '~/assets/images/drawing_fly.png'
 import drawingpark from '~/assets/images/drawing_park.png'
+import competitionpreflight from '~/assets/images/competitionpreflight.jpg'
 
 const metadata = {
   title: 'Competition 2024',
@@ -36,13 +37,29 @@ const metadata = {
   <div class="flex justify-between flex-col max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
     <div class="mx-auto sm:px-6 max-w-3xl px-6 mt-8 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-justify">
       <p>
-        We are very proud of the results of the 2024 competition. The previous year, the club was put on hold, so there was a great loss of knowledge in both how to build a plane as well as how to manage a club. Nevertheless, we pushed on as a team to learn and came out having flown our plane and being put no the scoreboard next to teams with far greater resources than ours.
+        We are very proud of the results of the 2024 competition. It was tough as there was a loss of knowledge due to the club being inactive the previous year. Nevertheless, we pushed on as a team to learn and accomplished our goal of successfully flying the plane at competition!
+      </p>
+      <div class="flex flex-col items-center">
+        <Image
+          src={competitionpreflight}
+          alt="Flying at Competition"
+        />
+        <p class="text-sm p-0 m-0 w-5/6 relative">
+          Here's some of us at the competition right before we flew our first mission! Shout out to our pilot, J, from University of Washington Seattle!
+        </p>
+      </div>
+      <p>
+        The list of rules was lengthy, but the rules that guided our design process the most this year were that <b>the plane had to...</b>
+        <ul>
+          <li>Fit in a 2.5' wide space in parking configuration.</li>
+          <li>Have a maximum of a 5' wingspan.</li>
+          <li>Fly with only "pilot" dolls for mission 1.</li>
+          <li>Carry a 3x3x3.5 inch medical supply crate and "patient" doll with custom gurney for mission 2.</li>
+          <li>Carry as many "passenger" dolls as possible for mission 3.</li>
+        </ul>
       </p>
       <p>
-        The most influential constraints this year were on the size of the plane. In parking configuration (i.e. when not flying), the plane had to fit in a 2.5' wide parking space (with no constraint on length). In flight configuration the wingspan is only constrained to 5' wide. Typically, this meant teams had a folding or rotating wing to utilize the full available flying wingspan while still fitting in the 2.5' parking configuration space. A smaller portion of teams went with a folding tail design, so the wingspan remained a full 5' wide at all times. Our team implemented options for both the wingspan and tail to fold.
-      </p>
-      <p>
-        Upon arriving at the competition, we realized that this design decision was unnecessary as we had previously misread the rules, thinking that the plane had to fit within a 2.5'x2.5' square rather than simply a width of 2.5 feet. Regardless, the folding tail made transportation easier as some of us drove down to Wichita, Kansas by car to bring all our supplies.
+        To meet this criteria, we made the wings and tail foldable, as seen in the CAD drawings below.
       </p>
       <div class="flex flex-row justify-center w-full gap-2">
         <Image
@@ -57,10 +74,7 @@ const metadata = {
         />
       </div>
       <p>
-        The missions for this year included simple loops (with a mini loop detour), carrying medical supplies (a 3"x3"x3.5" crate of any weight in addition to a patient doll on a custom gurney), and simply carrying as many passangers as possible. Unfortunately, we could only fly this first mission for a few reasons. First, we failed the initial round of tech inspections due to not filling out the pre-inspection form properly. We luckily passed it on the next attempt, but it still cost us over a day. On our second flight, attempting mission 2, our old controller finally and with such unfortunate timing broke down, so we had to replace that and wait for our turn to fly yet again. We got one more chance to attempt mission 2, but the propeller hit the runway, ruining the takeoff. 
-      </p>
-      <p>
-        Despite these failures, we came out of this competition ecstatic with the outcome - especially considering our resources (or lack thereof) compared to our competition. In addition to actually being able to fly, we talked to many other teams of varying sizes to learn how they operate. With all that we learned this year, we are excited and motivated to crush next year's competition!
+        We came out of this competition ecstatic with the outcome - especially considering our resources (or lack thereof) compared to our competition. In addition to actually being able to fly, we talked to many other teams of varying sizes to learn how they operate. With all that we learned this year, we are excited and motivated to crush next year's competition!
       </p>
 
       <p>Below is our Design Day poster, presented at an engineering fair at the end of the school year.</p>
