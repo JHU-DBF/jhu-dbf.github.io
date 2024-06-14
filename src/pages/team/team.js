@@ -1,0 +1,56 @@
+const team = {
+  members: [
+    {
+      name: 'Trevor Black',
+      title: 'President',
+      major: "Major '26",
+      year: '2026',
+      // currentJob: '',
+      // avatar: '/assets/images/team/emily-grace.jpeg',
+      linkedin: 'https://www.linkedin.com/in/johndoe',
+      github: 'placeholder',
+    },
+    {
+      name: 'Jommy Fasehun',
+      title: 'President',
+      major: "Neuroscience '26",
+      year: '2026',
+      // currentJob: '',
+      // avatar: '/assets/images/team/emily-grace.jpeg',
+      linkedin: 'https://www.linkedin.com/in/johndoe',
+      github: 'placeholder',
+    },
+    {
+      name: 'Serzed Ampanas',
+      title: 'Treasurer',
+      major: "General Engineering '24",
+      year: '2026',
+      // currentJob: '',
+      // avatar: '/assets/images/team/emily-grace.jpeg',
+      linkedin: 'https://www.linkedin.com/in/johndoe',
+      github: 'placeholder',
+    },
+    {
+      name: 'Koji Shukawa',
+      title: 'Role',
+      major: "General Engineering '24",
+      year: '2026',
+      // currentJob: '',
+      // avatar: '/assets/images/team/emily-grace.jpeg',
+      linkedin: 'https://www.linkedin.com/in/johndoe',
+      github: 'placeholder',
+    },
+    {
+      name: 'Kai Ko',
+      title: 'Role',
+      major: "Computer Science '24/'24.5",
+      year: '2026',
+      // currentJob: '',
+      // avatar: '/assets/images/team/emily-grace.jpeg',
+      linkedin: 'https://www.linkedin.com/in/johndoe',
+      github: 'placeholder',
+    },
+  ],
+};
+
+export default team;
