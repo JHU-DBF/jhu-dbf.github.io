@@ -18,6 +18,7 @@ import imgRunwayHD from "~/assets/images/runway_HD.jpg";
 import imgCAD from "~/assets/images/cad.png";
 import Button from '~/components/ui/Button.astro';
 import { getPermalink } from '~/utils/permalinks';
+import ModelViewer from '~/components/widgets/ModelViewer';
 
 const metadata = {
   title: 'Design Build Fly @ JHU',
@@ -71,6 +72,8 @@ const metadata = {
       alt: '2024 competition flight',
     }}
   />
+
+  <ModelViewer client:load name="RC Plane Model 2024 Mk 7" filepath="/assets/models/PlaneFull24.gltf" />
 
   <!-- Stats Widget ****************** -->
 
