@@ -3,15 +3,10 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-<<<<<<< dev_path
       text: 'What We Do',
       href: getPermalink('/about'),
     },
     {
-      text: 'The\xa0Team',
-      href: getPermalink('/team'),
-    },
-=======
       text: 'Team',
       href: getPermalink('/team/current'),
       links: [
@@ -22,9 +17,9 @@ export const headerData = {
         {
           text: 'Alumni',
           href: getPermalink('/team/alumni'),
-        }
-      ],    },
->>>>>>> main
+        },
+      ],
+    },
     {
       text: 'History',
       links: [
@@ -35,7 +30,7 @@ export const headerData = {
         {
           text: '2025 competition',
           href: getPermalink('/years/2025'),
-        }
+        },
       ],
     },
     {
@@ -48,7 +43,12 @@ export const headerData = {
 export const footerData = {
   socialLinks: [
     { text: 'dbf@jhu.edu', ariaLabel: 'Email', icon: 'tabler:mail', href: 'mailto:dbf@jhu.edu' },
-    { text: 'jhu_dbf', ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/jhu_dbf/' },
+    {
+      text: 'jhu_dbf',
+      ariaLabel: 'Instagram',
+      icon: 'tabler:brand-instagram',
+      href: 'https://www.instagram.com/jhu_dbf/',
+    },
     // { text: 'JHU-DBF', ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/JHU-DBF' },
   ],
 };
