@@ -1,0 +1,237 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Brands from '~/components/widgets/Brands.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Hero2_2to3 from '~/components/widgets/Hero2_2to3.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import BentoImages from '~/components/widgets/BentoImages.astro';
+
+import Image from '~/components/common/Image.astro';
+import imgFlight from '~/assets/images/about/header.jpg';
+import imgFlightBanking from '~/assets/images/flight_banking.jpg';
+import imgDrawingFly from '~/assets/images/drawing_fly.png';
+import imgParked from '~/assets/images/parked.jpg';
+import imgWorkingFuselage from '~/assets/images/working_fuselage.jpg';
+import imgFlyday2Group from '~/assets/images/flyday2_group.jpg';
+import imgFlightHD from '~/assets/images/flight_HD.jpg';
+import imgRunwayHD from '~/assets/images/runway_HD.jpg';
+import imgCAD from '~/assets/images/cad.png';
+import Button from '~/components/ui/Button.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'What We Do',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText>
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white highlight">Our path to a successful flight</span>
+    </Fragment>
+
+    <Fragment slot="subtitle"> Explore our gallery of images to see what we do to perform a successful flight at the competition</Fragment>
+  </HeroText>
+  <BentoImages
+    templateAreas={"[grid-template-areas:'img1_img1_img1_img1']"}
+    images={[
+      {
+        src: imgFlight,
+        alt: 'flight',
+        area: '[grid-area:img1]',
+      },
+    ]}
+  />
+  <Hero2_2to3
+    tagline="DESIGN"
+    ,
+    image={{
+      src: '~/assets/images/about/requirements.png',
+      alt: 'Image',
+    }}
+    title="Studying the competition rules"
+    ,
+    subtitle="We study the competition rules to understand the requirements and constraints of the competition"
+  />
+  <Hero2_2to3
+    tagline="DESIGN"
+    ,
+    image={{
+      src: '~/assets/images/about/white_board.jpg',
+      alt: 'Image',
+    }}
+    title="Brainstorming"
+    ,
+    subtitle="Discussions in front of a whiteboard is where we come up with great ideas"
+  />
+  <Hero2_2to3
+    tagline="DESIGN"
+    ,
+    image={{
+      src: '~/assets/images/about/motor_testing.jpg',
+      alt: 'Image',
+    }}
+    title="Component testing"
+    ,
+    subtitle="To decide which components to use, we test each components. Data collected is fed into determining the parameter of the plane too."
+  />
+  <Hero2_2to3
+    tagline="DESIGN"
+    ,
+    image={{
+      src: '~/assets/images/about/working.jpg',
+      alt: 'Image',
+    }}
+    title="Creating CAD model"
+    ,
+    subtitle="Once we have the shape and size of our plane determined, we make CAD drawing"
+  />
+  <Hero2_2to3
+    tagline="DESIGN"
+    ,
+    image={{
+      src: '~/assets/images/about/cad.jpg',
+      alt: 'Image',
+    }}
+    title="Completed CAD Model"
+    ,
+    subtitle="After hard work of our team, initial CAD model is created"
+  />
+  <Hero2_2to3
+    tagline="DESIGN"
+    ,
+    image={{
+      src: '~/assets/images/about/fea.png',
+      alt: 'Image',
+    }}
+    title="Finite Element Analysis"
+    ,
+    subtitle="Finite Element Analysis is conducted to assess the strength of our wing to make sure it can withstand the force of flight"
+  />
+  <Hero2_2to3
+    tagline="DESIGN"
+    ,
+    image={{
+      src: '~/assets/images/about/cfd.png',
+      alt: 'Image',
+    }}
+    title="Computational Fluid Dynamics"
+    ,
+    subtitle="Basic computational fluid dynamics is performed to assess the aerodynamic performance of our design"
+  />
+  <Hero2_2to3
+    tagline="DESIGN"
+    ,
+    image={{
+      src: '~/assets/images/about/drawing.jpg',
+      alt: 'Image',
+    }}
+    title="Engineering Drawing"
+    ,
+    subtitle="Once the initial design stage is completed, we move to manufacturing"
+  />
+  <Hero2_2to3
+    tagline="MANUFACTURING"
+    ,
+    image={{
+      src: '~/assets/images/about/laser_cutting.jpg',
+      alt: 'Image',
+    }}
+    title="Laser cutting"
+    ,
+    subtitle="We have access to laser cutting machines located in the same building which we use to manufacture the wooden and foam parts"
+  />
+  <Hero2_2to3
+    tagline="MANUFACTURING"
+    ,
+    image={{
+      src: '~/assets/images/about/making_wing.jpg',
+      alt: 'Image',
+    }}
+    title="Assembling wing"
+    ,
+    subtitle="Laser cut ribs and spars are assembled with carbon fibre tubes and plastic wrap is applied to make our main wing"
+  />
+  <Hero2_2to3
+    tagline="MANUFACTURING"
+    ,
+    image={{
+      src: '~/assets/images/about/foam_wing.jpg',
+      alt: 'Image',
+    }}
+    title="Shaping foam board into a wing"
+    ,
+    subtitle="Foam section of the wing is shaped into our chosen aerofoil using a laser cut jigs"
+  />
+  <Hero2_2to3
+    tagline="MANUFACTURING"
+    ,
+    image={{
+      src: '~/assets/images/about/3d_printing.jpg',
+      alt: 'Image',
+    }}
+    title="3D printing"
+    ,
+    subtitle="The club owns a 3D printing which is used for rapid prototyping and manufacturing parts with complicated shapes"
+  />
+  <Hero2_2to3
+    tagline="MANUFACTURING"
+    ,
+    image={{
+      src: '~/assets/images/about/attaching_wing.jpg',
+      alt: 'Image',
+    }}
+    title="Assembling the plane"
+    ,
+    subtitle="Once each components are finished, we assemble the plane"
+  />
+  <Hero2_2to3
+    tagline="TESTING"
+    ,
+    image={{
+      src: '~/assets/images/about/prototype_bros.jpg',
+      alt: 'Image',
+    }}
+    title="Rapid iteration"
+    ,
+    subtitle="We employ SpaceX type rapid iteration which is made possible with the ease of manufacturability"
+  />
+  <Hero2_2to3
+    tagline="TESTING"
+    ,
+    image={{
+      src: '~/assets/images/about/post_flight_test.jpg',
+      alt: 'Image',
+    }}
+    title="Flight test"
+    ,
+    subtitle="After a successful flight test at a local park"
+  />
+  <Hero2_2to3
+    tagline="COMPETITION"
+    ,
+    image={{
+      src: '~/assets/images/about/practicing_with_check_list.jpg',
+      alt: 'Image',
+    }}
+    title="At the competition"
+    ,
+    subtitle="the team is practising procedures with a checklist"
+  />
+  <Hero2_2to3
+    tagline="COMPETITION"
+    ,
+    image={{
+      src: '~/assets/images/about/post_comp_flight.jpg',
+      alt: 'Image',
+    }}
+    title="FLY OFF"
+    ,
+    subtitle="Very happy team after a successfully completely a mission at the fly off competition"
+  />
+</Layout>

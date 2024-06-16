@@ -3,6 +3,15 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
+<<<<<<< dev_path
+      text: 'What We Do',
+      href: getPermalink('/about'),
+    },
+    {
+      text: 'The\xa0Team',
+      href: getPermalink('/team'),
+    },
+=======
       text: 'Team',
       href: getPermalink('/team/current'),
       links: [
@@ -15,6 +24,7 @@ export const headerData = {
           href: getPermalink('/team/alumni'),
         }
       ],    },
+>>>>>>> main
     {
       text: 'History',
       links: [
