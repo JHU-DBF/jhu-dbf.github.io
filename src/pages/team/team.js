@@ -23,7 +23,7 @@ const team = {
     {
       name: 'Serzed Ampanas',
       title: 'Treasurer',
-      major: "General Engineering '24",
+      major: "Chemical and Biomolecular Engineering '26",
       year: '2026',
       // currentJob: '',
       // avatar: '/assets/images/team/emily-grace.jpeg',
