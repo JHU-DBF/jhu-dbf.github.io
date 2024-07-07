@@ -10,7 +10,7 @@ metadata:
   title:
     default: Design Build Fly @ JHU
     template: '%s - JHU DBF'
-  description: "U/00002708 The official website for Design Build Fly at Johns Hopkins"
+  description: "The official website for Design Build Fly at Johns Hopkins"
   robots:
     index: true
     follow: true
