@@ -1,6 +1,6 @@
 site:
   name: Design Build Fly @ JHU
-  site: 'https://jhu-dbf-website.pages.dev/'
+  site: 'https://jhu-dbf-website.github.io/'
   base: '/' # Change this if you need to deploy to Github Pages, for example
   trailingSlash: false
 
