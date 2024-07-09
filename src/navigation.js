@@ -27,15 +27,15 @@ export const headerData = {
           text: '2024 Competition',
           href: getPermalink('/years/2024'),
         },
-        {
-          text: '2025 competition',
-          href: getPermalink('/years/2025'),
-        },
+        // {
+        //   text: '2025 competition',
+        //   href: getPermalink('/years/2025'),
+        // },
       ],
     },
     {
-      text: 'Support',
-      href: getPermalink('/support'),
+      text: 'Contact Us',
+      href: getPermalink('/contact'),
     },
   ],
 };

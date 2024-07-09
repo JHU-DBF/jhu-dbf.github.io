@@ -1,0 +1,65 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Contact Us',
+};
+---
+
+<Layout metadata={metadata}>
+
+
+
+
+  <Features3
+    title="Contact Us!"
+    columns={3}
+    items={[
+      {
+        title: "Email us at dbf@jhu.edu",
+        description: "We'll get back to you as soon as possible!",
+        icon: "tabler:mail",
+      },
+      {
+        title: "Join us for a meeting",
+        description: "Even if you have never been before, just turn up anytime. We are looking forward to meeting you.",
+        icon: "tabler:map-pin",
+      },
+      {
+        title: "Follow us on Instagram @jhu_dbf",
+        description: "DM us with a question!",
+        icon: "tabler:brand-instagram",
+      },
+    ]}
+  >
+  </Features3>
+  
+  <Features2
+    title="Our usual general meetings"
+    tagline="No need to attend all sessions"
+    columns={4}
+    items={[
+      {
+        title: 'Tuesday 7-9pm',
+        description: 'DBF lab / Makerspace',
+      },
+      {
+        title: 'Thursday 7-9pm',
+        description: 'DBF lab / Wind-tunnel lab / Makerspace',
+      },
+      {
+        title: 'Saturday 11am-',
+        description: 'DBF lab / Makerspace',
+      },
+      {
+        title: 'Sunday 10am-',
+        description: 'Fly day at local RC airfield',
+      },
+    ]}
+  />
+</Layout>
