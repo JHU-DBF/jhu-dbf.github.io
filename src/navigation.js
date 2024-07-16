@@ -34,7 +34,7 @@ export const headerData = {
       ],
     },
     {
-      text: 'Contact Us',
+      text: 'Contact Us / Sponsorship',
       href: getPermalink('/contact'),
     },
   ],

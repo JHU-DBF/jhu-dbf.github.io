@@ -12,7 +12,7 @@ const alumni = {
         },
         {
             name: 'Daniel Shenkelman',
-            title: 'Role',
+            title: '',
             major: 'Mechanical Engineering \'24',
             year: 2024,
             // currentJob: '',
@@ -32,7 +32,7 @@ const alumni = {
         },
         {
             name: 'Katie Bomhoff',
-            title: 'Placeholder',
+            title: '',
             major: 'Mechanical Engineering \'23',
             year: 2023,
             // currentJob: '',
@@ -42,7 +42,7 @@ const alumni = {
         },
         {
             name: 'Alan Huang',
-            title: 'Placeholder',
+            title: '',
             major: 'Mechanical Engineering \'22',
             year: 2022,
             // currentJob: '',
@@ -52,7 +52,7 @@ const alumni = {
         },
         {
             name: 'Zach Souders',
-            title: 'Placeholder',
+            title: '',
             major: 'Mechanical Engineering \'22',
             year: 2022,
             // currentJob: '',

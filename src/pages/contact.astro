@@ -1,13 +1,14 @@
 ---
 import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Hero_sponsor from '~/components/widgets/Hero_sponsor.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import Button from '~/components/ui/Button.astro';
 
 const metadata = {
-  title: 'Contact Us',
+  title: 'Contact Us/Sponsorship',
 };
 ---
 
@@ -38,6 +39,27 @@ const metadata = {
     ]}
   >
   </Features3>
+
+
+
+  <Hero_sponsor
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Download Sponsorship Information',
+        href: '/assets/JHU_DBF_Sponsorship_Leaflet.pdf',
+        target: '_blank',
+        icon: 'tabler:download',
+      }
+    ]}>
+    <Fragment slot="title">
+      Sponsor Us!
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Please consider supporting us. Our team relies entirely on the monetary and material donations from individuals and organizations like yours to offer opportunities and experiences to the next generation of doers.
+    </Fragment>
+  </Hero_sponsor>
   
   <Features2
     title="Our usual general meetings"
