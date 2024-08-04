@@ -2,10 +2,8 @@
 import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Hero_sponsor from '~/components/widgets/Hero_sponsor.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
-import Button from '~/components/ui/Button.astro';
+import FundraiseThermometer from '~/components/widgets/FundraiseThermometer.astro';
 
 const metadata = {
   title: 'Contact Us/Sponsorship',
@@ -13,10 +11,6 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-
-
-
-
   <Features3
     title="Contact Us!"
     columns={3}
@@ -27,9 +21,9 @@ const metadata = {
         icon: "tabler:mail",
       },
       {
-        title: "Join us for a meeting",
-        description: "Even if you have never been before, just turn up anytime. We are looking forward to meeting you.",
-        icon: "tabler:map-pin",
+        title: "Join our Discord at discord.gg/E2aAKby9D8",
+        description: "Check out what we do behind the scenes!",
+        icon: "tabler:brand-discord",
       },
       {
         title: "Follow us on Instagram @jhu_dbf",
@@ -39,8 +33,6 @@ const metadata = {
     ]}
   >
   </Features3>
-
-
 
   <Hero_sponsor
     actions={[
@@ -60,10 +52,12 @@ const metadata = {
       Please consider supporting us. Our team relies entirely on the monetary and material donations from individuals and organizations like yours to offer opportunities and experiences to the next generation of doers.
     </Fragment>
   </Hero_sponsor>
+
+  <FundraiseThermometer />
   
   <Features2
-    title="Our usual general meetings"
-    tagline="No need to attend all sessions"
+    title="Join a Weekly Meeting!"
+    tagline=""
     columns={4}
     items={[
       {

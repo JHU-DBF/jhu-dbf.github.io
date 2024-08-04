@@ -3,7 +3,7 @@ const team = {
     {
       name: 'Trevor Black',
       title: 'President',
-      major: "Major '26",
+      major: "Computer Science '26",
       year: '2026',
       // currentJob: '',
       avatar: '/assets/images/team/trevor.jpg',
@@ -32,7 +32,7 @@ const team = {
     },
     {
       name: 'Koji Shukawa',
-      title: 'Role',
+      title: 'Event Organizer',
       major: "Physics PhD '28",
       year: '2028',
       // currentJob: '',
@@ -42,7 +42,7 @@ const team = {
     },
     {
       name: 'Kai Ko',
-      title: 'Role',
+      title: 'Officer',
       major: "Computer Science '24/'24.5",
       year: '2026',
       // currentJob: '',

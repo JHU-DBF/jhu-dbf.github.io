@@ -1,0 +1,59 @@
+---
+// based on https://bloomerang.co/template/fundraising-thermometer-generator/
+import { Image } from 'astro:assets';
+import piechart from '~/assets/images/budget_piechart.jpg'
+
+// Create our number formatter.
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+
+  // These options are needed to round to whole numbers if that's what you want.
+  minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+});
+
+const goal = 8300;
+let raised = 0; // CHANGE THIS NUMBER TO HOWEVER MUCH WE RAISED
+
+if (raised >= 8300) {
+    // budget reached
+    raised = goal;
+    // TODO: celebrate?
+}
+
+const getTranslation = () => { return raised / goal * (-195-41) + 41; }
+const getHeight = () => { return raised / goal * -234 + 234 }
+---
+
+<div class="flex flex-col w-full md:flex-row justify-center align-middle text-center md:m-10">
+    <div class="w-full md:w-1/3 flex flex-col justify-center">
+        <h2 class="text-3xl font-bold">Fundraising Goal</h2>
+        <h3 class="text-5xl font-bold my-5">{formatter.format(goal)}</h3>
+        <p>Check out how our budget is allocated</p>
+        <Image
+            src={piechart}
+            alt={'budget breakdown pie chart'}
+        />
+    </div>
+    <div class="flex justify-center align-middle w-full md:w-1/3 max-h-[80vh]">
+        <svg version="1.1" id="Thermometer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" xml:space="preserve" viewBox="125 78.2 241.6 412.5">
+            <g id="text" transform=`translate(0 ${getTranslation()})`>
+                <text transform="matrix(0.981 0 0 1 241.5927 305.4521)">
+                    <tspan class="text-xl font-bold" x="0" y="-14">Raised</tspan>
+                    <tspan class="text-2xl font-bold" x="0" y="12">{formatter.format(raised)}</tspan>
+                </text>
+            </g>
+            <g id="fill">
+                <path id="fill-path" d="M207.8,345.9V106.5h-40v239.4 c-11.6,6.9-19.4,19.5-19.4,33.9c0,21.8,17.6,39.4,39.4,39.4s39.4-17.6,39.4-39.4C227.2,365.4,219.4,352.7,207.8,345.9z" fill="#002d72"></path>
+            </g>
+            <g id="cover">
+                <rect id="cover-rect" x="167.4" y="105.5" width="40.8" height=`${getHeight()}` fill="#ffffff"></rect>
+                <polygon xmlns="http://www.w3.org/2000/svg" id="polygon" points="233.7,291.3 225.8,299.9 233.7,308.5 236.8,308.5 236.8,291.3" fill="#0c2a63" transform=`translate(0 ${getTranslation()})`></polygon>
+            </g>
+            <g id="thermometer">
+                <path id="thermometer-path" d="M219.7,340.3V120.1 c0-17.6-14.3-31.9-31.9-31.9c-9.6,0-18.6,4.3-24.7,11.7c-4.7,5.7-7.2,12.8-7.2,20.2v220.2c-12,9.7-18.9,24.1-18.9,39.6 c0,28,22.8,50.8,50.8,50.8s50.8-22.8,50.8-50.8C238.7,364.3,231.8,350,219.7,340.3z M214.7,273.9h-26.9v1.5h26.9v15.3h-26.9v1.5 h26.9v15.3h-26.9v1.5h26.9v15.3h-26.9v1.5h26.9v15.3H161v-82.6h53.8v15.4H214.7z M214.7,189.8h-26.9v1.5h26.9v15.3h-26.9v1.5h26.9 v15.3h-26.9v1.5h26.9v15.3h-26.9v1.5h26.9V257H161v-82.6h53.8v15.4H214.7z M167,103c5.1-6.3,12.7-9.8,20.8-9.8 c9.6,0,18,5,22.7,12.6h-22.8v1.5h23.7c2.1,3.8,3.3,8.2,3.3,12.8v2.5h-26.9v1.5h26.9v15.3h-26.9v1.5h26.9v15.3h-26.9v1.5h26.9V173 H161v-53C161,113.9,163.1,107.8,167,103z M187.8,425.6c-25.3,0-45.8-20.5-45.8-45.8c0-14.3,6.5-27.6,18-36.4l1-0.8l0,0h53.8l0,0 l1,0.8c11.4,8.8,18,22,18,36.4C233.7,405.1,213.1,425.6,187.8,425.6z" fill="#231F20"></path> 
+            </g>
+        </svg>
+    </div>
+</div>
