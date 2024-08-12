@@ -53,7 +53,7 @@ export const footerData = {
       text: 'DBF Discord',
       ariaLabel: 'Discord',
       icon: 'tabler:brand-discord',
-      href: 'discord.gg/E2aAKby9D8',
+      href: 'https://discord.gg/E2aAKby9D8',
     },
     // { text: 'JHU-DBF', ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/JHU-DBF' },
   ],
