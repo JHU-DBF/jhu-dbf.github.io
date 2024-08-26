@@ -32,7 +32,7 @@ const team = {
     },
     {
       name: 'Koji Shukawa',
-      title: 'Event Organizer',
+      title: 'Officer',
       major: "Physics PhD '28",
       year: '2028',
       // currentJob: '',
