@@ -59,5 +59,8 @@ export default defineConfig({
         '~': path.resolve(__dirname, './src')
       }
     }
+  },
+  redirects: {
+    '/promo_video': 'https://youtu.be/IT7zBJY3uB4'
   }
 });
