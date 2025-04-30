@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import Stats from '~/components/widgets/Stats.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+
+import designdaypic from '~/assets/images/designday_2024.png'
+import drawingfly from '~/assets/images/drawing_fly.png'
+import drawingpark from '~/assets/images/drawing_park.png'
+import competitionpreflight from '~/assets/images/competitionpreflight.jpg'
+
+const metadata = {
+  title: 'Competition 2025',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    image={{ src: '~/assets/images/parked.jpg', alt: '2025 plane in flight' }}
+  >
+    <Fragment slot="title">
+      Competition 2025
+    </Fragment>
+    <Fragment slot="subtitle">
+      The Freedom Fighter
+    </Fragment>
+  </Hero>
+  <Stats
+    stats={[
+      { icon: 'tabler:users', title: 'Active Members', amount: '9' },
+      { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$1,500' },
+      { icon: 'tabler:medal-2', title: 'out of 149 teams', amount: '67th' },
+      { icon: 'tabler:map-2', title: 'Kansas', amount: 'Wichita' },
+    ]}
+  />
+
+  <div class="flex justify-between flex-col max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
+    <div class="mx-auto sm:px-6 max-w-3xl px-6 mt-8 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-justify">
+      <p>
+        We are very proud of the results of the 2024 competition. It was tough as there was a loss of knowledge due to the club being inactive the previous year. Nevertheless, we pushed on as a team to learn and accomplished our goal of successfully flying the plane at competition!
+      </p>
+      <div class="flex flex-col items-center">
+        <Image
+          src={competitionpreflight}
+          alt="Flying at Competition"
+        />
+        <p class="text-sm p-0 m-0 w-5/6 relative">
+          Here's some of us at the competition right before we flew our first mission! Shout out to our pilot, J, from University of Washington Seattle!
+        </p>
+      </div>
+      <p>
+        The list of rules was lengthy, but the rules that guided our design process the most this year were that <b>the plane had to...</b>
+        <ul>
+          <li>Fit in a 2.5' wide space in parking configuration.</li>
+          <li>Have a maximum of a 5' wingspan.</li>
+          <li>Fly with only "pilot" dolls for mission 1.</li>
+          <li>Carry a 3x3x3.5 inch medical supply crate and "patient" doll with custom gurney for mission 2.</li>
+          <li>Carry as many "passenger" dolls as possible for mission 3.</li>
+        </ul>
+      </p>
+      <p>
+        To meet this criteria, we made the wings and tail foldable, as seen in the CAD drawings below.
+      </p>
+      <div class="flex flex-row justify-center w-full gap-2">
+        <Image
+          src={drawingpark}
+          alt="CAD drawing of parking configuration"
+          class="w-1/2"
+        />
+        <Image
+          src={drawingfly}
+          alt="CAD drawing of flying configuration"
+          class="w-1/2"
+        />
+      </div>
+      <p>
+        We came out of this competition ecstatic with the outcome - especially considering our resources (or lack thereof) compared to our competition. In addition to actually being able to fly, we talked to many other teams of varying sizes to learn how they operate. With all that we learned this year, we are excited and motivated to crush next year's competition!
+      </p>
+
+      <p>Below is our Design Day poster, presented at an engineering fair at the end of the school year.</p>
+      <div class="mb-4">
+        <Image
+        src={designdaypic}
+        alt="Design Day Poster Board"
+        class="object-cover"
+        />
+      </div>
+
+    </div>
+  </div>
+</Layout>
