@@ -4,10 +4,9 @@ import Stats from '~/components/widgets/Stats.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 
-import designdaypic from '~/assets/images/designday_2024.png'
-import drawingfly from '~/assets/images/drawing_fly.png'
-import drawingpark from '~/assets/images/drawing_park.png'
-import competitionpreflight from '~/assets/images/competitionpreflight.jpg'
+import designdaypic from '~/assets/images/designday_2025.png'
+import caddrawing from '~/assets/images/2025plane_drawing.png'
+import competitionpreflight from '~/assets/images/2025team+plane.jpg'
 
 const metadata = {
   title: 'Competition 2025',
@@ -16,7 +15,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Hero
-    image={{ src: '~/assets/images/parked.jpg', alt: '2025 plane in flight' }}
+    image={{ src: '~/assets/images/2025plane.jpg', alt: '2025 plane in flight' }}
   >
     <Fragment slot="title">
       Competition 2025
@@ -27,17 +26,17 @@ const metadata = {
   </Hero>
   <Stats
     stats={[
-      { icon: 'tabler:users', title: 'Active Members', amount: '9' },
-      { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$1,500' },
-      { icon: 'tabler:medal-2', title: 'out of 149 teams', amount: '67th' },
-      { icon: 'tabler:map-2', title: 'Kansas', amount: 'Wichita' },
+      { icon: 'tabler:users', title: 'Active Members', amount: '10' },
+      { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$8,000' },
+      { icon: 'tabler:medal-2', title: 'out of 159 teams', amount: '49th' },
+      { icon: 'tabler:map-2', title: 'Arizona', amount: 'Tuscon' },
     ]}
   />
 
   <div class="flex justify-between flex-col max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
     <div class="mx-auto sm:px-6 max-w-3xl px-6 mt-8 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md text-justify">
       <p>
-        We are very proud of the results of the 2024 competition. It was tough as there was a loss of knowledge due to the club being inactive the previous year. Nevertheless, we pushed on as a team to learn and accomplished our goal of successfully flying the plane at competition!
+        Placing in the top 1/3 of the competition, we are extremely proud of our results for the 2025 competition. Despite the plane crashing on the first day, our team was able to rebuild it before the second. We were ultimately able to fly for both mission 1 and 2, showing incredible improvement from the year before.
       </p>
       <div class="flex flex-col items-center">
         <Image
@@ -45,36 +44,29 @@ const metadata = {
           alt="Flying at Competition"
         />
         <p class="text-sm p-0 m-0 w-5/6 relative">
-          Here's some of us at the competition right before we flew our first mission! Shout out to our pilot, J, from University of Washington Seattle!
+          Here's a picture of the team with the competition plane!
         </p>
       </div>
       <p>
-        The list of rules was lengthy, but the rules that guided our design process the most this year were that <b>the plane had to...</b>
+        Three missions guided our design process. Those missions were...
         <ul>
-          <li>Fit in a 2.5' wide space in parking configuration.</li>
-          <li>Have a maximum of a 5' wingspan.</li>
-          <li>Fly with only "pilot" dolls for mission 1.</li>
-          <li>Carry a 3x3x3.5 inch medical supply crate and "patient" doll with custom gurney for mission 2.</li>
-          <li>Carry as many "passenger" dolls as possible for mission 3.</li>
+          <li>Mission 1 (Delivery Flight): The plane must complete 3 laps within 5 minutes</li>
+          <li>Mission 2 (Captive Carry Flight): Same flight, but with fuel tanks and X-1 test vehicle attached. Score is calculated as a function of weight being held by the bottles.</li>
+          <li>Mission 3 (Launch Flight): With the fuel tanks attached, the plane must successfully drop the X-1 test vehicle and complete a lap after.</li>
         </ul>
       </p>
       <p>
-        To meet this criteria, we made the wings and tail foldable, as seen in the CAD drawings below.
+        The CAD shown below displays our design, intended to maximize performance in all three missions.
       </p>
-      <div class="flex flex-row justify-center w-full gap-2">
+      <div class="mb-4">
         <Image
-          src={drawingpark}
-          alt="CAD drawing of parking configuration"
-          class="w-1/2"
-        />
-        <Image
-          src={drawingfly}
-          alt="CAD drawing of flying configuration"
-          class="w-1/2"
+        src={caddrawing}
+        alt="CAD drawing of 2025 plane"
+        class="object-cover"
         />
       </div>
       <p>
-        We came out of this competition ecstatic with the outcome - especially considering our resources (or lack thereof) compared to our competition. In addition to actually being able to fly, we talked to many other teams of varying sizes to learn how they operate. With all that we learned this year, we are excited and motivated to crush next year's competition!
+        We were happy to see significant improvement from previous competitions this year! Our team learned many valuable lessons involving the design and manufacturing of the plane. Despite the setbacks and limited resources, we were able to perform well. We are excited to show even more leaps of better performance next year.
       </p>
 
       <p>Below is our Design Day poster, presented at an engineering fair at the end of the school year.</p>
