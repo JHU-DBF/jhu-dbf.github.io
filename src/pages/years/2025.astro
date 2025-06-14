@@ -5,8 +5,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 
 import designdaypic from '~/assets/images/designday_2025.png'
-import caddrawing from '~/assets/images/2025plane_drawing.png'
-import competitionpreflight from '~/assets/images/2025team+plane.jpg'
+import caddrawing from '~/assets/images/plane_drawing_2025.png'
+import competitionpreflight from '~/assets/images/team_plane_2025.jpg'
+import heroplane from '~/assets/images/plane_2025.jpg';
 
 const metadata = {
   title: 'Competition 2025',
@@ -15,7 +16,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Hero
-    image={{ src: '~/assets/images/2025plane.jpg', alt: '2025 plane in flight' }}
+    image={{ src: heroplane, alt: '2025 plane in flight' }}
   >
     <Fragment slot="title">
       Competition 2025
