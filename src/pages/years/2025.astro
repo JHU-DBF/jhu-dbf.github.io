@@ -5,8 +5,10 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 
 import designdaypic from '~/assets/images/designday_2025.png'
-import caddrawing from '~/assets/images/2025plane_drawing.png'
-import competitionpreflight from '~/assets/images/2025team+plane.jpg'
+import caddrawing from '~/assets/images/plane_drawing_2025.png'
+import competitionpreflight from '~/assets/images/team_plane_2025.jpg'
+import heroplane from '~/assets/images/plane_2025.jpg';
+
 
 const metadata = {
   title: 'Competition 2025',
@@ -15,7 +17,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Hero
-    image={{ src: '~/assets/images/2025plane.jpg', alt: '2025 plane in flight' }}
+    image={{ src: heroplane, alt: '2025 plane in flight' }}
   >
     <Fragment slot="title">
       Competition 2025
@@ -66,7 +68,7 @@ const metadata = {
         />
       </div>
       <p>
-        We came out of this competition ecstatic with the outcome - especially considering our resources (or lack thereof) compared to our competition. In addition to actually being able to fly, we talked to many other teams of varying sizes to learn how they operate. With all that we learned this year, we are excited and motivated to crush next year's competition!
+        We were happy to see significant improvement from previous competitions this year! Our team learned many valuable lessons involving the design and manufacturing of the plane. Despite the setbacks and limited resources, we were able to perform well. We are excited to show even more leaps of better performance next year.
       </p>
 
       <p>Below is our Design Day poster, presented at an engineering fair at the end of the school year.</p>
