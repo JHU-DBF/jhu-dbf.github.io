@@ -16,6 +16,9 @@ import imgFlyday2Group from "~/assets/images/flyday2_group.jpg";
 import imgFlightHD from "~/assets/images/flight_HD.jpg";
 import imgRunwayHD from "~/assets/images/runway_HD.jpg";
 import imgCAD from "~/assets/images/cad.png";
+import imgCAD2025 from "~/assets/images/cad_2025.png";
+import imgFlying2025 from "~/assets/images/flying_2025.png";
+import imgComp2025 from "~/assets/images/comp_2025.png";
 import Button from '~/components/ui/Button.astro';
 import { getPermalink } from '~/utils/permalinks';
 import ModelViewer from '~/components/widgets/ModelViewer';
@@ -79,10 +82,10 @@ const metadata = {
 
   <Stats
   stats={[
-      { icon: 'tabler:users', title: 'Members', amount: '7' },
+      { icon: 'tabler:users', title: 'Members', amount: '10' },
       { icon: 'tabler:school', title: 'Alumni', amount: '2' },
-      { icon: 'tabler:brand-instagram', title: 'Followers', amount: '140' },
-      { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$1,500' },
+      { icon: 'tabler:brand-instagram', title: 'Followers', amount: '250' },
+      { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$8,000' },
     ]}
   />
 
@@ -92,7 +95,7 @@ const metadata = {
     images={
       [
         {
-          src: imgFlightBanking,
+          src: imgFlying2025,
           alt: "flight banking",
           area:"[grid-area:img1]"
         },
@@ -102,8 +105,8 @@ const metadata = {
           area:"[grid-area:img3]"
         },
         {
-          src: imgParked,
-          alt: "parked on grass",
+          src: imgComp2025,
+          alt: "getting ready for ground mission",
           area:"[grid-area:img2]"
         },
         {
@@ -112,7 +115,7 @@ const metadata = {
           area:"[grid-area:img4]"
         },
         {
-          src: imgCAD,
+          src: imgCAD2025,
           alt: "in-editor CAD screenshot",
           area:"[grid-area:img5]"
         },
