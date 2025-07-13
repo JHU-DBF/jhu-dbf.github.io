@@ -1,7 +1,7 @@
 ---
 // based on https://bloomerang.co/template/fundraising-thermometer-generator/
 import { Image } from 'astro:assets';
-import piechart from '~/assets/images/budget_piechart.jpg'
+import piechart from '~/assets/images/budget_piechart_2025.jpg'
 
 // Create our number formatter.
 const formatter = new Intl.NumberFormat('en-US', {
@@ -13,10 +13,10 @@ const formatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
-const goal = 8300;
+const goal = 10000;
 let raised = 5000; // CHANGE THIS NUMBER TO HOWEVER MUCH WE RAISED
 
-if (raised >= 8300) {
+if (raised >= 10000) {
     // budget reached
     raised = goal;
     // TODO: celebrate?
