@@ -57,7 +57,7 @@ export function ModelViewer({ name, filepath }) {
                     // }}
                 >
                     <Suspense>
-                        <Grid scale={2} fadeDistance={12} infiniteGrid={true} position={[0, -1, 0]}/>
+                        <Grid scale={2} fadeDistance={12} infiniteGrid={true} position={[0, -2, 0]}/>
                         <Stage intensity={0}>
                             <Model filepath={filepath}
                             // highlight model part on hover

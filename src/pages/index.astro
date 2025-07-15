@@ -1,7 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Brands from '~/components/widgets/Brands.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
@@ -11,9 +10,7 @@ import BentoImages from '~/components/widgets/BentoImages.astro';
 import imgFlightBanking from "~/assets/images/flight_banking.jpg";
 import imgDrawingFly from "~/assets/images/drawing_fly.png";
 import imgParked from "~/assets/images/parked.jpg";
-import imgWorkingFuselage from "~/assets/images/working_fuselage.jpg";
 import imgFlyday2Group from "~/assets/images/flyday2_group.jpg";
-import imgFlightHD from "~/assets/images/flight_HD.jpg";
 import imgRunwayHD from "~/assets/images/runway_HD.jpg";
 import imgCAD from "~/assets/images/cad.png";
 import imgCAD2025 from "~/assets/images/cad_2025.png";
@@ -40,7 +37,7 @@ const metadata = {
     <Fragment slot="subtitle">
       We at <span class="font-semibold">Design Build Fly</span> are a multi-disciplinary club 
       unified in our mission of designing and building an RC-plane from scratch to compete at the annual
-      <a class="underline text-accent" href="https://www.aiaa.org/dbf">AIAA DBF competition</a></span>
+      <a class="underline text-accent" href="https://www.aiaa.org/dbf">AIAA DBF competition</a>
     </Fragment>
   </HeroText>
   <Steps
@@ -71,20 +68,20 @@ const metadata = {
       },
     ]}
     image={{
-      src: '~/assets/images/attaching_wing.jpg',
+      src: '~/assets/images/verticalDBF.jpg',
       alt: '2024 competition flight',
     }}
   />
 
-  <ModelViewer client:load name="RC Plane Model 2024 Mk 7" filepath="/assets/models/PlaneFull24.gltf" />
+  <ModelViewer client:load name="RC Plane Model 2025 - Freedom Fighter!" filepath="/assets/models/PlaneFull25.gltf" />
 
   <!-- Stats Widget ****************** -->
 
   <Stats
   stats={[
-      { icon: 'tabler:users', title: 'Members', amount: '10' },
-      { icon: 'tabler:school', title: 'Alumni', amount: '2' },
-      { icon: 'tabler:brand-instagram', title: 'Followers', amount: '250' },
+      { icon: 'tabler:users', title: 'Members', amount: '15' },
+      { icon: 'tabler:school', title: 'Alumni', amount: '26' },
+      { icon: 'tabler:brand-instagram', title: 'Followers', amount: '253' },
       { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$8,000' },
     ]}
   />
