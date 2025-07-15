@@ -1,7 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Brands from '~/components/widgets/Brands.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
@@ -11,9 +10,7 @@ import BentoImages from '~/components/widgets/BentoImages.astro';
 import imgFlightBanking from "~/assets/images/flight_banking.jpg";
 import imgDrawingFly from "~/assets/images/drawing_fly.png";
 import imgParked from "~/assets/images/parked.jpg";
-import imgWorkingFuselage from "~/assets/images/working_fuselage.jpg";
 import imgFlyday2Group from "~/assets/images/flyday2_group.jpg";
-import imgFlightHD from "~/assets/images/flight_HD.jpg";
 import imgRunwayHD from "~/assets/images/runway_HD.jpg";
 import imgCAD from "~/assets/images/cad.png";
 import Button from '~/components/ui/Button.astro';
@@ -37,7 +34,7 @@ const metadata = {
     <Fragment slot="subtitle">
       We at <span class="font-semibold">Design Build Fly</span> are a multi-disciplinary club 
       unified in our mission of designing and building an RC-plane from scratch to compete at the annual
-      <a class="underline text-accent" href="https://www.aiaa.org/dbf">AIAA DBF competition</a></span>
+      <a class="underline text-accent" href="https://www.aiaa.org/dbf">AIAA DBF competition</a>
     </Fragment>
   </HeroText>
   <Steps
@@ -68,7 +65,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: '~/assets/images/attaching_wing.jpg',
+      src: '~/assets/images/verticalDBF.jpg',
       alt: '2024 competition flight',
     }}
   />
