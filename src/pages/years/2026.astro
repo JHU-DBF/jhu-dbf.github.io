@@ -1,0 +1,239 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+
+// Import images
+import fuselageImg from '~/assets/images/2026/fuselage.jpg';
+import wetlayupImg from '~/assets/images/2026/wetlayup.jpg';
+import scaleDownLayupImg from '~/assets/images/2026/scale_down_layup.jpg';
+import vacuumBaggingImg from '~/assets/images/2026/vacuum_bagging.jpg';
+import cncRouterImg from '~/assets/images/2026/cnc_router.jpg';
+import wingFeaImg from '~/assets/images/2026/wing fea.png';
+import cncHotWireCutterImg from '~/assets/images/2026/CNC_hot_wire_cutter.jpg';
+import gcodeGenImg from '~/assets/images/2026/gcode_gen.jpeg';
+import cfFuselagePrototypeImg from '~/assets/images/2026/cf_fuselage_prototype.jpg';
+import plane2024Img from '~/assets/images/parked.jpg';
+import plane2025Img from '~/assets/images/2026/plane_2025.jpg';
+
+const metadata = {
+  title: 'Competition 2026',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    image={{ src: fuselageImg, alt: 'Carbon fiber fuselage construction', width: 1466, height: 908 }}
+  >
+    <Fragment slot="title">
+      <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1">Competition 2026</div>
+      Peaking Jay
+    </Fragment>
+    <Fragment slot="subtitle">
+      A fully carbon fiber design: The ultimate competitive edge
+    </Fragment>
+  </Hero>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <div class="flex flex-wrap justify-center -m-4 text-center">
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
+        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
+          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">10.8 lbs</div>
+        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Aircraft Weight</div>
+      </div>
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
+        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
+          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5"></path><path d="m12 4 0 16"></path><path d="M5 11v6.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V11"></path><path d="M15 11v6.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V11"></path></svg>
+        </div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">92 ft/s</div>
+        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Top Speed</div>
+      </div>
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
+        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
+          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        </div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">4.4 lbs</div>
+        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Payload Capacity</div>
+      </div>
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
+        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
+          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+        </div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">Top 20</div>
+        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">2026 Goal</div>
+      </div>
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
+        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
+          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">April 2026</div>
+        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Competition</div>
+      </div>
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center">
+        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
+          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">Wichita, KS</div>
+        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Location</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-between flex-col max-w-5xl mx-auto mt-0 mb-2 px-4 sm:px-6">
+    <div class="mx-auto sm:px-6 max-w-5xl px-6 mt-8 dark:prose-a:text-blue-400 dark:prose-headings:text-slate-300 dark:prose-invert lg:prose-xl prose prose-a:text-primary prose-headings:font-bold prose-headings:font-heading prose-headings:leading-tighter prose-headings:scroll-mt-[80px] prose-headings:tracking-tighter prose-img:rounded-md prose-img:shadow-lg prose-li:my-0 prose-md">
+      
+      <h2 class="text-center">The ultimate competitive edge</h2>
+      
+      <p class="text-justify">
+        In just two years, our team has made tremendous progress. We started small with a foamboard aircraft that weighed only 4 lb, and other teams nicknamed it "the cardboard plane." Despite its simplicity, limited payload, and budget nearly 5–20 times smaller than most teams, we managed to place in the top half of the competition.
+      </p>
+
+      <p class="text-justify">
+        Motivated by this success, we aimed higher the following year. We designed and built a 6 ft wingspan wooden aircraft weighing 7 lbs, a major step forward in complexity and ambition. Despite the setbacks when the plane crashed on the first day due to the Arizona heat, we persevered and completed two of the three missions, ultimately finishing in the top third overall.
+      </p>
+
+      <p class="text-justify">
+        This year, we're aiming even higher. Our team is taking on the challenge of building a fully carbon composite aircraft — a leap that places us among top-performing teams with decades of experience, much larger memberships, and budgets several times our own. With this effort, we are setting our goal to finish in the top 20 teams, and we are working hard every day to make it happen.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+        <div class="flex flex-col items-center">
+          <Image
+            src={plane2024Img}
+            alt="2024 Competition Aircraft"
+            class="rounded-lg shadow-lg w-full object-cover h-64"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">2024 - The Phoenix</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <Image
+            src={plane2025Img}
+            alt="2025 Competition Aircraft"
+            class="rounded-lg shadow-lg w-full object-cover h-64"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">2025 - The Freedom Fighter</p>
+        </div>
+      </div>
+
+      <h2 class="text-center mt-12">Design Specifications</h2>
+
+      <p class="text-justify">
+        So far, we have completed the detailed design of our plane. It is estimated to weigh 10.8 lbs with a top speed of 92 ft/s. It can carry 4.4 lbs of payload in its large carbon fiber fuselage. Additionally, it can tow a large banner (2 x 10 ft) for 5 minutes.
+      </p>
+
+      <h2 class="text-center mt-12">Manufacturing Process Validation</h2>
+
+      <p class="text-justify">
+        A scaled-down fuselage half was built to validate the manufacturing process and test structural integrity. We set up VCarve to CNC mill two female mold halves out of XPS foam. We then treated them with an epoxy coating to smooth out the surface and applied multiple layers of PVA as mold release agents. We performed a three-layer layup of bidirectional carbon fiber cloth in a 0/90°, ±45°, 0/90° orientation.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+        <div class="flex flex-col items-center">
+          <Image
+            src={scaleDownLayupImg}
+            alt="Scaled-down prototype"
+            class="rounded-lg shadow-lg w-full object-cover h-80"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Scaled-down prototype</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <Image
+            src={cncRouterImg}
+            alt="CNC router in operation"
+            class="rounded-lg shadow-lg w-full object-cover h-80"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">CNC milling the female mold halves</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+        <div class="flex flex-col items-center">
+          <Image
+            src={wetlayupImg}
+            alt="Wet layup process"
+            class="rounded-lg shadow-lg w-full object-cover h-80"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Wet layup process</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <Image
+            src={vacuumBaggingImg}
+            alt="Vacuum bagging"
+            class="rounded-lg shadow-lg w-full object-cover h-80"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Vacuum bagging technique</p>
+        </div>
+      </div>
+
+      <h2 class="text-center mt-12">Structural Analysis</h2>
+
+      <p class="text-justify">
+        To validate the wing's structural design, we performed a Finite Element Analysis (FEA) in Abaqus. The model simulated an assembly of an XPS foam core insert, an internal carbon fiber spar, and a skin made from wet layup of two layers of ±45° bidirectional carbon fiber. A distributed lift force (scaled to simulate a 6G maneuver) calculated from aerodynamic parameters, was applied to the cantilevered wing structure. The results confirmed the design's integrity, showing minimal deflection and stress levels safely below material failure points.
+      </p>
+
+      <div class="flex flex-col items-center my-6">
+        <Image
+          src={wingFeaImg}
+          alt="FEA simulation results"
+          class="rounded-lg shadow-lg w-full max-w-4xl"
+        />
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 italic">
+          Finite Element Analysis showing stress distribution under 6G load
+        </p>
+      </div>
+
+      <h2 class="text-center mt-12">Custom Manufacturing Tools</h2>
+
+      <p class="text-justify">
+        The wing is made out of carbon fiber wrapped XPS foam which is hot wire cut using our own custom CNC hot wire cutter. We even developed our own custom g-code generator as there is no open source software which satisfies our need that currently exists.
+      </p>
+
+      <p class="text-justify">
+        Using our custom-built CNC hot wire cutter controlled by in-house developed g-code generation software, we built our wing into highly specific airfoil shapes from XPS foam. We then wrapped the shaped foam with carbon fiber to achieve our rigorous structural requirements. Our specialized tools give us an advantage in manufacturing capacity and quality, as no existing tooling has been available for our needs until now.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+        <div class="flex flex-col items-center">
+          <Image
+            src={cncHotWireCutterImg}
+            alt="Custom CNC hot wire cutter"
+            class="rounded-lg shadow-lg w-full object-cover h-80"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Our custom-built CNC hot wire cutter</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <Image
+            src={gcodeGenImg}
+            alt="G-code generation software"
+            class="rounded-lg shadow-lg w-full object-cover h-80"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">In-house developed g-code generator</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center my-6">
+        <Image
+          src={cfFuselagePrototypeImg}
+          alt="Carbon fiber fuselage prototype"
+          class="rounded-lg shadow-lg w-full max-w-3xl"
+        />
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 italic">
+          Final carbon fiber fuselage prototype
+        </p>
+      </div>
+
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-lg my-12 text-center">
+        <h3 class="text-2xl font-bold mb-4">Our 2026 Goal</h3>
+        <p class="text-xl font-semibold text-blue-600 dark:text-blue-400">
+          Finish in the Top 20 Teams
+        </p>
+        <p class="mt-4 text-justify">
+          With our fully carbon composite aircraft and innovative manufacturing techniques, we're positioned to compete with the best teams in the nation. Every day brings us closer to achieving this ambitious goal.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</Layout>

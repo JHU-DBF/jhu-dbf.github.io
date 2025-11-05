@@ -31,6 +31,10 @@ export const headerData = {
           text: '2025 Competition',
           href: getPermalink('/years/2025'),
         },
+        {
+          text: '2026 Competition',
+          href: getPermalink('/years/2026'),
+        },
       ],
     },
     {
