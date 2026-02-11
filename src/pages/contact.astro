@@ -5,12 +5,63 @@ import Hero_sponsor from '~/components/widgets/Hero_sponsor.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import FundraiseThermometer from '~/components/widgets/FundraiseThermometer.astro';
 
+import Brands from '~/components/widgets/Brands.astro';
+
+import Airtech from '~/assets/images/logos/Airtech.png';
+import APC from '~/assets/images/logos/APC Propellers.png';
+import Dragon from '~/assets/images/logos/Dragon Plate.png';
+import HiTec from '~/assets/images/logos/HiTec.png';
+import Reliable from '~/assets/images/logos/Reliable Robotics.png';
+import Scorpion from '~/assets/images/logos/Scorpion Power Systems.png';
+import Venom from '~/assets/images/logos/Venom Carbon.png';
+import WSE from '~/assets/images/logos/WSE MechE.png';
+import Formlabs from '~/assets/images/logos/Formlabs.png';
+
+
 const metadata = {
-  title: 'Contact Us/Sponsorship',
+  title: 'Sponsorship & Contact',
 };
 ---
 
 <Layout metadata={metadata}>
+
+  <Brands
+  title="Thank you to our current sponsors."
+  images={[
+    { src: WSE, alt: "WSE MechE", featured: true },
+
+    { src: Reliable, alt: "Reliable Robotics" },
+    { src: Formlabs, alt: "Formlabs" },
+    { src: Scorpion, alt: "Scorpion Power" },
+    { src: Venom, alt: "Venom Carbon" },
+    { src: Dragon, alt: "Dragon Plate" },
+    { src: HiTec, alt: "HiTec" },
+    { src: Airtech, alt: "Airtech" },
+    { src: APC, alt: "APC Propellers" },
+  ]}
+/>
+  
+  <Hero_sponsor
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Download Sponsorship Information',
+        href: '/assets/dbf_sponsorshipleaflet_25-26.pdf',
+        target: '_blank',
+        icon: 'tabler:download',
+      }
+    ]}>
+    <Fragment slot="title">
+      Sponsor Us!
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Please consider supporting us. Our team relies entirely on the monetary and material donations from individuals and organizations like yours to offer opportunities and experiences to the next generation of doers.
+    </Fragment>
+  </Hero_sponsor>
+
+  <FundraiseThermometer />
+
   <Features3
     title="Contact Us!"
     columns={3}
@@ -34,27 +85,6 @@ const metadata = {
   >
   </Features3>
 
-  <Hero_sponsor
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Download Sponsorship Information',
-        href: '/assets/dbf_sponsorshipleaflet_25-26.pdf',
-        target: '_blank',
-        icon: 'tabler:download',
-      }
-    ]}>
-    <Fragment slot="title">
-      Sponsor Us!
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Please consider supporting us. Our team relies entirely on the monetary and material donations from individuals and organizations like yours to offer opportunities and experiences to the next generation of doers.
-    </Fragment>
-  </Hero_sponsor>
-
-  <FundraiseThermometer />
-  
   <Features2
     title="Join a Weekly Meeting!"
     tagline=""
@@ -65,7 +95,7 @@ const metadata = {
         description: 'DBF lab / Makerspace',
       },
       {
-        title: 'Thursday 7-9pm',
+        title: 'Wednesday 7-9pm',
         description: 'DBF lab / Wind-tunnel lab / Makerspace',
       },
       {

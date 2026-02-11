@@ -19,6 +19,18 @@ import imgComp2025 from "~/assets/images/comp_2025.png";
 import Button from '~/components/ui/Button.astro';
 import { getPermalink } from '~/utils/permalinks';
 import ModelViewer from '~/components/widgets/ModelViewer';
+import Brands from '~/components/widgets/Brands.astro';
+import Airtech from '~/assets/images/logos/Airtech.png';
+import APC from '~/assets/images/logos/APC Propellers.png';
+import Dragon from '~/assets/images/logos/Dragon Plate.png';
+import HiTec from '~/assets/images/logos/HiTec.png';
+import Reliable from '~/assets/images/logos/Reliable Robotics.png';
+import Scorpion from '~/assets/images/logos/Scorpion Power Systems.png';
+import Venom from '~/assets/images/logos/Venom Carbon.png';
+import WSE from '~/assets/images/logos/WSE MechE.png';
+import Formlabs from '~/assets/images/logos/Formlabs.png';
+
+
 
 const metadata = {
   title: 'Design Build Fly @ JHU',
@@ -161,22 +173,46 @@ const metadata = {
   >
   </Features3>
 
-  <!-- <Brands
-    title="A special thanks to our sponsors"
+  <Brands
+    title="Thank you to our current sponsors."
     images={[
       {
-        src: "https://www.lockheedmartin.com/content/dam/lockheed-martin/general/lm-logo.svg",
-        alt: "placeholder logo",
+        src: WSE,
+        alt: "WSE MechE",
       },
       {
-        src: "https://www.lockheedmartin.com/content/dam/lockheed-martin/general/lm-logo.svg",
-        alt: "placeholder logo",
+        src: Reliable,
+        alt: "Reliable Robotics",
       },
       {
-        src: "https://www.lockheedmartin.com/content/dam/lockheed-martin/general/lm-logo.svg",
-        alt: "placeholder logo",
+        src: Formlabs,
+        alt: "Formlabs",
+      },
+      {
+        src: Scorpion,
+        alt: "Scorpion Power",
+      },
+      {
+        src: Venom,
+        alt: "Venom Carbon",
+      },
+      {
+        src: Dragon,
+        alt: "Dragon Plate",
+      },
+      {
+        src: HiTec,
+        alt: "HiTec",
+      },
+      {
+        src: Airtech,
+        alt: "Airtech",
+      },
+      {
+        src: APC,
+        alt: "APC Propellers",
       },
     ]}
   >  
-  </Brands> -->
+  </Brands>
 </Layout>
