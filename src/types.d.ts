@@ -91,6 +91,8 @@ export interface MetaDataTwitter {
 export interface Image {
   src: string;
   alt?: string;
+  href?: string;
+  featured?: boolean;
 }
 
 export interface Video {

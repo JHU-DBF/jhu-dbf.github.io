@@ -25,40 +25,69 @@ const {
   <>
     {/* Featured Sponsor */}
     <div class="flex justify-center mb-16">
-      <Image
-        src={images[0].src}
-        alt={images[0].alt || ""}
-        class="h-auto w-auto max-w-4xl"
-        layout="constrained"
-      />
+      {images[0]?.href ? (
+        <a
+          href={images[0].href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex justify-center"
+        >
+          <Image
+            src={images[0].src}
+            alt={images[0].alt || ""}
+            class="h-auto w-auto max-w-4xl object-contain transition-transform duration-200 hover:scale-105"
+            layout="constrained"
+          />
+        </a>
+      ) : (
+        <Image
+          src={images[0].src}
+          alt={images[0].alt || ""}
+          class="h-auto w-auto max-w-4xl object-contain"
+          layout="constrained"
+        />
+      )}
     </div>
 
     {/* Remaining Sponsors */}
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-20 items-center">
-      {images.slice(1).map((image) =>
-        image.src && (
+      {images.slice(1).map((image) => {
+        if (!image?.src) return null;
+
+        const sizeClass =
+          image.alt === "APC Propellers"
+            ? "w-40 h-auto"
+            : image.alt === "Airtech"
+            ? "w-58 h-auto"
+            : image.alt === "Venom Carbon"
+            ? "w-5 h-42"
+            : image.alt === "Scorpion Power"
+            ? "w-66 h-38"
+            : image.alt === "Dragon Plate"
+            ? "w-28 h-38"
+            : "w-48 h-auto";
+
+        const logo = (
+          <Image
+            src={image.src}
+            alt={image.alt || ""}
+            class={`object-contain ${sizeClass} transition-transform duration-200 hover:scale-105`}
+          />
+        );
+
+        return (
           <div class="flex justify-center">
-            <Image
-              src={image.src}
-              alt={image.alt || ""}
-              class={`object-contain ${
-                image.alt === "APC Propellers"
-                  ? "w-40 h-auto"
-                  : image.alt === "Airtech"
-                  ? "w-58 h-auto"
-                  : image.alt === "Venom Carbon"
-                  ? "w-5 h-42"
-                  : image.alt === "Scorpion Power"
-                  ? "w-66 h-38"
-                  : image.alt === "Dragon Plate"
-                  ? "w-28 h-38"
-                  : "w-48 h-auto"
-               }`}
-            />
+            {image.href ? (
+              <a href={image.href} target="_blank" rel="noopener noreferrer">
+                {logo}
+              </a>
+            ) : (
+              logo
+            )}
           </div>
-        )
-      )}
+        );
+      })}
     </div>
   </>
-)}
+  )}
 </WidgetWrapper>
