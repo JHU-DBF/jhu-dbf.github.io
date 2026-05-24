@@ -18,10 +18,11 @@
  *       { id: 'wings', displayName: 'Wings', meshNames: ['Wing_Left', 'Wing_Right'] },
  *       { id: 'payload', displayName: 'Payload Bay', meshNames: ['PayloadBay_Doors', 'PayloadBay_Interior'] }
  *     ]
+ *   - showMeshNames: Optional boolean to render a debug list of exact mesh names from the model
  * 
  * Features:
  *   - Automatically centers the model in X and Z axes
- *   - Positions wheels on the floor (Y = -2)
+ *   - Positions wheels on the floor
  *   - Applies default materials to meshes without textures
  *   - Supports hiding/showing specific parts
  *   - Automatic camera framing with Bounds
@@ -37,7 +38,10 @@ const Model = (props) => {
     const {
         angle = 0,
         positionOffset = [0, 0, 0],
+        hiddenPartIds = [],
+        toggleableParts = [],
         onBoundingSphere,
+        onMeshNames,
         ...rest
     } = props;
     const gltf = useGLTF(props.filepath);
@@ -62,11 +66,41 @@ const Model = (props) => {
             }
         }
     }, [gltf.scene, angle, positionOffset, onBoundingSphere]);
+
+    useEffect(() => {
+        if (!gltf.scene) {
+            return;
+        }
+
+        const hiddenMeshNames = new Set(
+            toggleableParts
+                .filter((part) => hiddenPartIds.includes(part.id))
+                .flatMap((part) => part.meshNames || [])
+        );
+
+        const meshNames = new Set();
+        gltf.scene.traverse((child) => {
+            if (child.isMesh) {
+                meshNames.add(child.name || '(unnamed)');
+                if (hiddenMeshNames.has(child.name)) {
+                    child.visible = false;
+                } else if (
+                    toggleableParts.some((part) => (part.meshNames || []).includes(child.name))
+                ) {
+                    child.visible = true;
+                }
+            }
+        });
+
+        if (typeof onMeshNames === 'function') {
+            onMeshNames(Array.from(meshNames).sort());
+        }
+    }, [gltf.scene, hiddenPartIds, toggleableParts, onMeshNames]);
     
     useEffect(() => {
         // Apply default materials to meshes that don't have any
         const defaultMaterial = new THREE.MeshStandardMaterial({ 
-            color: 0xcccccc, // Light gray
+            color: 0xcccccc,
             roughness: 0.7,
             metalness: 0.1
         });
@@ -88,10 +122,11 @@ const Model = (props) => {
     )
 }
 
-export function ModelViewer({ name, filepath, angle = 0, toggleableParts = [], positionOffset }) {
+export function ModelViewer({ name, filepath, angle = 0, toggleableParts = [], positionOffset = [0, 0, 0], showMeshNames = false }) {
     const autoRotate = true;
     const [hiddenPartIds, setHiddenPartIds] = useState([]);
     const [modelRadius, setModelRadius] = useState(1);
+    const [meshNames, setMeshNames] = useState([]);
 
     const cameraPosition = [0, Math.max(3, modelRadius * 1.8), Math.max(8, modelRadius * 3.5)];
     const cameraFar = Math.max(2000, modelRadius * 120);
@@ -111,6 +146,7 @@ export function ModelViewer({ name, filepath, angle = 0, toggleableParts = [], p
                                     positionOffset={positionOffset}
                                     castShadow
                                     onBoundingSphere={setModelRadius}
+                                    onMeshNames={showMeshNames ? setMeshNames : undefined}
                                 />
                             </Bounds>
                         </Stage>
@@ -150,6 +186,34 @@ export function ModelViewer({ name, filepath, angle = 0, toggleableParts = [], p
                                     </button>
                                 ))}
                             </div>
+                        </div>
+                    )}
+                    {showMeshNames && (
+                        <div className="mb-4 max-w-md">
+                            <h3 className="text-lg font-semibold mb-2 dark:text-gray-300">Debug mesh names</h3>
+                            {meshNames.length === 0 ? (
+                                <p className="text-sm text-muted dark:text-slate-400">No mesh names were detected in this model.</p>
+                            ) : meshNames.length === 1 ? (
+                                <>
+                                    <p className="text-sm text-muted dark:text-slate-400 mb-2">
+                                        This model only exposes a single mesh/node, so part-level toggling is not possible unless the file is split into separate named parts. You can do this by changing export settings or using a program like Blender.
+                                    </p>
+                                    <div className="overflow-y-auto max-h-48 rounded border border-gray-200 bg-white/80 p-3 text-sm text-gray-800 shadow-sm dark:border-gray-700 dark:bg-slate-900/80 dark:text-gray-200">
+                                        {meshNames.map((name) => (
+                                            <div key={name} className="mb-1 break-words">{name}</div>
+                                        ))}
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <p className="text-sm text-muted dark:text-slate-400 mb-2">Use these exact names in your toggleableParts configuration.</p>
+                                    <div className="overflow-y-auto max-h-48 rounded border border-gray-200 bg-white/80 p-3 text-sm text-gray-800 shadow-sm dark:border-gray-700 dark:bg-slate-900/80 dark:text-gray-200">
+                                        {meshNames.map((name) => (
+                                            <div key={name} className="mb-1 break-words">{name}</div>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
                         </div>
                     )}
                     { /* highlight model part on hover */}

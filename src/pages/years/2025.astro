@@ -8,7 +8,7 @@ import designdaypic from '~/assets/images/designday_2025.png'
 import caddrawing from '~/assets/images/plane_drawing_2025.png'
 import competitionpreflight from '~/assets/images/team_plane_2025.jpg'
 import heroplane from '~/assets/images/plane_2025.jpg';
-
+import ModelViewer from '~/components/widgets/ModelViewer';
 
 const metadata = {
   title: 'Competition 2025',
@@ -33,6 +33,12 @@ const metadata = {
       { icon: 'tabler:medal-2', title: 'out of 159 teams', amount: '49th' },
       { icon: 'tabler:map-2', title: 'Arizona', amount: 'Tuscon' },
     ]}
+  />
+
+  <ModelViewer client:load
+    name="RC Plane Model 2024 - Freedom Fighter!"
+    filepath="/assets/models/PlaneFull25.gltf"
+    angle={-8}
   />
 
   <div class="flex justify-between flex-col max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
