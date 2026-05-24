@@ -6,80 +6,152 @@
  * for some reason. -> it just needs the <primitive> and gltf = useGLTF() parts to be separate I
  * think. Idk why.
  * 
- * The data in here was manually set for a specific model (PlaneFull24.gltf). So for other
- * models, properties must be changed like position, rotation, etc. These should probably be
- * passed through in a nicer way instead of hard coded.
+ * Props:
+ *   - name: Display name for the model
+ *   - filepath: Path to the GLTF model file
+ *   - angle: Optional rotation angle in degrees (default: 0)
+ *   - scale: Optional scale factor (default: 5)
+ *   - positionOffset: Optional [x, y, z] offset to apply after auto-centering (default: [0, 0, 0])
+ *   - toggleableParts: Array of part definitions for hiding/showing meshes
+ *     Example: [
+ *       { id: 'fuselage', displayName: 'Fuselage', meshNames: ['Fuselage_01', 'Fuselage_02'] },
+ *       { id: 'wings', displayName: 'Wings', meshNames: ['Wing_Left', 'Wing_Right'] },
+ *       { id: 'payload', displayName: 'Payload Bay', meshNames: ['PayloadBay_Doors', 'PayloadBay_Interior'] }
+ *     ]
  * 
- * Many sections are commented out, labelled "highlight model part on hover". These parts contain code
- * for highlighting whichever part of the model is being hovered over by the cursor. It was removed
- * because it didn't work the way we wanted it to, but the code is preserved because I worked hard on
- * it and want to save it just in case I want it in the future, I guess. There are some straggling
- * parts that are not uncommented but they are a bit too mixed with other code for me to want to
- * remove them.
+ * Features:
+ *   - Automatically centers the model in X and Z axes
+ *   - Positions wheels on the floor (Y = -2)
+ *   - Applies default materials to meshes without textures
+ *   - Supports hiding/showing specific parts
+ *   - Automatic camera framing with Bounds
  */
 
-// highlight model part on hover
-// import * as THREE from 'three'
-
-import { useState, Suspense } from 'react'
+import { useState, Suspense, useEffect, useRef } from 'react'
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, OrbitControls, Grid, Stage } from "@react-three/drei";
+import { useGLTF, OrbitControls, Bounds, Stage } from "@react-three/drei";
+import * as THREE from 'three';
 
 
 const Model = (props) => {
+    const {
+        angle = 0,
+        positionOffset = [0, 0, 0],
+        onBoundingSphere,
+        ...rest
+    } = props;
     const gltf = useGLTF(props.filepath);
+    const modelRef = useRef();
+    
+    useEffect(() => {
+        if (modelRef.current) {
+            const box = new THREE.Box3().setFromObject(modelRef.current);
+            // Center the model in X and Z axes
+            const centerX = (box.min.x + box.max.x) / 2;
+            const centerZ = (box.min.z + box.max.z) / 2;
+            // Position so the lowest point is on the visible floor at Y=0, plus any offset
+            modelRef.current.position.set(
+                -centerX + positionOffset[0],
+                -box.min.y + positionOffset[1],
+                -centerZ + positionOffset[2]
+            );
+
+            if (typeof onBoundingSphere === 'function') {
+                const sphere = box.getBoundingSphere(new THREE.Sphere());
+                onBoundingSphere(sphere.radius);
+            }
+        }
+    }, [gltf.scene, angle, positionOffset, onBoundingSphere]);
+    
+    useEffect(() => {
+        // Apply default materials to meshes that don't have any
+        const defaultMaterial = new THREE.MeshStandardMaterial({ 
+            color: 0xcccccc, // Light gray
+            roughness: 0.7,
+            metalness: 0.1
+        });
+        
+        gltf.scene.traverse((child) => {
+            if (child.isMesh && (!child.material || Array.isArray(child.material) && child.material.length === 0)) {
+                child.material = defaultMaterial;
+            } else if (child.isMesh && Array.isArray(child.material)) {
+                // Handle multi-material meshes
+                child.material = child.material.map(mat => mat || defaultMaterial);
+            }
+        });
+    }, [gltf.scene]);
     
     return ( 
-        <group {...props} >
-            <primitive object={ gltf.scene } scale={5} position={[0, 0, 1.5]} rotation={[-Math.PI / 2, 0, 0]}/>
+        <group {...rest} >
+            <primitive ref={modelRef} object={ gltf.scene } rotation={[-Math.PI / 2 + (angle * Math.PI / 180), 0, 0]}/>
         </group>
     )
 }
 
-export function ModelViewer({ name, filepath }) {
-    const [autoRotate, setAutoRotate] = useState(true);
-    
-    // highlight model part on hover
-    // should be red on highlight, but just turns black.
-    // const highlightMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
+export function ModelViewer({ name, filepath, angle = 0, toggleableParts = [], positionOffset }) {
+    const autoRotate = true;
+    const [hiddenPartIds, setHiddenPartIds] = useState([]);
+    const [modelRadius, setModelRadius] = useState(1);
+
+    const cameraPosition = [0, Math.max(3, modelRadius * 1.8), Math.max(8, modelRadius * 3.5)];
+    const cameraFar = Math.max(2000, modelRadius * 120);
 
     return (
         <div className="flex justify-center p-5">
             <div className="flex flex-col-reverse md:flex-row justify-center max-w-5xl">
-                <Canvas camera={{ position: [0, .5, 2], zoom: 2 }} className="w-full px-10 md:w-2/3 aspect-[16/6]"
-                    // onPointerEnter={(e) => {
-                    //     setAutoRotate(false);
-                    // }}
-                    // onPointerLeave={(e) => {
-                    //     setAutoRotate(true);
-                    //     // highlight model part on hover
-                    //     // document.getElementById("part-name").innerText = "Hover over a component!";
-                    // }}
-                >
+                <Canvas camera={{ position: cameraPosition, fov: 35, near: 0.1, far: cameraFar }} className="w-full px-10 md:w-2/3 aspect-[16/6]">
                     <Suspense>
-                        <Grid scale={2} fadeDistance={12} infiniteGrid={true} position={[0, -2, 0]}/>
-                        <Stage intensity={0}>
-                            <Model filepath={filepath}
-                            // highlight model part on hover
-                            // onPointerOver={(e) => {
-                            //     document.getElementById("part-name").innerText = `Highlighted component:\n${e.object.parent.name}`;
-                            //     e.object.parent.userData.oldMaterial = e.object.material;
-                            //     e.object.parent.children.forEach(child => {
-                            //         child.material = highlightMaterial;
-                            //     });
-                            // }}
-                            // onPointerOut={(e) => {
-                            //     e.object.parent.children.forEach(child => {
-                            //         child.material = e.object.parent.userData.oldMaterial;
-                            //     });
-                            // }}
-                            />
+                        <Stage adjustCamera={false} intensity={0.5} shadows="contact" environment="city">
+                            <Bounds fit clip observe margin={1.2}>
+                                <Model
+                                    filepath={filepath}
+                                    angle={angle}
+                                    hiddenPartIds={hiddenPartIds}
+                                    toggleableParts={toggleableParts}
+                                    positionOffset={positionOffset}
+                                    castShadow
+                                    onBoundingSphere={setModelRadius}
+                                />
+                            </Bounds>
                         </Stage>
-                        <OrbitControls autoRotate={autoRotate} autoRotateSpeed={-1} enableDamping={false} />
+                        <OrbitControls
+                            autoRotate={autoRotate}
+                            autoRotateSpeed={-1}
+                            enableDamping={false}
+                            makeDefault
+                            minPolarAngle={0.35}
+                            maxPolarAngle={Math.PI / 2.2}
+                        />
                     </Suspense>
                 </Canvas>
                 <div className="flex justify-center md:justify-start flex-col">
                     <h1 className='text-3xl lg:text-4xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200'>{name}</h1>
+                    {toggleableParts.length > 0 && (
+                        <div className="mb-4">
+                            <h3 className="text-lg font-semibold mb-2 dark:text-gray-300">View Options:</h3>
+                            <div className="flex flex-wrap gap-2 max-w-md">
+                                {toggleableParts.map(part => (
+                                    <button
+                                        key={part.id}
+                                        onClick={() => {
+                                            if (hiddenPartIds.includes(part.id)) {
+                                                setHiddenPartIds(hiddenPartIds.filter(id => id !== part.id));
+                                            } else {
+                                                setHiddenPartIds([...hiddenPartIds, part.id]);
+                                            }
+                                        }}
+                                        className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+                                            hiddenPartIds.includes(part.id)
+                                                ? 'bg-gray-400 text-gray-800 dark:bg-gray-600 dark:text-gray-200'
+                                                : 'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800'
+                                        }`}
+                                    >
+                                        {hiddenPartIds.includes(part.id) ? `Show ${part.displayName}` : `Hide ${part.displayName}`}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                     { /* highlight model part on hover */}
                     {/* <p id="part-name" className="hidden md:flex text-lg text-muted mb-6 dark:text-slate-300 text-left">Hover over a component!</p> */}
                 </div>
