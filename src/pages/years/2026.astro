@@ -84,8 +84,15 @@ const metadata = {
 
   <ModelViewer client:load
     name="RC Plane Model 2026 - Peaking Jay!"
-    filepath="/assets/models/PlaneFull26/plane.gltf"
+    filepath="/assets/models/PlaneFull26.glb"
     angle={100}
+    toggleableParts={[
+      {
+        id: 'fuselage',
+        displayName: 'Fuselage',
+        meshNames: ['Fuselage', 'fuselage']
+      }
+    ]}
   />
 
   <div class="flex justify-between flex-col max-w-5xl mx-auto mt-0 mb-2 px-4 sm:px-6">
