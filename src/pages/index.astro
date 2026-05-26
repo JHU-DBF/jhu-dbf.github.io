@@ -73,7 +73,18 @@ const metadata = {
     }}
   />
 
-  <ModelViewer client:load name="RC Plane Model 2025 - Freedom Fighter!" filepath="/assets/models/PlaneFull25.gltf" />
+  <ModelViewer client:load
+    name="RC Plane Model 2026 - Peaking Jay!"
+    filepath="/assets/models/PlaneFull26.glb"
+    toggleableParts={[
+      {
+        id: 'fuselage',
+        displayName: 'Fuselage',
+        meshNames: ['Fuselage', 'fuselage']
+      }
+    ]}
+    angle={100}
+  />
 
   <!-- Stats Widget ****************** -->
 
