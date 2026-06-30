@@ -3,16 +3,13 @@ import Layout from '~/layouts/PageLayout.astro';
 
 import Steps from '~/components/widgets/Steps.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import BentoImages from '~/components/widgets/BentoImages.astro';
 
-import imgFlightBanking from "~/assets/images/flight_banking.jpg";
+import homeHero from "~/assets/images/home-hero.png";
 import imgDrawingFly from "~/assets/images/drawing_fly.png";
-import imgParked from "~/assets/images/parked.jpg";
 import imgFlyday2Group from "~/assets/images/flyday2_group.jpg";
 import imgRunwayHD from "~/assets/images/runway_HD.jpg";
-import imgCAD from "~/assets/images/cad.png";
 import imgCAD2025 from "~/assets/images/cad_2025.png";
 import imgFlying2025 from "~/assets/images/flying_2025.png";
 import imgComp2025 from "~/assets/images/comp_2025.png";
@@ -28,18 +25,27 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <HeroText>
-    <Fragment slot="title">
-      <span class="text-accent dark:text-white highlight">Design Build Fly</span>
-      - RC plane building team at Johns Hopkins University
-    </Fragment>
-    
-    <Fragment slot="subtitle">
-      We at <span class="font-semibold">Design Build Fly</span> are a multi-disciplinary club 
-      unified in our mission of designing and building an RC-plane from scratch to compete at the annual
-      <a class="underline text-accent" href="https://www.aiaa.org/dbf">AIAA DBF competition</a>
-    </Fragment>
-  </HeroText>
+  <section class="relative md:-mt-[76px] not-prose">
+    <div class="relative min-h-screen flex items-start justify-center overflow-hidden">
+      <img
+        src={homeHero.src}
+        alt="Johns Hopkins Design Build Fly team with their RC plane"
+        class="absolute inset-0 h-full w-full object-cover object-[center_18%] opacity-55"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-white/50 dark:bg-slate-950/35"></div>
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-28 md:pt-32 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200">
+          <span class="text-black dark:text-white">We are</span>
+          <span class="text-accent dark:text-white highlight">Design Build Fly</span>
+          - RC plane building team at Johns Hopkins University
+        </h1>
+        <p class="max-w-3xl mx-auto text-xl text-muted mb-6 dark:text-slate-300">
+          Diversity &amp; Perfection
+        </p>
+      </div>
+    </div>
+  </section>
   <Steps
     isReversed
     title="Discover what we do!"
