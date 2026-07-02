@@ -1,7 +1,9 @@
 ---
 import { SITE } from 'astrowind:config';
+import jhuLogo from '~/assets/images/jhu-logo.png';
 ---
 
-<span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
-  ✈️ {SITE?.name} 
+<span class="self-center ml-2 rtl:ml-0 rtl:mr-2 flex items-center gap-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
+  <img src={jhuLogo.src} alt="Johns Hopkins University logo" class="h-16 w-16w object-contain" />
+  {SITE?.name}
 </span>
