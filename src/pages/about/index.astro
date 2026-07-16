@@ -166,8 +166,14 @@ const steps = [
     </div>
   </section>
 
+  <noscript>
+    <style>
+      .wwd-reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
+
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
+    function initReveal() {
       const items = document.querySelectorAll('.wwd-reveal');
 
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -187,7 +193,15 @@ const steps = [
       );
 
       items.forEach((item) => observer.observe(item));
-    });
+    }
+
+    // The script is deferred, so DOMContentLoaded may have already fired.
+    // Run immediately if the DOM is ready; otherwise wait for the event.
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initReveal);
+    } else {
+      initReveal();
+    }
   </script>
 
   <style>
