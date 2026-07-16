@@ -16,6 +16,12 @@ import gcodeGenImg from '~/assets/images/2026/gcode_gen.jpeg';
 import cfFuselagePrototypeImg from '~/assets/images/2026/cf_fuselage_prototype.jpg';
 import plane2024Img from '~/assets/images/parked.jpg';
 import plane2025Img from '~/assets/images/2026/plane_2025.jpg';
+import planeLandingImg from '~/assets/images/2026/Plane_Landing.JPG';
+import victoryVid from '~/assets/images/2026/Victory_Vid.mp4';
+import fuselageWithBoltsImg from '~/assets/images/2026/Fuselage_with_bolts.png';
+import wingSparImg from '~/assets/images/2026/Wing_spar.webp';
+import tailConnectorImg from '~/assets/images/2026/Tail_connector.webp';
+import tailInstalledImg from '~/assets/images/2026/Tail_installed.webp';
 
 const metadata = {
   title: 'Competition 2026',
@@ -62,8 +68,8 @@ const metadata = {
         <div class="flex items-center justify-center mx-auto mb-3 text-primary">
           <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
         </div>
-        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">Top 20</div>
-        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">2026 Goal</div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">17th</div>
+        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">2026 Placement</div>
       </div>
       <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
         <div class="flex items-center justify-center mx-auto mb-3 text-primary">
@@ -238,14 +244,93 @@ const metadata = {
         </p>
       </div>
 
+      <h2 class="text-center mt-12">Putting all the main components together</h2>
+
+      <p class="text-justify">
+        Since we laid up two halves of the fuselage with carbon fiber, we decided to join them together using M3 bolts and nuts.
+      </p>
+
+      <div class="flex flex-col items-center my-6">
+        <Image
+          src={fuselageWithBoltsImg}
+          alt="Fuselage halves joined with M3 bolts and nuts"
+          class="rounded-lg shadow-lg w-full max-w-3xl"
+        />
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 italic">
+          Fuselage halves bolted together with M3 hardware
+        </p>
+      </div>
+
+      <p class="text-justify">
+        The two laid-up foam wings were joined together using the middle carbon fiber spar: the spar stays fixed inside the fuselage at the approximate location that balances the center of gravity, so that the wings can be removed and re-inserted at any time.
+      </p>
+
+      <div class="flex flex-col items-center my-6">
+        <Image
+          src={wingSparImg}
+          alt="Central carbon fiber wing spar fixed inside the fuselage"
+          class="rounded-lg shadow-lg w-full max-w-3xl"
+        />
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 italic">
+          The central carbon fiber spar that joins the wings
+        </p>
+      </div>
+
+      <p class="text-justify">
+        The tail is ultimately joined with a laser-cut prism that locks both the horizontal and vertical stabilizers in place.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+        <div class="flex flex-col items-center">
+          <Image
+            src={tailConnectorImg}
+            alt="Laser-cut prism tail connector"
+            class="rounded-lg shadow-lg w-full object-cover h-80"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Laser-cut prism tail connector</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <Image
+            src={tailInstalledImg}
+            alt="Tail installed with stabilizers locked in place"
+            class="rounded-lg shadow-lg w-full object-cover h-80"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Tail installed with both stabilizers locked in</p>
+        </div>
+      </div>
+
       <div class="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-lg my-12 text-center">
         <h3 class="text-2xl font-bold mb-4">Our 2026 Goal</h3>
         <p class="text-xl font-semibold text-blue-600 dark:text-blue-400">
           Finish in the Top 20 Teams
         </p>
         <p class="mt-4 text-justify">
-          With our fully carbon composite aircraft and innovative manufacturing techniques, we're positioned to compete with the best teams in the nation. Every day brings us closer to achieving this ambitious goal.
+          With our fully carbon composite aircraft and innovative manufacturing techniques, we competed with the best teams in the nation and finished in the Top 20 of 99 teams, achieving a lifelong goal for our club! From here, it will only be up: next stop, Top 10!
         </p>
+
+        <div class="flex flex-col items-center mt-8">
+          <Image
+            src={planeLandingImg}
+            alt="Peaking Jay coming in for a landing at competition"
+            class="rounded-lg shadow-lg w-full max-w-3xl"
+          />
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 italic">
+            Peaking Jay coming in for a landing
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center mt-8">
+          <video
+            src={victoryVid}
+            controls
+            playsinline
+            preload="metadata"
+            class="rounded-lg shadow-lg w-full max-w-3xl"
+          ></video>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 italic">
+            Our winning flight
+          </p>
+        </div>
       </div>
 
     </div>

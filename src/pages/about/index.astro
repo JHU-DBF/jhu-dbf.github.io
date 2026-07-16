@@ -1,32 +1,113 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Brands from '~/components/widgets/Brands.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Hero2_2to3 from '~/components/widgets/Hero2_2to3.astro';
-import Features3 from '~/components/widgets/Features3.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import BentoImages from '~/components/widgets/BentoImages.astro';
+import { Image } from 'astro:assets';
 
-import Image from '~/components/common/Image.astro';
-import imgFlight from '~/assets/images/about/header.jpg';
-import imgFlightBanking from '~/assets/images/flight_banking.jpg';
-import imgDrawingFly from '~/assets/images/drawing_fly.png';
-import imgParked from '~/assets/images/parked.jpg';
-import imgWorkingFuselage from '~/assets/images/working_fuselage.jpg';
-import imgFlyday2Group from '~/assets/images/flyday2_group.jpg';
-import imgFlightHD from '~/assets/images/flight_HD.jpg';
-import imgRunwayHD from '~/assets/images/runway_HD.jpg';
-import imgCAD from '~/assets/images/cad.png';
-import Button from '~/components/ui/Button.astro';
-import { getPermalink } from '~/utils/permalinks';
+import imgBrainstorm from './Brainstorm.webp';
+import imgCAD from './CAD.png';
+import imgCFD from './CFD.png';
+import imgFEA from './FEA.png';
+import imgLaserCuts from './Laser-Cuts.webp';
+import img3dPrints from './3D_Prints.webp';
+import imgWingFoam from './Wing_Foam.webp';
+import imgTailFoam from './Tail_Foam.webp';
+import imgFuselageFoam from './Fuselage_Foam.webp';
+import imgCFLayup from './CF_Layup.webp';
+import imgVacuumBag from './Vacuum_Bag.webp';
+import imgElectronics from './Electronics.webp';
+import imgSoldering from './Soldering.webp';
+import imgWingTest from './WingTest.png';
+import imgVertStabTest from './VertStabTest.png';
+import imgAssembling from './Assembling.jpg';
+import imgAssembling2 from './Assembling2.jpg';
+import imgAssembling3 from './Assembling3.jpg';
+import imgFlyoff from './Flyoff.png';
 
 const metadata = {
   title: 'What We Do',
   ignoreTitleTemplate: true,
 };
+
+const steps = [
+  {
+    phase: 'Design',
+    title: 'Brainstorm ideas based on the competition rules',
+    images: [
+      { src: imgBrainstorm, alt: 'Whiteboard sketch of the aircraft top and side views with labeled compartments' },
+    ],
+  },
+  {
+    phase: 'Design',
+    title: 'Create the CAD model of the plane and its subcomponents',
+    images: [
+      { src: imgCAD, alt: 'SolidWorks main assembly of the carbon fiber aircraft' },
+    ],
+  },
+  {
+    phase: 'Design',
+    title: 'Conduct flight analytics',
+    images: [
+      { src: imgCFD, alt: 'CFD velocity contour comparison of landing gear fairing shapes', contain: true },
+      { src: imgFEA, alt: 'Hard-landing FEA equivalent-stress (von-Mises) result on the airframe', contain: true },
+    ],
+  },
+  {
+    phase: 'Manufacturing',
+    title: 'Laser-cut and 3D-print parts for rapid design iteration',
+    images: [
+      { src: imgLaserCuts, alt: 'Laser-cut plywood ribs and fuselage formers' },
+      { src: img3dPrints, alt: '3D-printed mounts and aerodynamic fairings' },
+    ],
+  },
+  {
+    phase: 'Manufacturing',
+    title: 'Shape the wing, tail, and fuselage with XPS foam',
+    images: [
+      { src: imgWingFoam, alt: 'XPS foam wing and tail sections cut to shape' },
+      { src: imgTailFoam, alt: 'Team member holding a shaped foam tail' },
+      { src: imgFuselageFoam, alt: 'Foam mold for the fuselage' },
+    ],
+  },
+  {
+    phase: 'Manufacturing',
+    title: 'Apply carbon fiber layup to the foam and vacuum bag',
+    images: [
+      { src: imgCFLayup, alt: 'Team applying carbon fiber layup over the foam core' },
+      { src: imgVacuumBag, alt: 'Carbon fiber parts curing under a vacuum bag' },
+    ],
+  },
+  {
+    phase: 'Manufacturing',
+    title: 'Implement plane electronics',
+    images: [
+      { src: imgElectronics, alt: 'Wiring and soldering the receiver, ESC, and transmitter connections' },
+      { src: imgSoldering, alt: 'Soldering electronic connections for the aircraft' },
+    ],
+  },
+  {
+    phase: 'Manufacturing',
+    title: 'Test manufactured parts',
+    images: [
+      { src: imgWingTest, alt: 'Wing loading test with weight suspended from the center section' },
+      { src: imgVertStabTest, alt: 'Vertical stabilizer loading test on a carbon fiber panel' },
+    ],
+  },
+  {
+    phase: 'Manufacturing',
+    title: 'Assemble the plane',
+    images: [
+      { src: imgAssembling, alt: 'Team assembling the aircraft components' },
+      { src: imgAssembling2, alt: 'Team with the finished carbon fiber airframe' },
+      { src: imgAssembling3, alt: 'The completed aircraft at the competition' },
+    ],
+  },
+  {
+    phase: 'Competition',
+    title: 'Fly-Off!',
+    images: [{ src: imgFlyoff, alt: 'The aircraft in flight towing its competition banner' }],
+  },
+];
 ---
 
 <Layout metadata={metadata}>
@@ -35,203 +116,92 @@ const metadata = {
       <span class="text-accent dark:text-white highlight">Our Path to a Successful Flight</span>
     </Fragment>
 
-    <Fragment slot="subtitle"> Explore our gallery of images to see what we do to perform a successful flight at the competition.</Fragment>
+    <Fragment slot="subtitle">
+      From concept to competition — here's how we design, build, and fly our plane each year.
+    </Fragment>
   </HeroText>
-  <BentoImages
-    templateAreas={"[grid-template-areas:'img1_img1_img1_img1']"}
-    images={[
+
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-16 md:pb-24">
+    <div class="space-y-16 md:space-y-24">
       {
-        src: imgFlight,
-        alt: 'flight',
-        area: '[grid-area:img1]',
-      },
-    ]}
-  />
-  <Hero2_2to3
-    tagline="DESIGN"
-    ,
-    image={{
-      src: '~/assets/images/about/requirements.png',
-      alt: 'Image',
-    }}
-    title="Studying the Competition Rules"
-    ,
-    subtitle="We study the competition rules to understand the requirements and constraints of the competition."
-  />
-  <Hero2_2to3
-    tagline="DESIGN"
-    ,
-    image={{
-      src: '~/assets/images/about/white_board.jpg',
-      alt: 'Image',
-    }}
-    title="Brainstorming"
-    ,
-    subtitle="Discussions in front of a whiteboard is where we come up with great ideas."
-  />
-  <Hero2_2to3
-    tagline="DESIGN"
-    ,
-    image={{
-      src: '~/assets/images/about/motor_testing.jpg',
-      alt: 'Image',
-    }}
-    title="Component Testing"
-    ,
-    subtitle="To decide which components to use, we test each of them. Data collected is used to determine the parameter of the plane."
-  />
-  <Hero2_2to3
-    tagline="DESIGN"
-    ,
-    image={{
-      src: '~/assets/images/about/working.jpg',
-      alt: 'Image',
-    }}
-    title="Creating the CAD Model"
-    ,
-    subtitle="Once we have the shape and size of our plane determined, we make a CAD model."
-  />
-  <Hero2_2to3
-    tagline="DESIGN"
-    ,
-    image={{
-      src: '~/assets/images/about/cad.jpg',
-      alt: 'Image',
-    }}
-    title="Completed CAD Model"
-    ,
-    subtitle="After hard work from our team, the initial CAD model is created."
-  />
-  <Hero2_2to3
-    tagline="DESIGN"
-    ,
-    image={{
-      src: '~/assets/images/about/fea.png',
-      alt: 'Image',
-    }}
-    title="Finite Element Analysis"
-    ,
-    subtitle="Finite element analysis (FAE) is conducted to assess the strength of our wing to make sure it can withstand the force of flight."
-  />
-  <Hero2_2to3
-    tagline="DESIGN"
-    ,
-    image={{
-      src: '~/assets/images/about/cfd.png',
-      alt: 'Image',
-    }}
-    title="Computational Fluid Dynamics"
-    ,
-    subtitle="Basic computational fluid dynamics (CFD) is performed to assess the aerodynamic performance of our design."
-  />
-  <Hero2_2to3
-    tagline="DESIGN"
-    ,
-    image={{
-      src: '~/assets/images/about/drawing.jpg',
-      alt: 'Image',
-    }}
-    title="Engineering Drawing"
-    ,
-    subtitle="Once the initial design stage is completed, we move on to manufacturing."
-  />
-  <Hero2_2to3
-    tagline="MANUFACTURING"
-    ,
-    image={{
-      src: '~/assets/images/about/laser_cutting.jpg',
-      alt: 'Image',
-    }}
-    title="Laser Cutting"
-    ,
-    subtitle="We have access to laser cutters, which we use to manufacture the wooden and foam parts."
-  />
-  <Hero2_2to3
-    tagline="MANUFACTURING"
-    ,
-    image={{
-      src: '~/assets/images/about/making_wing.jpg',
-      alt: 'Image',
-    }}
-    title="Assembling the Wing"
-    ,
-    subtitle="Laser cut ribs and spars are assembled with carbon fibre tubes and plastic wrap is applied to make our main wing."
-  />
-  <Hero2_2to3
-    tagline="MANUFACTURING"
-    ,
-    image={{
-      src: '~/assets/images/about/foam_wing.jpg',
-      alt: 'Image',
-    }}
-    title="Shaping Foam Board Into a Wing"
-    ,
-    subtitle="The foam section of the wing is shaped into our chosen aerofoil using laser cut jigs."
-  />
-  <Hero2_2to3
-    tagline="MANUFACTURING"
-    ,
-    image={{
-      src: '~/assets/images/about/3d_printing.jpg',
-      alt: 'Image',
-    }}
-    title="3D Printing"
-    ,
-    subtitle="The club 3D printer is used for rapid prototyping and manufacturing parts with complex geometry."
-  />
-  <Hero2_2to3
-    tagline="MANUFACTURING"
-    ,
-    image={{
-      src: '~/assets/images/about/attaching_wing.jpg',
-      alt: 'Image',
-    }}
-    title="Assembling the Plane"
-    ,
-    subtitle="Once each component is finished, we assemble the final plane."
-  />
-  <Hero2_2to3
-    tagline="TESTING"
-    ,
-    image={{
-      src: '~/assets/images/about/prototype_bros.jpg',
-      alt: 'Image',
-    }}
-    title="Rapid Iteration"
-    ,
-    subtitle="We employ SpaceX type rapid iteration which is made possible with the ease of manufacturability."
-  />
-  <Hero2_2to3
-    tagline="TESTING"
-    ,
-    image={{
-      src: '~/assets/images/about/post_flight_test.jpg',
-      alt: 'Image',
-    }}
-    title="Flight Test"
-    ,
-    subtitle="Here we are after a successful flight test at a local park."
-  />
-  <Hero2_2to3
-    tagline="COMPETITION"
-    ,
-    image={{
-      src: '~/assets/images/about/practicing_with_check_list.jpg',
-      alt: 'Image',
-    }}
-    title="At the Competition"
-    ,
-    subtitle="Here we are practicing pre-flight procedures."
-  />
-  <Hero2_2to3
-    tagline="COMPETITION"
-    ,
-    image={{
-      src: '~/assets/images/about/post_comp_flight.jpg',
-      alt: 'Image',
-    }}
-    title="FLY OFF"
-    ,
-    subtitle="Here we are very happy having successfully completed a mission at the competition."
-  />
+        steps.map(({ phase, title, images }, index) => {
+          const showPhase = index === 0 || steps[index - 1].phase !== phase;
+          return (
+            <div class="wwd-reveal text-center">
+              {showPhase && (
+                <p class="text-sm font-bold tracking-widest uppercase text-accent mb-3">{phase}</p>
+              )}
+              <h2 class="text-3xl md:text-4xl font-bold font-heading text-accent dark:text-white highlight mb-8">
+                {title}
+              </h2>
+              {images.length > 0 && (
+                <div
+                  class={`grid gap-4 sm:gap-6 ${
+                    images.length === 1
+                      ? 'max-w-2xl mx-auto'
+                      : images.length === 2
+                        ? 'sm:grid-cols-2 max-w-4xl mx-auto'
+                        : 'sm:grid-cols-2 lg:grid-cols-3'
+                  }`}
+                >
+                  {images.map((img) => (
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      class={`w-full h-64 sm:h-72 rounded-2xl shadow-lg ${
+                        img.contain
+                          ? 'object-contain bg-slate-100 dark:bg-slate-900 p-2'
+                          : 'object-cover'
+                      }`}
+                      widths={[400, 768, 1024]}
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('.wwd-reveal');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        items.forEach((item) => item.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      items.forEach((item) => observer.observe(item));
+    });
+  </script>
+
+  <style>
+    .wwd-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 650ms ease,
+        transform 650ms ease;
+    }
+
+    .wwd-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </Layout>
