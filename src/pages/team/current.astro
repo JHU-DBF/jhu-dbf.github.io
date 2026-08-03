@@ -39,6 +39,7 @@ if (team?.enabled === true) {
                   {member?.avatar && (
                     <img
                       class="mx-auto mb-4 w-48 h-48 object-cover rounded-full"
+                      style={`object-position: ${member?.avatarPosition ?? 'center'};`}
                       src={member?.avatar}
                       alt={member?.name + ' - avatar'}
                     />

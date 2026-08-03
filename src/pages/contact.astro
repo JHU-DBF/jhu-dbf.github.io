@@ -14,8 +14,8 @@ import HiTec from '~/assets/images/logos/HiTec.png';
 import Reliable from '~/assets/images/logos/Reliable Robotics.png';
 import Scorpion from '~/assets/images/logos/Scorpion Power Systems.png';
 import Venom from '~/assets/images/logos/Venom Carbon.png';
-import WSE from '~/assets/images/logos/WSE MechE.png';
 import Formlabs from '~/assets/images/logos/Formlabs.png';
+import PCBWay from '~/assets/images/logos/pcbway.webp';
 
 
 const metadata = {
@@ -36,16 +36,17 @@ const metadata = {
   <Brands
   title="Special thanks to our current sponsors!"
   images={[
-    { src: WSE, alt: "WSE MechE", featured: true, href: "https://engineering.jhu.edu/me/" },
+    { src: Reliable, alt: "Reliable Robotics", href: "https://reliable.co/", tier: "platinum" },
+    { src: Dragon, alt: "Dragon Plate", href: "https://dragonplate.com/", tier: "platinum" },
+    { src: HiTec, alt: "HiTec", href: "https://hitecrcd.com/", tier: "platinum" },
+    { src: Airtech, alt: "Airtech", href: "https://airtech.com/", tier: "platinum" },
 
-    { src: Reliable, alt: "Reliable Robotics", href: "https://reliable.co/" },
-    { src: Formlabs, alt: "Formlabs", href: "https://formlabs.com/" },
-    { src: Scorpion, alt: "Scorpion Power", href: "https://www.scorpionsystem.com/" },
-    { src: Venom, alt: "Venom Carbon", href: "https://www.venomcarbon.com/" },
-    { src: Dragon, alt: "Dragon Plate", href: "https://dragonplate.com/" },
-    { src: HiTec, alt: "HiTec", href: "https://hitecrcd.com/" },
-    { src: Airtech, alt: "Airtech", href: "https://airtech.com/" },
-    { src: APC, alt: "APC Propellers", href: "https://www.apcprop.com" },
+    { src: APC, alt: "APC Propellers", href: "https://www.apcprop.com", tier: "gold" },
+    { src: Scorpion, alt: "Scorpion Power", href: "https://www.scorpionsystem.com/", tier: "gold" },
+    { src: Venom, alt: "Venom Carbon", href: "https://www.venomcarbon.com/", tier: "gold" },
+    { src: Formlabs, alt: "Formlabs", href: "https://formlabs.com/", tier: "gold" },
+
+    { src: PCBWay, alt: "PCB Way", href: "https://www.pcbway.com/", tier: "silver" },
   ]}
 />
   
@@ -93,7 +94,7 @@ const metadata = {
   >
   </Features3>
 
-  <Features2
+  <!-- <Features2
     title="Join a Weekly Meeting!"
     tagline=""
     columns={4}
@@ -115,5 +116,6 @@ const metadata = {
         description: 'Fly day at local RC airfield',
       },
     ]}
-  />
+  /> -->
+
 </Layout>

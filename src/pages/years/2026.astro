@@ -5,7 +5,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import ModelViewer from '~/components/widgets/ModelViewer';
 
 // Import images
-import fuselageImg from '~/assets/images/2026/fuselage.jpg';
+import planeFlightImg from '~/assets/images/2026/2026_Plane_Flight.webp';
 import wetlayupImg from '~/assets/images/2026/wetlayup.jpg';
 import scaleDownLayupImg from '~/assets/images/2026/scale_down_layup.jpg';
 import vacuumBaggingImg from '~/assets/images/2026/vacuum_bagging.jpg';
@@ -21,6 +21,15 @@ import fuselageWithBoltsImg from '~/assets/images/2026/Fuselage_with_bolts.png';
 import wingSparImg from '~/assets/images/2026/Wing_spar.webp';
 import tailConnectorImg from '~/assets/images/2026/Tail_connector.webp';
 import tailInstalledImg from '~/assets/images/2026/Tail_installed.webp';
+import joinWingsImg from '~/assets/images/2026/Join_Wings.png';
+import laidFuselage1Img from '~/assets/images/2026/Laid_Fuselage_1.png';
+import laidFuselage2Img from '~/assets/images/2026/Laid_Fuselage_2.png';
+import duckBurgersImg from '~/assets/images/2026/Duck_Burgers.png';
+import hockeyPucksImg from '~/assets/images/2026/Hockey_Pucks.png';
+import pinSlideCadImg from '~/assets/images/2026/Pin_Slide_CAD.png';
+import pinSlidePrintImg from '~/assets/images/2026/Pin_Slide_Print.png';
+import bannerInPlaceImg from '~/assets/images/2026/Banner_In_Place.png';
+import bannerFlyingImg from '~/assets/images/2026/Banner_Flying.png';
 
 const metadata = {
   title: 'Competition 2026',
@@ -29,7 +38,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Hero
-    image={{ src: fuselageImg, alt: 'Carbon fiber fuselage construction', width: 1466, height: 908 }}
+    image={{ src: planeFlightImg, alt: 'Peaking Jay in flight at competition', width: 2048, height: 1365 }}
   >
     <Fragment slot="title">
       <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1">Competition 2026</div>
@@ -38,51 +47,34 @@ const metadata = {
     <Fragment slot="subtitle">
       A fully carbon fiber design: The ultimate competitive edge
     </Fragment>
+
+    <Fragment slot="caption">
+      Credit to Missouri S&amp;T/Bob Phelan at phelanb@mst.edu
+    </Fragment>
   </Hero>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
     <div class="flex flex-wrap justify-center -m-4 text-center">
-      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
+      <div class="p-4 md:w-1/3 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
         <div class="flex items-center justify-center mx-auto mb-3 text-primary">
           <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
         </div>
-        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">10.8 lbs</div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">14.5 lbs</div>
         <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Aircraft Weight</div>
       </div>
-      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
+      <div class="p-4 md:w-1/3 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
         <div class="flex items-center justify-center mx-auto mb-3 text-primary">
           <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5"></path><path d="m12 4 0 16"></path><path d="M5 11v6.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V11"></path><path d="M15 11v6.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V11"></path></svg>
         </div>
-        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">92 ft/s</div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">65 mph</div>
         <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Top Speed</div>
       </div>
-      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
-        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
-          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-        </div>
-        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">4.4 lbs</div>
-        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Payload Capacity</div>
-      </div>
-      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
+      <div class="p-4 md:w-1/3 sm:w-1/2 w-full min-w-[220px] text-center">
         <div class="flex items-center justify-center mx-auto mb-3 text-primary">
           <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
         </div>
-        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">17th</div>
+        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">17th of 175</div>
         <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">2026 Placement</div>
-      </div>
-      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r dark:md:border-slate-500">
-        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
-          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        </div>
-        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">April 2026</div>
-        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Competition</div>
-      </div>
-      <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center">
-        <div class="flex items-center justify-center mx-auto mb-3 text-primary">
-          <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        </div>
-        <div class="font-heading text-primary text-2xl font-bold dark:text-white lg:text-3xl">Wichita, KS</div>
-        <div class="text-xs font-medium uppercase tracking-widest text-gray-800 dark:text-slate-400 lg:text-sm">Location</div>
       </div>
     </div>
   </div>
@@ -114,8 +106,7 @@ const metadata = {
       </p>
 
       <p class="text-justify">
-        This year, we're aiming even higher. Our team is taking on the challenge of building a fully carbon composite aircraft — a leap that places us among top-performing teams with decades of experience, much larger memberships, and budgets several times our own. With this effort, we are setting our goal to finish in the top 20 teams, and we are working hard every day to make it happen.
-      </p>
+        Now, we aimed even higher. Our team took on the challenge of building a fully carbon composite aircraft — a leap that places us among top-performing teams with decades of experience, much larger memberships, and budgets several times our own. With this effort, we set our goal to finish in the top 20 teams, and worked really hard to finally make it happen!
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
         <div class="flex flex-col items-center">
@@ -139,7 +130,7 @@ const metadata = {
       <h2 class="text-center mt-12">Design Specifications</h2>
 
       <p class="text-justify">
-        So far, we have completed the detailed design of our plane. It is estimated to weigh 10.8 lbs with a top speed of 92 ft/s. It can carry 4.4 lbs of payload in its large carbon fiber fuselage. Additionally, it can tow a large banner (2 x 10 ft) for 5 minutes.
+        The plane had weighed 14.5 lbs with a top speed of 65 mph. It can carry a large payload in its large carbon fiber fuselage. Additionally, it can tow a large banner (2 x 10 ft) for 5 minutes.
       </p>
 
       <h2 class="text-center mt-12">Manufacturing Process Validation</h2>
@@ -246,18 +237,65 @@ const metadata = {
       <h2 class="text-center mt-12">Putting all the main components together</h2>
 
       <p class="text-justify">
-        Since we laid up two halves of the fuselage with carbon fiber, we decided to join them together using M3 bolts and nuts.
+        Our final plane is a scaled up version of our prototypes. We laid up two halves of the fuselage with carbon fiber and decided to join them together using M3 bolts and nuts.
       </p>
+
+      <div class="flex flex-col items-center my-6">
+        <!-- Sized by height, not width: these two differ sharply in aspect ratio
+             (3:4 vs. roughly 1:4), so equal columns would blow the skinny one up. -->
+        <div class="flex justify-center items-end gap-4 w-full">
+          <Image
+            src={laidFuselage1Img}
+            alt="Final laid-up carbon fiber fuselage"
+            class="rounded-lg shadow-lg h-72 sm:h-96 w-auto max-w-full"
+          />
+          <Image
+            src={laidFuselage2Img}
+            alt="Final laid-up carbon fiber fuselage from another angle"
+            class="rounded-lg shadow-lg h-72 sm:h-96 w-auto max-w-full"
+          />
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Final laid-up carbon fiber fuselage</p>
+      </div>
 
       <div class="flex flex-col items-center my-6">
         <Image
           src={fuselageWithBoltsImg}
           alt="Fuselage halves joined with M3 bolts and nuts"
-          class="rounded-lg shadow-lg w-full max-w-3xl"
+          class="rounded-lg shadow-lg w-full max-w-[33.6rem] h-auto"
         />
-        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 italic">
-          Fuselage halves bolted together with M3 hardware
-        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Fuselage halves bolted together with M3 hardware</p>
+      </div>
+
+      <p class="text-justify">
+        This year's second mission involved flying the plane with a payload of duck and hockey puck passengers. We installed these passengers using &ldquo;Duck Burgers&rdquo; and hockey puck trays. The burgers slid in through the two holes on the top of the fuselage and the trays were inserted at the very front of the plane, directly under the propeller.
+      </p>
+
+      <div class="flex flex-col items-center my-6">
+        <Image
+          src={duckBurgersImg}
+          alt="The Duck Burgers used to secure the ducks inside the plane"
+          class="rounded-lg shadow-lg w-full max-w-[26.2rem] h-auto"
+        />
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">The iconic &ldquo;Duck Burgers&rdquo; that secured the ducks inside the plane</p>
+      </div>
+
+      <div class="flex flex-col items-center my-6">
+        <Image
+          src={wingSparImg}
+          alt="Cuts on the fuselage for payload entry"
+          class="rounded-lg shadow-lg w-full max-w-[26.2rem] h-auto"
+        />
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Cuts on the fuselage for payload entry</p>
+      </div>
+
+      <div class="flex flex-col items-center my-6">
+        <Image
+          src={hockeyPucksImg}
+          alt="Hockey puck tray designed to fit under the burgers"
+          class="rounded-lg shadow-lg w-full max-w-[33.6rem] h-auto"
+        />
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Our hockey puck tray designed to fit under the burgers</p>
       </div>
 
       <p class="text-justify">
@@ -266,7 +304,7 @@ const metadata = {
 
       <div class="flex flex-col items-center my-6">
         <Image
-          src={wingSparImg}
+          src={joinWingsImg}
           alt="Central carbon fiber wing spar fixed inside the fuselage"
           class="rounded-lg shadow-lg w-full max-w-3xl"
         />
@@ -279,12 +317,12 @@ const metadata = {
         The tail is ultimately joined with a laser-cut prism that locks both the horizontal and vertical stabilizers in place.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+      <div class="grid grid-cols-2 gap-4 my-6 w-full max-w-[33.6rem] mx-auto items-end">
         <div class="flex flex-col items-center">
           <Image
             src={tailConnectorImg}
             alt="Laser-cut prism tail connector"
-            class="rounded-lg shadow-lg w-full object-cover h-80"
+            class="rounded-lg shadow-lg w-full h-auto"
           />
           <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Laser-cut prism tail connector</p>
         </div>
@@ -292,19 +330,56 @@ const metadata = {
           <Image
             src={tailInstalledImg}
             alt="Tail installed with stabilizers locked in place"
-            class="rounded-lg shadow-lg w-full object-cover h-80"
+            class="rounded-lg shadow-lg w-full h-auto"
           />
           <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Tail installed with both stabilizers locked in</p>
         </div>
       </div>
 
+      <p class="text-justify">
+        This year featured a final mission that required us to drop a banner behind our plane, fly it for several minutes, and release it so that it reaches the ground. In order to execute a smooth deployment of the banner, we created a sliding pin mechanism staged inside the plane that controlled the unfurling of zip-tie bands around the banner.
+      </p>
+
+      <div class="flex flex-col items-center my-6">
+        <div class="grid grid-cols-2 gap-4 w-full max-w-[33.6rem] items-end">
+          <Image
+            src={pinSlideCadImg}
+            alt="CAD model of the pin-sliding banner release mechanism"
+            class="rounded-lg shadow-lg w-full h-auto"
+          />
+          <Image
+            src={pinSlidePrintImg}
+            alt="3D printed pin-sliding banner release mechanism"
+            class="rounded-lg shadow-lg w-full h-auto"
+          />
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">Pin-Sliding Mechanism - 3D Print and CAD</p>
+      </div>
+
+      <div class="flex flex-col items-center my-6">
+        <div class="grid grid-cols-2 gap-4 w-full max-w-[50.4rem] items-end">
+          <Image
+            src={bannerInPlaceImg}
+            alt="Banner staged in place before deployment"
+            class="rounded-lg shadow-lg w-full h-auto"
+          />
+          <Image
+            src={bannerFlyingImg}
+            alt="Banner deployed and flying behind the aircraft"
+            class="rounded-lg shadow-lg w-full h-auto"
+          />
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5 text-center">A successful release of the banner, solidifying our top 20 spot</p>
+      </div>
+
       <div class="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-lg my-12 text-center">
         <h3 class="text-2xl font-bold mb-4">Our 2026 Goal</h3>
-        <p class="text-xl font-semibold text-blue-600 dark:text-blue-400">
+        <p class="text-xl font-semibold text-blue-
+         dark:text-blue-400">
           Finish in the Top 20 Teams
         </p>
         <p class="mt-4 text-justify">
-          With our fully carbon composite aircraft and innovative manufacturing techniques, we competed with the best teams in the nation and finished in the Top 20 of 99 teams, achieving a lifelong goal for our club! From here, it will only be up: next stop, Top 10!
+          With our fully carbon composite aircraft and innovative manufacturing techniques, we competed with the best teams in the nation and finished in the Top 20 of 175 teams, achieving a lifelong goal for our club! From here, it will only be up: next stop, Top 10!
         </p>
 
         <div class="flex flex-col items-center mt-8">

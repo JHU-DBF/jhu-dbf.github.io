@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import type { Brands as Props } from '~/types';
+import type { Brands as Props, Image as ImageProps } from '~/types';
 
 import Image from '~/components/common/Image.astro';
 import Headline from '~/components/ui/Headline.astro';
@@ -16,6 +16,54 @@ const {
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+// Base (untiered) logo footprint in rem, tuned per-brand so proportions read
+// correctly; each tier then scales this up. A missing dimension is left to
+// 'auto' so object-fit: contain scales it from the one dimension we do pin
+// down (needed for Venom Carbon, whose logo is much taller than it is wide).
+// Brands not listed use DEFAULT_BASE.
+const BASE_SIZE: Record<string, { w?: number; h?: number }> = {
+  'APC Propellers': { w: 4 },
+  Airtech: { w: 6 },
+  'Venom Carbon': { h: 4 },
+  'Scorpion Power': { w: 7, h: 4 },
+  'Dragon Plate': { w: 3, h: 4 },
+};
+const DEFAULT_BASE = { w: 5 };
+
+// Silver is the baseline; gold is ~1.5x silver, doubled again on top of that.
+// Platinum is a smaller ~1.2x bump over gold rather than another 1.5x.
+const SILVER_SCALE = 1.15 * 2;
+const GOLD_SCALE = 1.725 * 2;
+const TIER_SCALE: Record<string, number> = {
+  silver: SILVER_SCALE,
+  gold: GOLD_SCALE,
+  platinum: GOLD_SCALE * 1.2,
+};
+
+const TIERS: Array<{ key: 'platinum' | 'gold' | 'silver'; label: string; headerClass: string }> = [
+  { key: 'platinum', label: 'Platinum', headerClass: 'text-slate-400 dark:text-slate-300 border-slate-400 dark:border-slate-300' },
+  { key: 'gold', label: 'Gold', headerClass: 'text-amber-500 dark:text-amber-400 border-amber-500 dark:border-amber-400' },
+  { key: 'silver', label: 'Silver', headerClass: 'text-neutral-500 dark:text-neutral-400 border-neutral-500 dark:border-neutral-400' },
+];
+
+const roundQuarter = (n: number) => Math.round(n * 4) / 4;
+
+const sizeStyleFor = (image: ImageProps) => {
+  const base = BASE_SIZE[image.alt || ''] || DEFAULT_BASE;
+  const scale = image.tier ? TIER_SCALE[image.tier] ?? 1 : 1;
+  const width = base.w !== undefined ? `${roundQuarter(base.w * scale)}rem` : 'auto';
+  const height = base.h !== undefined ? `${roundQuarter(base.h * scale)}rem` : 'auto';
+  return `width: ${width}; height: ${height};`;
+};
+
+const featured = images.find((image) => image.featured);
+const rest = images.filter((image) => !image.featured);
+const tieredGroups = TIERS.map((tier) => ({
+  ...tier,
+  logos: rest.filter((image) => image.tier === tier.key),
+})).filter((group) => group.logos.length > 0);
+const untiered = rest.filter((image) => !image.tier);
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
@@ -24,70 +72,101 @@ const {
   {images && images.length > 0 && (
   <>
     {/* Featured Sponsor */}
-    <div class="flex justify-center mb-16">
-      {images[0]?.href ? (
-        <a
-          href={images[0].href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex justify-center"
-        >
+    {featured && (
+      <div class="flex justify-center mb-6">
+        {featured.href ? (
+          <a
+            href={featured.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex justify-center"
+          >
+            <Image
+              src={featured.src}
+              alt={featured.alt || ""}
+              class="h-auto w-auto max-w-[10rem] sm:max-w-xs object-contain transition-transform duration-200 hover:scale-105"
+              layout="constrained"
+            />
+          </a>
+        ) : (
           <Image
-            src={images[0].src}
-            alt={images[0].alt || ""}
-            class="h-auto w-auto max-w-4xl object-contain transition-transform duration-200 hover:scale-105"
+            src={featured.src}
+            alt={featured.alt || ""}
+            class="h-auto w-auto max-w-[10rem] sm:max-w-xs object-contain"
             layout="constrained"
           />
-        </a>
-      ) : (
-        <Image
-          src={images[0].src}
-          alt={images[0].alt || ""}
-          class="h-auto w-auto max-w-4xl object-contain"
-          layout="constrained"
-        />
-      )}
-    </div>
+        )}
+      </div>
+    )}
 
-    {/* Remaining Sponsors */}
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-20 items-center">
-      {images.slice(1).map((image) => {
-        if (!image?.src) return null;
+    {/* Tiered Sponsors */}
+    {tieredGroups.map((group) => (
+      <div class="mt-16 first:mt-0 text-center">
+        <h3
+          class={`inline-block text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-10 pb-3 px-8 border-b-4 ${group.headerClass}`}
+        >
+          {group.label}
+        </h3>
+        <div class="flex flex-wrap justify-center items-center gap-x-16 gap-y-10">
+          {group.logos.map((image) => {
+            if (!image?.src) return null;
 
-        const sizeClass =
-          image.alt === "APC Propellers"
-            ? "w-40 h-auto"
-            : image.alt === "Airtech"
-            ? "w-58 h-auto"
-            : image.alt === "Venom Carbon"
-            ? "w-5 h-42"
-            : image.alt === "Scorpion Power"
-            ? "w-66 h-38"
-            : image.alt === "Dragon Plate"
-            ? "w-28 h-38"
-            : "w-48 h-auto";
+            const logo = (
+              <Image
+                src={image.src}
+                alt={image.alt || ""}
+                class="object-contain transition-transform duration-200 hover:scale-105"
+                style={sizeStyleFor(image)}
+                layout="contained"
+              />
+            );
 
-        const logo = (
-          <Image
-            src={image.src}
-            alt={image.alt || ""}
-            class={`object-contain ${sizeClass} transition-transform duration-200 hover:scale-105`}
-          />
-        );
+            return (
+              <div class="flex justify-center">
+                {image.href ? (
+                  <a href={image.href} target="_blank" rel="noopener noreferrer">
+                    {logo}
+                  </a>
+                ) : (
+                  logo
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))}
 
-        return (
-          <div class="flex justify-center">
-            {image.href ? (
-              <a href={image.href} target="_blank" rel="noopener noreferrer">
-                {logo}
-              </a>
-            ) : (
-              logo
-            )}
-          </div>
-        );
-      })}
-    </div>
+    {/* Any sponsors without an assigned tier */}
+    {untiered.length > 0 && (
+      <div class="flex flex-wrap justify-center items-center gap-x-16 gap-y-10 mt-16">
+        {untiered.map((image) => {
+          if (!image?.src) return null;
+
+          const logo = (
+            <Image
+              src={image.src}
+              alt={image.alt || ""}
+              class="object-contain transition-transform duration-200 hover:scale-105"
+              style={sizeStyleFor(image)}
+              layout="contained"
+            />
+          );
+
+          return (
+            <div class="flex justify-center">
+              {image.href ? (
+                <a href={image.href} target="_blank" rel="noopener noreferrer">
+                  {logo}
+                </a>
+              ) : (
+                logo
+              )}
+            </div>
+          );
+        })}
+      </div>
+    )}
   </>
   )}
 </WidgetWrapper>

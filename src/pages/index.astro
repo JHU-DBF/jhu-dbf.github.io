@@ -7,14 +7,15 @@ import Features3 from '~/components/widgets/Features3.astro';
 import BentoImages from '~/components/widgets/BentoImages.astro';
 
 import homeHero from "~/assets/images/home-hero.png";
-import imgAssemblingWing from "~/assets/images/assembling_wing.jpg";
-import imgDrawingFly from "~/assets/images/drawing_fly.png";
-import imgFlightBanking from "~/assets/images/flight_banking.jpg";
-import imgFlyday2Group from "~/assets/images/flyday2_group.jpg";
-import imgRunwayHD from "~/assets/images/runway_HD.jpg";
-import imgCAD2025 from "~/assets/images/cad_2025.png";
-import imgFlying2025 from "~/assets/images/flying_2025.png";
-import imgComp2025 from "~/assets/images/comp_2025.png";
+import imgDesignMain from "~/assets/images/Design_Photo_Main.jpg";
+import imgBuildMain from "~/assets/images/Build_Photo_Main.png";
+import imgFlyMain from "~/assets/images/Fly_Photo_Main.webp";
+import imgMain1 from "~/assets/images/Photo_Main_1.jpg";
+import imgMain2 from "~/assets/images/Photo_Main_2.jpg";
+import imgMain3 from "~/assets/images/Photo_Main_3.jpg";
+import imgMain4 from "~/assets/images/Photo_Main_4.jpg";
+import imgMain5 from "~/assets/images/Photo_Main_5.png";
+import imgMain6 from "~/assets/images/Photo_Main_6.png";
 import Button from '~/components/ui/Button.astro';
 import { getPermalink } from '~/utils/permalinks';
 import ModelViewer from '~/components/widgets/ModelViewer';
@@ -48,7 +49,7 @@ const metadata = {
           Johns Hopkins University
         </h1>
         <div class="mx-auto mb-6 h-px w-48 bg-slate-900/35 dark:bg-white/45"></div>
-        <p class="max-w-3xl mx-auto text-xl text-muted mb-6 dark:text-slate-300">
+        <p class="max-w-3xl mx-auto text-xl font-extrabold text-white mb-6">
           A RC plane building team to compete at the annual
           <a class="underline text-[#002d72] dark:text-white" href="https://www.aiaa.org/dbf">AIAA DBF competition</a>
         </p>
@@ -166,19 +167,19 @@ const metadata = {
       <Fragment slot="image">
         <div class="grid gap-4">
           <img
-            src={imgCAD2025.src}
+            src={imgDesignMain.src}
             alt="CAD model for the Design Build Fly aircraft"
             class="home-step-photo h-44 w-full rounded-md object-cover shadow-lg"
             loading="lazy"
           />
           <img
-            src={imgAssemblingWing.src}
-            alt="Team members assembling an aircraft wing"
+            src={imgBuildMain.src}
+            alt="Team members building the aircraft"
             class="home-step-photo h-44 w-full rounded-md object-cover shadow-lg"
             loading="lazy"
           />
           <img
-            src={imgFlightBanking.src}
+            src={imgFlyMain.src}
             alt="Design Build Fly aircraft in flight"
             class="home-step-photo h-44 w-full rounded-md object-cover shadow-lg"
             loading="lazy"
@@ -208,10 +209,10 @@ const metadata = {
   <div class="home-reveal">
     <Stats
     stats={[
-        { icon: 'tabler:users', title: 'Members', amount: '15' },
-        { icon: 'tabler:school', title: 'Alumni', amount: '26' },
+        { icon: 'tabler:users', title: 'Members', amount: '10' },
+        { icon: 'tabler:school', title: 'Alumni', amount: '11' },
         { icon: 'tabler:brand-instagram', title: 'Followers', amount: '495' },
-        { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$8,000' },
+        { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$6,370' },
       ]}
     />
   </div>
@@ -226,16 +227,16 @@ const metadata = {
         {
           [
             {
-              year: '2024',
-              description: 'In our first year back after the club’s revival, we successfully designed, built, and flew our aircraft at competition, placing <strong>67th out of 149 teams</strong>. This marked an important milestone as we rebuilt the team, restored our technical foundation, and returned JHU DBF to competition.',
+              year: '2026',
+              description: 'In 2026, our team designed its first fully carbon fiber aircraft, supported by a larger team and a stronger technical foundation. We are proud to have placed <strong>17th out of 175 teams</strong>, another big step forward from the previous year!',
             },
             {
               year: '2025',
               description: 'Building on the progress of the previous year, our team made tremendous improvements in both design and performance. We successfully completed Mission 1 and Mission 2, finished in the <strong>top third</strong> of all competing teams, and demonstrated the rapid growth of our revived program.',
             },
             {
-              year: '2026',
-              description: 'In 2026, our team designed its first fully carbon fiber aircraft, supported by a larger team and a stronger technical foundation. We are proud to have placed <strong>17th out of 175 teams</strong>, another big step forward from the previous year!',
+              year: '2024',
+              description: 'In our first year back after the club’s revival, we successfully designed, built, and flew our aircraft at competition, placing <strong>67th out of 149 teams</strong>. This marked an important milestone as we rebuilt the team, restored our technical foundation, and returned JHU DBF to competition.',
             },
           ].map(({ year, description }) => (
             <div class="relative pb-10 last:pb-0">
@@ -259,34 +260,34 @@ const metadata = {
       images={
         [
           {
-            src: imgFlying2025,
-            alt: "flight banking",
+            src: imgMain3,
+            alt: "the team gathered around the aircraft at competition",
             area:"[grid-area:img1]"
           },
           {
-            src: imgRunwayHD,
-            alt: "about to fly at competition",
+            src: imgMain1,
+            alt: "team members carrying the aircraft on the way to the airfield",
             area:"[grid-area:img3]"
           },
           {
-            src: imgComp2025,
-            alt: "getting ready for ground mission",
+            src: imgMain2,
+            alt: "loading the aircraft for technical inspection",
             area:"[grid-area:img2]"
           },
           {
-            src: imgDrawingFly,
-            alt: "CAD drawing in flight configuration",
-            area:"[grid-area:img4]"
+            src: imgMain4,
+            alt: "the team at the technical inspection table",
+            area:"[grid-area:img6]"
           },
           {
-            src: imgCAD2025,
-            alt: "in-editor CAD screenshot",
+            src: imgMain6,
+            alt: "CAD render of the wing assembly and spar",
             area:"[grid-area:img5]"
           },
           {
-            src: imgFlyday2Group,
-            alt: "group photo during a fly day",
-            area:"[grid-area:img6]"
+            src: imgMain5,
+            alt: "CAD render of the tail assembly",
+            area:"[grid-area:img4]"
           },
         ]
       }
@@ -296,7 +297,7 @@ const metadata = {
       </Fragment>
       <Fragment slot="below">
         <Button
-          text="See more images"
+          text="Discover what we do!"
           variant="primary"
           href={getPermalink("/about")}
           class="flex justify-self-center self-center"
