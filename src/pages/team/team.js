@@ -29,7 +29,7 @@ const team = {
       major: "Mechanical Engineering '29",
       year: '2029',
       // currentJob: '',
-      avatar: '/assets/images/team/Laon.jpg',
+      avatar: '/assets/images/team/Laon.webp',
       linkedin: 'https://www.linkedin.com/in/johndoe',
       github: 'placeholder',
     },
