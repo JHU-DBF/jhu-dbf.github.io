@@ -2,7 +2,6 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Steps from '~/components/widgets/Steps.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import BentoImages from '~/components/widgets/BentoImages.astro';
 
@@ -135,7 +134,7 @@ const metadata = {
   <div class="home-reveal">
     <Steps
       isReversed
-      title="Discover what we do!"
+      title="The 3 Pillars"
       subtitle="Step into any aspect of plane production that interests you"
       items={[
         {
@@ -175,7 +174,7 @@ const metadata = {
           <img
             src={imgBuildMain.src}
             alt="Team members building the aircraft"
-            class="home-step-photo h-44 w-full rounded-md object-cover shadow-lg"
+            class="home-step-photo h-auto w-full rounded-md shadow-lg"
             loading="lazy"
           />
           <img
@@ -201,19 +200,6 @@ const metadata = {
         }
       ]}
       angle={100}
-    />
-  </div>
-
-  <!-- Stats Widget ****************** -->
-
-  <div class="home-reveal">
-    <Stats
-    stats={[
-        { icon: 'tabler:users', title: 'Members', amount: '10' },
-        { icon: 'tabler:school', title: 'Alumni', amount: '11' },
-        { icon: 'tabler:brand-instagram', title: 'Followers', amount: '495' },
-        { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$6,370' },
-      ]}
     />
   </div>
 
