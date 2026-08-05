@@ -286,7 +286,7 @@ const metadata = {
           text="Discover what we do!"
           variant="primary"
           href={getPermalink("/about")}
-          class="flex justify-self-center self-center"
+          class="flex justify-self-center self-center text-3xl py-7 px-12 md:px-16"
         />
       </Fragment>
     </BentoImages>
@@ -295,7 +295,7 @@ const metadata = {
   <!-- Add info on meeting times/location -->
   <div class="home-reveal">
     <Features3
-      title="Let's Connect!"
+      title="Contact Us!"
       columns={3}
       items={[
         {
@@ -304,13 +304,14 @@ const metadata = {
           icon: "tabler:mail",
         },
         {
-          title: "Join us for a meeting",
-          description: "3100 Wyman Park Dr\nBaltimore, MD 21211",
-          icon: "tabler:map-pin",
+          title: "Join our Discord",
+          description:
+            'Check out what we do behind the scenes! <a class="underline text-primary" href="https://discord.gg/E2aAKby9D8" target="_blank" rel="noopener noreferrer">discord.gg/E2aAKby9D8</a>',
+          icon: "tabler:brand-discord",
         },
         {
           title: "Follow us on Instagram @jhu_dbf",
-          description: "Stay up-to-date on upcoming events",
+          description: "DM us with a question!",
           icon: "tabler:brand-instagram",
         },
       ]}

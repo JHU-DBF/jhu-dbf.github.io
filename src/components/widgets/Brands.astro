@@ -47,6 +47,11 @@ const TIERS: Array<{ key: 'platinum' | 'gold' | 'silver'; label: string; headerC
   { key: 'silver', label: 'Silver', headerClass: 'text-neutral-500 dark:text-neutral-400 border-neutral-500 dark:border-neutral-400' },
 ];
 
+// Every logo sits on the same white rounded card so that dark-on-transparent
+// logos stay legible against the page background (including in dark mode).
+const LOGO_CARD =
+  'flex items-center justify-center bg-white rounded-2xl shadow-sm ring-1 ring-black/5 p-6 transition-transform duration-200 hover:scale-105';
+
 const roundQuarter = (n: number) => Math.round(n * 4) / 4;
 
 const sizeStyleFor = (image: ImageProps) => {
@@ -75,26 +80,23 @@ const untiered = rest.filter((image) => !image.tier);
     {featured && (
       <div class="flex justify-center mb-6">
         {featured.href ? (
-          <a
-            href={featured.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex justify-center"
-          >
+          <a href={featured.href} target="_blank" rel="noopener noreferrer" class={LOGO_CARD}>
             <Image
               src={featured.src}
               alt={featured.alt || ""}
-              class="h-auto w-auto max-w-[10rem] sm:max-w-xs object-contain transition-transform duration-200 hover:scale-105"
+              class="h-auto w-auto max-w-[10rem] sm:max-w-xs object-contain"
               layout="constrained"
             />
           </a>
         ) : (
-          <Image
-            src={featured.src}
-            alt={featured.alt || ""}
-            class="h-auto w-auto max-w-[10rem] sm:max-w-xs object-contain"
-            layout="constrained"
-          />
+          <div class={LOGO_CARD}>
+            <Image
+              src={featured.src}
+              alt={featured.alt || ""}
+              class="h-auto w-auto max-w-[10rem] sm:max-w-xs object-contain"
+              layout="constrained"
+            />
+          </div>
         )}
       </div>
     )}
@@ -107,7 +109,7 @@ const untiered = rest.filter((image) => !image.tier);
         >
           {group.label}
         </h3>
-        <div class="flex flex-wrap justify-center items-center gap-x-16 gap-y-10">
+        <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-8">
           {group.logos.map((image) => {
             if (!image?.src) return null;
 
@@ -115,7 +117,7 @@ const untiered = rest.filter((image) => !image.tier);
               <Image
                 src={image.src}
                 alt={image.alt || ""}
-                class="object-contain transition-transform duration-200 hover:scale-105"
+                class="object-contain"
                 style={sizeStyleFor(image)}
                 layout="contained"
               />
@@ -124,11 +126,11 @@ const untiered = rest.filter((image) => !image.tier);
             return (
               <div class="flex justify-center">
                 {image.href ? (
-                  <a href={image.href} target="_blank" rel="noopener noreferrer">
+                  <a href={image.href} target="_blank" rel="noopener noreferrer" class={LOGO_CARD}>
                     {logo}
                   </a>
                 ) : (
-                  logo
+                  <div class={LOGO_CARD}>{logo}</div>
                 )}
               </div>
             );
@@ -139,7 +141,7 @@ const untiered = rest.filter((image) => !image.tier);
 
     {/* Any sponsors without an assigned tier */}
     {untiered.length > 0 && (
-      <div class="flex flex-wrap justify-center items-center gap-x-16 gap-y-10 mt-16">
+      <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 mt-16">
         {untiered.map((image) => {
           if (!image?.src) return null;
 
@@ -147,7 +149,7 @@ const untiered = rest.filter((image) => !image.tier);
             <Image
               src={image.src}
               alt={image.alt || ""}
-              class="object-contain transition-transform duration-200 hover:scale-105"
+              class="object-contain"
               style={sizeStyleFor(image)}
               layout="contained"
             />
@@ -156,11 +158,11 @@ const untiered = rest.filter((image) => !image.tier);
           return (
             <div class="flex justify-center">
               {image.href ? (
-                <a href={image.href} target="_blank" rel="noopener noreferrer">
+                <a href={image.href} target="_blank" rel="noopener noreferrer" class={LOGO_CARD}>
                   {logo}
                 </a>
               ) : (
-                logo
+                <div class={LOGO_CARD}>{logo}</div>
               )}
             </div>
           );
