@@ -4,25 +4,25 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import { Image } from 'astro:assets';
 
-import imgBrainstorm from './Brainstorm.webp';
-import imgCAD from './CAD.png';
-import imgCFD from './CFD.png';
-import imgFEA from './FEA.png';
-import imgLaserCuts from './Laser-Cuts.webp';
-import img3dPrints from './3D_Prints.webp';
-import imgWingFoam from './Wing_Foam.webp';
-import imgTailFoam from './Tail_Foam.webp';
-import imgFuselageFoam from './Fuselage_Foam.webp';
-import imgCFLayup from './CF_Layup.webp';
-import imgVacuumBag from './Vacuum_Bag.webp';
-import imgElectronics from './Electronics.webp';
-import imgSoldering from './Soldering.webp';
-import imgWingTest from './WingTest.png';
-import imgVertStabTest from './VertStabTest.png';
-import imgAssembling from './Assembling.jpg';
-import imgAssembling2 from './Assembling2.jpg';
-import imgAssembling3 from './Assembling3.jpg';
-import imgFlyoff from './Flyoff.png';
+import imgBrainstorm from '~/assets/images/about/Brainstorm.webp';
+import imgCAD from '~/assets/images/about/CAD.png';
+import imgCFD from '~/assets/images/about/CFD_Analysis.png';
+import imgFEA from '~/assets/images/about/FEA_Analysis.png';
+import imgLaserCuts from '~/assets/images/about/Laser-Cuts.webp';
+import img3dPrints from '~/assets/images/about/3D_Prints.webp';
+import imgWingFoam from '~/assets/images/about/Wing_Foam.webp';
+import imgTailFoam from '~/assets/images/about/Tail_Foam.webp';
+import imgFuselageFoam from '~/assets/images/about/Fuselage_Foam.webp';
+import imgCFLayup from '~/assets/images/about/CF_Layup.webp';
+import imgVacuumBag from '~/assets/images/about/Vacuum_Bag.webp';
+import imgElectronics from '~/assets/images/about/Electronics.webp';
+import imgSoldering from '~/assets/images/about/Soldering.webp';
+import imgWingTest from '~/assets/images/about/WingTest.png';
+import imgVertStabTest from '~/assets/images/about/VertStabTest.png';
+import imgAssembling from '~/assets/images/about/Assembling.jpg';
+import imgAssembling2 from '~/assets/images/about/Assembling2.jpg';
+import imgAssembling3 from '~/assets/images/about/Assembling3.jpg';
+import imgFlyoff from '~/assets/images/about/Flyoff.png';
 
 const metadata = {
   title: 'What We Do',
@@ -195,13 +195,11 @@ const steps = [
       items.forEach((item) => observer.observe(item));
     }
 
-    // The script is deferred, so DOMContentLoaded may have already fired.
-    // Run immediately if the DOM is ready; otherwise wait for the event.
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initReveal);
-    } else {
-      initReveal();
-    }
+    // ViewTransitions is enabled in Layout.astro. Module scripts do not re-run
+    // when the client router returns to an already-visited page, so binding to
+    // DOMContentLoaded would leave this page stuck at opacity: 0. astro:page-load
+    // fires on the initial load and after every swap.
+    document.addEventListener('astro:page-load', initReveal);
   </script>
 
   <style>

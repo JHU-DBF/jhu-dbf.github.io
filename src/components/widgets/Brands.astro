@@ -54,12 +54,39 @@ const LOGO_CARD =
 
 const roundQuarter = (n: number) => Math.round(n * 4) / 4;
 
-const sizeStyleFor = (image: ImageProps) => {
+const REM_PX = 16;
+
+// Returns the inline sizing style plus the CSS pixel width the logo actually
+// renders at. That pixel width is handed to <Image> so the generated srcset is
+// capped near the display size: with `layout="contained"` Astro emitted a
+// candidate at every device size up to 6016px and no `sizes` attribute, which
+// upscaled a 102 kB logo into a 2 MB file and made the sponsor logos alone
+// account for roughly ten minutes of build time.
+const sizingFor = (image: ImageProps) => {
   const base = BASE_SIZE[image.alt || ''] || DEFAULT_BASE;
   const scale = image.tier ? TIER_SCALE[image.tier] ?? 1 : 1;
-  const width = base.w !== undefined ? `${roundQuarter(base.w * scale)}rem` : 'auto';
-  const height = base.h !== undefined ? `${roundQuarter(base.h * scale)}rem` : 'auto';
-  return `width: ${width}; height: ${height};`;
+  const w = base.w !== undefined ? roundQuarter(base.w * scale) : undefined;
+  const h = base.h !== undefined ? roundQuarter(base.h * scale) : undefined;
+
+  // max-width keeps the fixed rem widths from overflowing narrow viewports;
+  // the widest platinum logo is ~25rem, well past a 375px phone.
+  const style = `width: ${w !== undefined ? `${w}rem` : 'auto'}; height: ${
+    h !== undefined ? `${h}rem` : 'auto'
+  }; max-width: 100%;`;
+
+  const fallbackWidth = DEFAULT_BASE.w * REM_PX * scale;
+  let renderWidth = w !== undefined ? w * REM_PX : undefined;
+
+  if (renderWidth === undefined && h !== undefined) {
+    // Height-pinned logo (Venom Carbon): recover the width from the source ratio.
+    const meta = image.src as unknown as { width?: number; height?: number } | string | null;
+    renderWidth =
+      meta && typeof meta === 'object' && meta.width && meta.height
+        ? (h * REM_PX * meta.width) / meta.height
+        : fallbackWidth;
+  }
+
+  return { style, width: Math.round(renderWidth ?? fallbackWidth) };
 };
 
 const featured = images.find((image) => image.featured);
@@ -113,13 +140,15 @@ const untiered = rest.filter((image) => !image.tier);
           {group.logos.map((image) => {
             if (!image?.src) return null;
 
+            const sizing = sizingFor(image);
             const logo = (
               <Image
                 src={image.src}
                 alt={image.alt || ""}
                 class="object-contain"
-                style={sizeStyleFor(image)}
-                layout="contained"
+                style={sizing.style}
+                width={sizing.width}
+                layout="constrained"
               />
             );
 
@@ -145,13 +174,15 @@ const untiered = rest.filter((image) => !image.tier);
         {untiered.map((image) => {
           if (!image?.src) return null;
 
+          const sizing = sizingFor(image);
           const logo = (
             <Image
               src={image.src}
               alt={image.alt || ""}
               class="object-contain"
-              style={sizeStyleFor(image)}
-              layout="contained"
+              style={sizing.style}
+              width={sizing.width}
+              layout="constrained"
             />
           );
 

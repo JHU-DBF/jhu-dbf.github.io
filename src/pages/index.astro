@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
 
 import Steps from '~/components/widgets/Steps.astro';
 import Features3 from '~/components/widgets/Features3.astro';
@@ -29,12 +30,17 @@ const metadata = {
 <Layout metadata={metadata}>
   <section class="relative md:-mt-[96px] not-prose">
     <div class="relative min-h-[132vh] flex items-start justify-center overflow-hidden">
-      <img
+      <Image
         id="home-hero-image"
-        src={homeHero.src}
+        src={homeHero}
         alt="Johns Hopkins Design Build Fly team with their RC plane"
         class="absolute inset-x-0 -top-[3vh] h-[144vh] w-full object-cover object-center transition-opacity duration-150"
+        widths={[640, 1024, 1536, 2048]}
+        sizes="100vw"
+        format="webp"
+        quality={72}
         loading="eager"
+        fetchpriority="high"
       />
       <div class="pointer-events-none absolute inset-x-0 top-[96vh] h-[44vh] bg-gradient-to-b from-transparent via-sky-100/80 via-55% to-white dark:via-slate-950/55 dark:to-slate-950"></div>
       <div
@@ -55,9 +61,20 @@ const metadata = {
       </div>
     </div>
   </section>
+  <noscript>
+    <style>
+      .home-reveal,
+      .home-step-photo,
+      .home-timeline-step {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+  </noscript>
+
   <script>
-    const heroCopy = document.getElementById('home-hero-copy');
-    const heroImage = document.getElementById('home-hero-image');
+    let heroCopy = document.getElementById('home-hero-copy');
+    let heroImage = document.getElementById('home-hero-image');
 
     const fadeHeroCopy = () => {
       if (!heroCopy || !heroImage) return;
@@ -72,10 +89,13 @@ const metadata = {
       heroImage.style.opacity = `${1 - imageProgress * 0.55}`;
     };
 
-    fadeHeroCopy();
-    window.addEventListener('scroll', fadeHeroCopy, { passive: true });
+    function initHome() {
+      // Re-query on every load: a view transition swaps in fresh nodes, so refs
+      // captured on a previous visit point at detached elements.
+      heroCopy = document.getElementById('home-hero-copy');
+      heroImage = document.getElementById('home-hero-image');
+      fadeHeroCopy();
 
-    window.addEventListener('DOMContentLoaded', () => {
       const revealItems = document.querySelectorAll('.home-reveal, .home-step-photo, .home-timeline-step');
 
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -84,7 +104,7 @@ const metadata = {
       }
 
       revealItems.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 80}ms`;
+        if (item instanceof HTMLElement) item.style.transitionDelay = `${index * 80}ms`;
       });
 
       const revealObserver = new IntersectionObserver(
@@ -100,7 +120,16 @@ const metadata = {
       );
 
       revealItems.forEach((item) => revealObserver.observe(item));
-    });
+    }
+
+    // `window` survives view transitions, so this is registered once and reads
+    // whichever elements initHome() most recently bound.
+    window.addEventListener('scroll', fadeHeroCopy, { passive: true });
+
+    // ViewTransitions is enabled in Layout.astro. Module scripts do not re-run
+    // when the client router returns to an already-visited page, so binding to
+    // DOMContentLoaded would leave everything below the hero stuck at opacity: 0.
+    document.addEventListener('astro:page-load', initHome);
   </script>
   <style>
     .home-reveal {
@@ -165,22 +194,31 @@ const metadata = {
     >
       <Fragment slot="image">
         <div class="grid gap-4">
-          <img
-            src={imgDesignMain.src}
+          <Image
+            src={imgDesignMain}
             alt="CAD model for the Design Build Fly aircraft"
             class="home-step-photo h-44 w-full rounded-md object-cover shadow-lg"
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 100vw, 432px"
+            format="webp"
             loading="lazy"
           />
-          <img
-            src={imgBuildMain.src}
+          <Image
+            src={imgBuildMain}
             alt="Team members building the aircraft"
             class="home-step-photo h-auto w-full rounded-md shadow-lg"
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 100vw, 432px"
+            format="webp"
             loading="lazy"
           />
-          <img
-            src={imgFlyMain.src}
+          <Image
+            src={imgFlyMain}
             alt="Design Build Fly aircraft in flight"
             class="home-step-photo h-44 w-full rounded-md object-cover shadow-lg"
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 100vw, 432px"
+            format="webp"
             loading="lazy"
           />
         </div>
