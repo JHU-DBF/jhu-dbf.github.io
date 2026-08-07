@@ -14,8 +14,8 @@ import HiTec from '~/assets/images/logos/HiTec.png';
 import Reliable from '~/assets/images/logos/Reliable Robotics.png';
 import Scorpion from '~/assets/images/logos/Scorpion Power Systems.png';
 import Venom from '~/assets/images/logos/Venom Carbon.png';
-import WSE from '~/assets/images/logos/WSE MechE.png';
 import Formlabs from '~/assets/images/logos/Formlabs.png';
+import PCBWay from '~/assets/images/logos/pcbway.webp';
 
 
 const metadata = {
@@ -24,20 +24,29 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 pb-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-black dark:text-white">
+      Sponsorship &amp; Contact
+    </h1>
+    <p class="max-w-3xl mx-auto mt-8 text-lg md:text-xl text-gray-500 dark:text-gray-300">
+      The support of our sponsors play a vital role in making our work possible. To learn more about supporting JHU DBF, please check out the information below!
+    </p>
+  </section>
 
   <Brands
-  title="Thank you to our current sponsors."
+  title="Special thanks to our current sponsors!"
   images={[
-    { src: WSE, alt: "WSE MechE", featured: true, href: "https://engineering.jhu.edu/me/" },
+    { src: Reliable, alt: "Reliable Robotics", href: "https://reliable.co/", tier: "platinum" },
+    { src: Dragon, alt: "Dragon Plate", href: "https://dragonplate.com/", tier: "platinum" },
+    { src: HiTec, alt: "HiTec", href: "https://hitecrcd.com/", tier: "platinum" },
+    { src: Airtech, alt: "Airtech", href: "https://airtech.com/", tier: "platinum" },
 
-    { src: Reliable, alt: "Reliable Robotics", href: "https://reliable.co/" },
-    { src: Formlabs, alt: "Formlabs", href: "https://formlabs.com/" },
-    { src: Scorpion, alt: "Scorpion Power", href: "https://www.scorpionsystem.com/" },
-    { src: Venom, alt: "Venom Carbon", href: "https://www.venomcarbon.com/" },
-    { src: Dragon, alt: "Dragon Plate", href: "https://dragonplate.com/" },
-    { src: HiTec, alt: "HiTec", href: "https://hitecrcd.com/" },
-    { src: Airtech, alt: "Airtech", href: "https://airtech.com/" },
-    { src: APC, alt: "APC Propellers", href: "https://www.apcprop.com" },
+    { src: APC, alt: "APC Propellers", href: "https://www.apcprop.com", tier: "gold" },
+    { src: Scorpion, alt: "Scorpion Power", href: "https://www.scorpionsystem.com/", tier: "gold" },
+    { src: Venom, alt: "Venom Carbon", href: "https://www.venomcarbon.com/", tier: "gold" },
+    { src: Formlabs, alt: "Formlabs", href: "https://formlabs.com/", tier: "gold" },
+
+    { src: PCBWay, alt: "PCB Way", href: "https://www.pcbway.com/", tier: "silver" },
   ]}
 />
   
@@ -46,7 +55,7 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Download Sponsorship Information',
-        href: '/assets/dbf_sponsorshipleaflet_25-26.pdf',
+        href: '/assets/Johns Hopkins DBF Sponsorship Leaflet.pdf',
         target: '_blank',
         icon: 'tabler:download',
       }
@@ -56,7 +65,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Please consider supporting us. Our team relies entirely on the monetary and material donations from individuals and organizations like yours to offer opportunities and experiences to the next generation of doers.
+      Support can be in various forms including material and monetary donations. Our team relies entirely on the donations from individuals and organizations like yours to offer opportunities and experiences to the next generation of doers. If you're interested in supporting us, please check out the document below!
     </Fragment>
   </Hero_sponsor>
 
@@ -72,8 +81,9 @@ const metadata = {
         icon: "tabler:mail",
       },
       {
-        title: "Join our Discord at discord.gg/E2aAKby9D8",
-        description: "Check out what we do behind the scenes!",
+        title: "Join our Discord",
+        description:
+          'Check out what we do behind the scenes! <a class="underline text-primary" href="https://discord.gg/E2aAKby9D8" target="_blank" rel="noopener noreferrer">discord.gg/E2aAKby9D8</a>',
         icon: "tabler:brand-discord",
       },
       {
@@ -85,7 +95,7 @@ const metadata = {
   >
   </Features3>
 
-  <Features2
+  <!-- <Features2
     title="Join a Weekly Meeting!"
     tagline=""
     columns={4}
@@ -107,5 +117,6 @@ const metadata = {
         description: 'Fly day at local RC airfield',
       },
     ]}
-  />
+  /> -->
+
 </Layout>

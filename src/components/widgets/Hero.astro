@@ -11,6 +11,7 @@ export interface Props {
   content?: string;
   actions?: string | CallToAction[];
   image?: string | any; // TODO: find HTMLElementProps
+  caption?: string;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   content = await Astro.slots.render('content'),
   actions = await Astro.slots.render('actions'),
   image = await Astro.slots.render('image'),
+  caption = await Astro.slots.render('caption'),
 } = Astro.props;
 ---
 
@@ -82,6 +84,9 @@ const {
                   height={576}
                   {...image}
                 />
+              )}
+              {caption && (
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center italic" set:html={caption} />
               )}
             </div>
           )

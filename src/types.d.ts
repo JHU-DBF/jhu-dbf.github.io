@@ -93,6 +93,7 @@ export interface Image {
   alt?: string;
   href?: string;
   featured?: boolean;
+  tier?: 'platinum' | 'gold' | 'silver';
 }
 
 export interface Video {

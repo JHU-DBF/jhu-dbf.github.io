@@ -1,21 +1,21 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
 
 import Steps from '~/components/widgets/Steps.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import BentoImages from '~/components/widgets/BentoImages.astro';
 
-import imgFlightBanking from "~/assets/images/flight_banking.jpg";
-import imgDrawingFly from "~/assets/images/drawing_fly.png";
-import imgParked from "~/assets/images/parked.jpg";
-import imgFlyday2Group from "~/assets/images/flyday2_group.jpg";
-import imgRunwayHD from "~/assets/images/runway_HD.jpg";
-import imgCAD from "~/assets/images/cad.png";
-import imgCAD2025 from "~/assets/images/cad_2025.png";
-import imgFlying2025 from "~/assets/images/flying_2025.png";
-import imgComp2025 from "~/assets/images/comp_2025.png";
+import homeHero from "~/assets/images/home-hero.png";
+import imgDesignMain from "~/assets/images/Design_Photo_Main.jpg";
+import imgBuildMain from "~/assets/images/Build_Photo_Main.png";
+import imgFlyMain from "~/assets/images/Fly_Photo_Main.webp";
+import imgMain1 from "~/assets/images/Photo_Main_1.jpg";
+import imgMain2 from "~/assets/images/Photo_Main_2.jpg";
+import imgMain3 from "~/assets/images/Photo_Main_3.jpg";
+import imgMain4 from "~/assets/images/Photo_Main_4.jpg";
+import imgMain5 from "~/assets/images/Photo_Main_5.png";
+import imgMain6 from "~/assets/images/Photo_Main_6.png";
 import Button from '~/components/ui/Button.astro';
 import { getPermalink } from '~/utils/permalinks';
 import ModelViewer from '~/components/widgets/ModelViewer';
@@ -28,149 +28,334 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <HeroText>
-    <Fragment slot="title">
-      <span class="text-accent dark:text-white highlight">Design Build Fly</span>
-      - RC plane building team at Johns Hopkins University
-    </Fragment>
-    
-    <Fragment slot="subtitle">
-      We at <span class="font-semibold">Design Build Fly</span> are a multi-disciplinary club 
-      unified in our mission of designing and building an RC-plane from scratch to compete at the annual
-      <a class="underline text-accent" href="https://www.aiaa.org/dbf">AIAA DBF competition</a>
-    </Fragment>
-  </HeroText>
-  <Steps
-    isReversed
-    title="Discover what we do!"
-    subtitle="Step into any aspect of plane production that interests you"
-    items={[
-      {
-        title: 'Design',
-        description:
-          'Each year, new constraints are required for our plane, giving us ample opportunity to come up with creative solutions. \
-          Our team utilizes CAD and other software to optimize our plane!',
-        icon: 'tabler:ruler',
-      },
-      {
-        title: 'Build',
-        description:
-          'With access to the entirety of the Mechanical Engineering department\'s tools, we piece together our plane to turn it form \
-          dream to reality.',
-        icon: 'tabler:hammer',
-      },
-      {
-        title: 'Fly',
-        description:
-          'Finally, we put our plane to the test! It may be more apt to call this step \'Crash,\' but each crashed prototype is experience \
-          for both our flyers and designers to utilize for the next prototype.',
-        icon: 'tabler:plane-tilt',
-      },
-    ]}
-    image={{
-      src: '~/assets/images/verticalDBF.jpg',
-      alt: '2024 competition flight',
-    }}
-  />
-
-  <ModelViewer client:load
-    name="RC Plane Model 2026 - Peaking Jay!"
-    filepath="/assets/models/PlaneFull26.glb"
-    toggleableParts={[
-      {
-        id: 'fuselage',
-        displayName: 'Fuselage',
-        meshNames: ['Fuselage', 'fuselage']
+  <section class="relative md:-mt-[96px] not-prose">
+    <div class="relative min-h-[132vh] flex items-start justify-center overflow-hidden">
+      <Image
+        id="home-hero-image"
+        src={homeHero}
+        alt="Johns Hopkins Design Build Fly team with their RC plane"
+        class="absolute inset-x-0 -top-[3vh] h-[144vh] w-full object-cover object-center transition-opacity duration-150"
+        widths={[640, 1024, 1536, 2048]}
+        sizes="100vw"
+        format="webp"
+        quality={72}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="pointer-events-none absolute inset-x-0 top-[96vh] h-[44vh] bg-gradient-to-b from-transparent via-sky-100/80 via-55% to-white dark:via-slate-950/55 dark:to-slate-950"></div>
+      <div
+        id="home-hero-copy"
+        class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-32 md:pt-40 text-center transition-opacity duration-150"
+      >
+        <h1 class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-6 font-heading dark:text-gray-200">
+          <span class="text-black dark:text-white">We are</span>
+          <span class="text-[#002d72] dark:text-white highlight">Design Build Fly</span>
+          at<br />
+          Johns Hopkins University
+        </h1>
+        <div class="mx-auto mb-6 h-px w-48 bg-slate-900/35 dark:bg-white/45"></div>
+        <p class="max-w-3xl mx-auto text-xl font-extrabold text-white mb-6">
+          A RC plane building team to compete at the annual
+          <a class="underline text-[#002d72] dark:text-white" href="https://www.aiaa.org/dbf">AIAA DBF competition</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <noscript>
+    <style>
+      .home-reveal,
+      .home-step-photo,
+      .home-timeline-step {
+        opacity: 1 !important;
+        transform: none !important;
       }
-    ]}
-    angle={100}
-  />
+    </style>
+  </noscript>
 
-  <!-- Stats Widget ****************** -->
+  <script>
+    let heroCopy = document.getElementById('home-hero-copy');
+    let heroImage = document.getElementById('home-hero-image');
 
-  <Stats
-  stats={[
-      { icon: 'tabler:users', title: 'Members', amount: '15' },
-      { icon: 'tabler:school', title: 'Alumni', amount: '26' },
-      { icon: 'tabler:brand-instagram', title: 'Followers', amount: '253' },
-      { icon: 'tabler:currency-dollar', title: 'Funding', amount: '$8,000' },
-    ]}
-  />
+    const fadeHeroCopy = () => {
+      if (!heroCopy || !heroImage) return;
+
+      const progress = Math.min(window.scrollY / 140, 1);
+      const imageProgress = Math.min(window.scrollY / 800, 1);
+      const opacity = `${1 - progress}`;
+
+      heroCopy.style.opacity = opacity;
+      heroCopy.style.transform = `translateY(${-24 * progress}px)`;
+      heroCopy.style.pointerEvents = progress > 0.85 ? 'none' : 'auto';
+      heroImage.style.opacity = `${1 - imageProgress * 0.55}`;
+    };
+
+    function initHome() {
+      // Re-query on every load: a view transition swaps in fresh nodes, so refs
+      // captured on a previous visit point at detached elements.
+      heroCopy = document.getElementById('home-hero-copy');
+      heroImage = document.getElementById('home-hero-image');
+      fadeHeroCopy();
+
+      const revealItems = document.querySelectorAll('.home-reveal, .home-step-photo, .home-timeline-step');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        revealItems.forEach((item) => item.classList.add('is-visible'));
+        return;
+      }
+
+      revealItems.forEach((item, index) => {
+        if (item instanceof HTMLElement) item.style.transitionDelay = `${index * 80}ms`;
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.16 }
+      );
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+    }
+
+    // `window` survives view transitions, so this is registered once and reads
+    // whichever elements initHome() most recently bound.
+    window.addEventListener('scroll', fadeHeroCopy, { passive: true });
+
+    // ViewTransitions is enabled in Layout.astro. Module scripts do not re-run
+    // when the client router returns to an already-visited page, so binding to
+    // DOMContentLoaded would leave everything below the hero stuck at opacity: 0.
+    document.addEventListener('astro:page-load', initHome);
+  </script>
+  <style>
+    .home-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 650ms ease,
+        transform 650ms ease;
+    }
+
+    .home-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .home-step-photo,
+    .home-timeline-step {
+      opacity: 0;
+      transform: translateY(26px);
+      transition:
+        opacity 620ms ease,
+        transform 620ms ease;
+    }
+
+    .home-step-photo.is-visible,
+    .home-timeline-step.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <div class="home-reveal">
+    <Steps
+      isReversed
+      title="The 3 Pillars"
+      subtitle="Step into any aspect of plane production that interests you"
+      items={[
+        {
+          title: 'Design',
+          description:
+            'Each year, new constraints are required for our plane, giving us ample opportunity to come up with creative solutions. \
+            Our team utilizes CAD and other software to optimize our plane!',
+          icon: 'tabler:ruler',
+          classes: { panel: 'home-timeline-step' },
+        },
+        {
+          title: 'Build',
+          description:
+            'With access to the entirety of the Mechanical Engineering department\'s tools, we piece together our plane to turn it form \
+            dream to reality.',
+          icon: 'tabler:hammer',
+          classes: { panel: 'home-timeline-step' },
+        },
+        {
+          title: 'Fly',
+          description:
+            'Finally, we put our plane to the test! It may be more apt to call this step \'Crash,\' but each crashed prototype is experience \
+            for both our flyers and designers to utilize for the next prototype.',
+          icon: 'tabler:plane-tilt',
+          classes: { panel: 'home-timeline-step' },
+        },
+      ]}
+    >
+      <Fragment slot="image">
+        <div class="grid gap-4">
+          <Image
+            src={imgDesignMain}
+            alt="CAD model for the Design Build Fly aircraft"
+            class="home-step-photo h-44 w-full rounded-md object-cover shadow-lg"
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 100vw, 432px"
+            format="webp"
+            loading="lazy"
+          />
+          <Image
+            src={imgBuildMain}
+            alt="Team members building the aircraft"
+            class="home-step-photo h-auto w-full rounded-md shadow-lg"
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 100vw, 432px"
+            format="webp"
+            loading="lazy"
+          />
+          <Image
+            src={imgFlyMain}
+            alt="Design Build Fly aircraft in flight"
+            class="home-step-photo h-44 w-full rounded-md object-cover shadow-lg"
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 100vw, 432px"
+            format="webp"
+            loading="lazy"
+          />
+        </div>
+      </Fragment>
+    </Steps>
+  </div>
+
+  <div class="home-reveal">
+    <ModelViewer client:load
+      name="RC Plane Model 2026 - Peaking Jay!"
+      filepath="/assets/models/PlaneFull26.glb"
+      toggleableParts={[
+        {
+          id: 'fuselage',
+          displayName: 'Fuselage',
+          meshNames: ['Fuselage', 'fuselage']
+        }
+      ]}
+      angle={100}
+    />
+  </div>
+
+  <section class="home-reveal max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-[#002d72] dark:text-white">
+      Our Progress Year to Year
+    </h2>
+    <div class="mt-10 max-w-3xl mx-auto">
+      <div class="relative pl-16">
+        <div class="absolute left-4 top-3 bottom-3 w-px bg-[#002d72]/25 dark:bg-white/30"></div>
+        {
+          [
+            {
+              year: '2026',
+              description: 'In 2026, our team designed its first fully carbon fiber aircraft, supported by a larger team and a stronger technical foundation. We are proud to have placed <strong>17th out of 175 teams</strong>, another big step forward from the previous year!',
+            },
+            {
+              year: '2025',
+              description: 'Building on the progress of the previous year, our team made tremendous improvements in both design and performance. We successfully completed Mission 1 and Mission 2, finished <strong>49th out of 159 teams</strong>, and demonstrated the rapid growth of our revived program.',
+            },
+            {
+              year: '2024',
+              description: 'In our first year back after the club’s revival, we successfully designed, built, and flew our aircraft at competition, placing <strong>67th out of 149 teams</strong>. This marked an important milestone as we rebuilt the team, restored our technical foundation, and returned JHU DBF to competition.',
+            },
+          ].map(({ year, description }) => (
+            <div class="relative pb-10 last:pb-0">
+              <div class="absolute -left-[63px] top-1 h-8 w-8 rounded-full border-2 border-[#002d72] bg-white dark:bg-slate-950"></div>
+              <h3 class="text-2xl font-bold text-black dark:text-white">{year}</h3>
+              <p class="mt-2 text-lg text-gray-500 dark:text-gray-300" set:html={description} />
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-8 text-center text-lg text-gray-500 dark:text-gray-300">
+        For more information, check out our 'History' tab!
+      </p>
+    </div>
+  </section>
 
   <!-- Bento Box Images -->
-  <BentoImages
-    templateAreas={"[grid-template-areas:'img1_img1_img1_img1''img3_img3_img2_img2''img6_img5_img5_img4']"}
-    images={
-      [
-        {
-          src: imgFlying2025,
-          alt: "flight banking",
-          area:"[grid-area:img1]"
-        },
-        {
-          src: imgRunwayHD,
-          alt: "about to fly at competition",
-          area:"[grid-area:img3]"
-        },
-        {
-          src: imgComp2025,
-          alt: "getting ready for ground mission",
-          area:"[grid-area:img2]"
-        },
-        {
-          src: imgDrawingFly,
-          alt: "CAD drawing in flight configuration",
-          area:"[grid-area:img4]"
-        },
-        {
-          src: imgCAD2025,
-          alt: "in-editor CAD screenshot",
-          area:"[grid-area:img5]"
-        },
-        {
-          src: imgFlyday2Group,
-          alt: "group photo during a fly day",
-          area:"[grid-area:img6]"
-        },
-      ]
-    }
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-    <Fragment slot="below">
-      <Button
-        text="See more images"
-        variant="primary"
-        href={getPermalink("/about")}
-        class="flex justify-self-center self-center"
-      />
-    </Fragment>
-  </BentoImages>
+  <div class="home-reveal">
+    <BentoImages
+      templateAreas={"[grid-template-areas:'img1_img1_img1_img1''img3_img3_img2_img2''img6_img5_img5_img4']"}
+      images={
+        [
+          {
+            src: imgMain3,
+            alt: "the team gathered around the aircraft at competition",
+            area:"[grid-area:img1]"
+          },
+          {
+            src: imgMain1,
+            alt: "team members carrying the aircraft on the way to the airfield",
+            area:"[grid-area:img3]"
+          },
+          {
+            src: imgMain2,
+            alt: "loading the aircraft for technical inspection",
+            area:"[grid-area:img2]"
+          },
+          {
+            src: imgMain4,
+            alt: "the team at the technical inspection table",
+            area:"[grid-area:img6]"
+          },
+          {
+            src: imgMain6,
+            alt: "CAD render of the wing assembly and spar",
+            area:"[grid-area:img5]"
+          },
+          {
+            src: imgMain5,
+            alt: "CAD render of the tail assembly",
+            area:"[grid-area:img4]"
+          },
+        ]
+      }
+    >
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      </Fragment>
+      <Fragment slot="below">
+        <Button
+          text="Discover what we do!"
+          variant="primary"
+          href={getPermalink("/about")}
+          class="flex justify-self-center self-center text-3xl py-7 px-12 md:px-16"
+        />
+      </Fragment>
+    </BentoImages>
+  </div>
 
   <!-- Add info on meeting times/location -->
-  <Features3
-    title="Let's Connect!"
-    columns={3}
-    items={[
-      {
-        title: "Email us at dbf@jhu.edu",
-        description: "We'll get back to you as soon as possible!",
-        icon: "tabler:mail",
-      },
-      {
-        title: "Join us for a meeting",
-        description: "3100 Wyman Park Dr\nBaltimore, MD 21211",
-        icon: "tabler:map-pin",
-      },
-      {
-        title: "Follow us on Instagram @jhu_dbf",
-        description: "Stay up-to-date on upcoming events",
-        icon: "tabler:brand-instagram",
-      },
-    ]}
-  >
-  </Features3>
+  <div class="home-reveal">
+    <Features3
+      title="Contact Us!"
+      columns={3}
+      items={[
+        {
+          title: "Email us at dbf@jhu.edu",
+          description: "We'll get back to you as soon as possible!",
+          icon: "tabler:mail",
+        },
+        {
+          title: "Join our Discord",
+          description:
+            'Check out what we do behind the scenes! <a class="underline text-primary" href="https://discord.gg/E2aAKby9D8" target="_blank" rel="noopener noreferrer">discord.gg/E2aAKby9D8</a>',
+          icon: "tabler:brand-discord",
+        },
+        {
+          title: "Follow us on Instagram @jhu_dbf",
+          description: "DM us with a question!",
+          icon: "tabler:brand-instagram",
+        },
+      ]}
+    >
+    </Features3>
+  </div>
 
   <!-- <Brands
     title="A special thanks to our sponsors"

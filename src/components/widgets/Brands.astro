@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import type { Brands as Props } from '~/types';
+import type { Brands as Props, Image as ImageProps } from '~/types';
 
 import Image from '~/components/common/Image.astro';
 import Headline from '~/components/ui/Headline.astro';
@@ -16,6 +16,86 @@ const {
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+// Base (untiered) logo footprint in rem, tuned per-brand so proportions read
+// correctly; each tier then scales this up. A missing dimension is left to
+// 'auto' so object-fit: contain scales it from the one dimension we do pin
+// down (needed for Venom Carbon, whose logo is much taller than it is wide).
+// Brands not listed use DEFAULT_BASE.
+const BASE_SIZE: Record<string, { w?: number; h?: number }> = {
+  'APC Propellers': { w: 4 },
+  Airtech: { w: 6 },
+  'Venom Carbon': { h: 4 },
+  'Scorpion Power': { w: 7, h: 4 },
+  'Dragon Plate': { w: 3, h: 4 },
+};
+const DEFAULT_BASE = { w: 5 };
+
+// Silver is the baseline; gold is ~1.5x silver, doubled again on top of that.
+// Platinum is a smaller ~1.2x bump over gold rather than another 1.5x.
+const SILVER_SCALE = 1.15 * 2;
+const GOLD_SCALE = 1.725 * 2;
+const TIER_SCALE: Record<string, number> = {
+  silver: SILVER_SCALE,
+  gold: GOLD_SCALE,
+  platinum: GOLD_SCALE * 1.2,
+};
+
+const TIERS: Array<{ key: 'platinum' | 'gold' | 'silver'; label: string; headerClass: string }> = [
+  { key: 'platinum', label: 'Platinum', headerClass: 'text-slate-400 dark:text-slate-300 border-slate-400 dark:border-slate-300' },
+  { key: 'gold', label: 'Gold', headerClass: 'text-amber-500 dark:text-amber-400 border-amber-500 dark:border-amber-400' },
+  { key: 'silver', label: 'Silver', headerClass: 'text-neutral-500 dark:text-neutral-400 border-neutral-500 dark:border-neutral-400' },
+];
+
+// Every logo sits on the same white rounded card so that dark-on-transparent
+// logos stay legible against the page background (including in dark mode).
+const LOGO_CARD =
+  'flex items-center justify-center bg-white rounded-2xl shadow-sm ring-1 ring-black/5 p-6 transition-transform duration-200 hover:scale-105';
+
+const roundQuarter = (n: number) => Math.round(n * 4) / 4;
+
+const REM_PX = 16;
+
+// Returns the inline sizing style plus the CSS pixel width the logo actually
+// renders at. That pixel width is handed to <Image> so the generated srcset is
+// capped near the display size: with `layout="contained"` Astro emitted a
+// candidate at every device size up to 6016px and no `sizes` attribute, which
+// upscaled a 102 kB logo into a 2 MB file and made the sponsor logos alone
+// account for roughly ten minutes of build time.
+const sizingFor = (image: ImageProps) => {
+  const base = BASE_SIZE[image.alt || ''] || DEFAULT_BASE;
+  const scale = image.tier ? TIER_SCALE[image.tier] ?? 1 : 1;
+  const w = base.w !== undefined ? roundQuarter(base.w * scale) : undefined;
+  const h = base.h !== undefined ? roundQuarter(base.h * scale) : undefined;
+
+  // max-width keeps the fixed rem widths from overflowing narrow viewports;
+  // the widest platinum logo is ~25rem, well past a 375px phone.
+  const style = `width: ${w !== undefined ? `${w}rem` : 'auto'}; height: ${
+    h !== undefined ? `${h}rem` : 'auto'
+  }; max-width: 100%;`;
+
+  const fallbackWidth = DEFAULT_BASE.w * REM_PX * scale;
+  let renderWidth = w !== undefined ? w * REM_PX : undefined;
+
+  if (renderWidth === undefined && h !== undefined) {
+    // Height-pinned logo (Venom Carbon): recover the width from the source ratio.
+    const meta = image.src as unknown as { width?: number; height?: number } | string | null;
+    renderWidth =
+      meta && typeof meta === 'object' && meta.width && meta.height
+        ? (h * REM_PX * meta.width) / meta.height
+        : fallbackWidth;
+  }
+
+  return { style, width: Math.round(renderWidth ?? fallbackWidth) };
+};
+
+const featured = images.find((image) => image.featured);
+const rest = images.filter((image) => !image.featured);
+const tieredGroups = TIERS.map((tier) => ({
+  ...tier,
+  logos: rest.filter((image) => image.tier === tier.key),
+})).filter((group) => group.logos.length > 0);
+const untiered = rest.filter((image) => !image.tier);
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
@@ -24,70 +104,102 @@ const {
   {images && images.length > 0 && (
   <>
     {/* Featured Sponsor */}
-    <div class="flex justify-center mb-16">
-      {images[0]?.href ? (
-        <a
-          href={images[0].href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex justify-center"
-        >
-          <Image
-            src={images[0].src}
-            alt={images[0].alt || ""}
-            class="h-auto w-auto max-w-4xl object-contain transition-transform duration-200 hover:scale-105"
-            layout="constrained"
-          />
-        </a>
-      ) : (
-        <Image
-          src={images[0].src}
-          alt={images[0].alt || ""}
-          class="h-auto w-auto max-w-4xl object-contain"
-          layout="constrained"
-        />
-      )}
-    </div>
-
-    {/* Remaining Sponsors */}
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-20 items-center">
-      {images.slice(1).map((image) => {
-        if (!image?.src) return null;
-
-        const sizeClass =
-          image.alt === "APC Propellers"
-            ? "w-40 h-auto"
-            : image.alt === "Airtech"
-            ? "w-58 h-auto"
-            : image.alt === "Venom Carbon"
-            ? "w-5 h-42"
-            : image.alt === "Scorpion Power"
-            ? "w-66 h-38"
-            : image.alt === "Dragon Plate"
-            ? "w-28 h-38"
-            : "w-48 h-auto";
-
-        const logo = (
-          <Image
-            src={image.src}
-            alt={image.alt || ""}
-            class={`object-contain ${sizeClass} transition-transform duration-200 hover:scale-105`}
-          />
-        );
-
-        return (
-          <div class="flex justify-center">
-            {image.href ? (
-              <a href={image.href} target="_blank" rel="noopener noreferrer">
-                {logo}
-              </a>
-            ) : (
-              logo
-            )}
+    {featured && (
+      <div class="flex justify-center mb-6">
+        {featured.href ? (
+          <a href={featured.href} target="_blank" rel="noopener noreferrer" class={LOGO_CARD}>
+            <Image
+              src={featured.src}
+              alt={featured.alt || ""}
+              class="h-auto w-auto max-w-[10rem] sm:max-w-xs object-contain"
+              layout="constrained"
+            />
+          </a>
+        ) : (
+          <div class={LOGO_CARD}>
+            <Image
+              src={featured.src}
+              alt={featured.alt || ""}
+              class="h-auto w-auto max-w-[10rem] sm:max-w-xs object-contain"
+              layout="constrained"
+            />
           </div>
-        );
-      })}
-    </div>
+        )}
+      </div>
+    )}
+
+    {/* Tiered Sponsors */}
+    {tieredGroups.map((group) => (
+      <div class="mt-16 first:mt-0 text-center">
+        <h3
+          class={`inline-block text-3xl sm:text-4xl font-bold uppercase tracking-widest mb-10 pb-3 px-8 border-b-4 ${group.headerClass}`}
+        >
+          {group.label}
+        </h3>
+        <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-8">
+          {group.logos.map((image) => {
+            if (!image?.src) return null;
+
+            const sizing = sizingFor(image);
+            const logo = (
+              <Image
+                src={image.src}
+                alt={image.alt || ""}
+                class="object-contain"
+                style={sizing.style}
+                width={sizing.width}
+                layout="constrained"
+              />
+            );
+
+            return (
+              <div class="flex justify-center">
+                {image.href ? (
+                  <a href={image.href} target="_blank" rel="noopener noreferrer" class={LOGO_CARD}>
+                    {logo}
+                  </a>
+                ) : (
+                  <div class={LOGO_CARD}>{logo}</div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+
+    {/* Any sponsors without an assigned tier */}
+    {untiered.length > 0 && (
+      <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 mt-16">
+        {untiered.map((image) => {
+          if (!image?.src) return null;
+
+          const sizing = sizingFor(image);
+          const logo = (
+            <Image
+              src={image.src}
+              alt={image.alt || ""}
+              class="object-contain"
+              style={sizing.style}
+              width={sizing.width}
+              layout="constrained"
+            />
+          );
+
+          return (
+            <div class="flex justify-center">
+              {image.href ? (
+                <a href={image.href} target="_blank" rel="noopener noreferrer" class={LOGO_CARD}>
+                  {logo}
+                </a>
+              ) : (
+                <div class={LOGO_CARD}>{logo}</div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    )}
   </>
   )}
 </WidgetWrapper>
