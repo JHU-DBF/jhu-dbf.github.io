@@ -1,12 +1,12 @@
 const team = {
   members: [
     {
-      name: 'Allison',
+      name: 'Allison Chuang',
       title: 'President',
       major: "Mechanical Engineering '29",
       year: '2029',
       // currentJob: '',
-      avatar: '/assets/images/team/Allison.webp',
+      avatar: '/assets/images/team/Allison_Chuang.webp',
       // Landscape photo with the subject well left of frame; a default center
       // crop would push her to the edge of the circle.
       avatarPosition: 'left',
@@ -14,22 +14,22 @@ const team = {
       github: 'placeholder',
     },
     {
-      name: 'Delna',
+      name: 'Delna Thomas',
       title: 'Treasurer',
       major: "Mechanical Engineering '29",
       year: '2029',
       // currentJob: '',
-      avatar: '/assets/images/team/Delna.webp',
+      avatar: '/assets/images/team/Delna_Thomas.webp',
       linkedin: 'https://www.linkedin.com/in/johndoe',
       github: 'placeholder',
     },
     {
-      name: 'Laon',
+      name: 'Laon Sung',
       title: 'Chief Engineer',
       major: "Mechanical Engineering '29",
       year: '2029',
       // currentJob: '',
-      avatar: '/assets/images/team/Laon.webp',
+      avatar: '/assets/images/team/Laon_Sung.webp',
       linkedin: 'https://www.linkedin.com/in/johndoe',
       github: 'placeholder',
     },

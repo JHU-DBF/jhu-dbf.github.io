@@ -32,7 +32,7 @@ const alumni = {
         },
         {
             name: 'Trevor Black',
-            title: 'Officer 2025-2026',
+            title: 'President 2024-2025',
             major: 'Computer Science \'26',
             year: 2026,
             // currentJob: '',
