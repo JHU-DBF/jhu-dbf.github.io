@@ -1,16 +1,6 @@
 const alumni = {
     members: [
         {
-            name: 'Niti Sinha',
-            title: 'President 2025-2026',
-            major: 'Mechanical Engineering \'27',
-            year: 2027,
-            // currentJob: '',
-            avatar: '/assets/images/team/niti.jpg',
-            linkedin: 'https://www.linkedin.com/in/johndoe',
-            github: 'placeholder',
-        },
-        {
             name: 'Han Zheng',
             title: 'Chief Engineer 2025-2026',
             major: 'Mechanical Engineering \'26',

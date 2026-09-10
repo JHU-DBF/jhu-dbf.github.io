@@ -3,6 +3,7 @@ const team = {
     {
       name: 'Allison Chuang',
       title: 'President',
+      subteam: 'Fuselage Subteam Lead',
       major: "Mechanical Engineering '29",
       year: '2029',
       // currentJob: '',
@@ -26,6 +27,7 @@ const team = {
     {
       name: 'Laon Sung',
       title: 'Chief Engineer',
+      subteam: 'Wing Subteam Co-Lead',
       major: "Mechanical Engineering '29",
       year: '2029',
       // currentJob: '',
@@ -60,6 +62,67 @@ const team = {
       year: '2028',
       // currentJob: '',
       avatar: '/assets/images/team/koji.jpg',
+      linkedin: 'https://www.linkedin.com/in/johndoe',
+      github: 'placeholder',
+    },
+    {
+      name: 'Tate Stromgren',
+      subteam: 'Payload Subteam Co-Lead',
+      major: "Mechanical Engineering '29",
+      year: '2029',
+      // currentJob: '',
+      avatar: '/assets/images/team/Tate_Stromgren.jpg',
+    },
+    {
+      name: 'Samarth Sethi',
+      subteam: 'Payload Subteam Co-Lead',
+      major: "Mechanical Engineering '29",
+      year: '2029',
+      // currentJob: '',
+      avatar: '/assets/images/team/Samarth_Sethi.png',
+    },
+    {
+      name: 'Christopher Yang',
+      subteam: 'Wing Subteam Co-Lead',
+      major: "Mechanical Engineering '29",
+      year: '2029',
+      // currentJob: '',
+      avatar: '/assets/images/team/Christopher_Yang.png',
+    },
+    {
+      name: 'Simon Brown',
+      subteam: 'Avionics Subteam Co-Lead',
+      major: "Electrical Engineering '29",
+      year: '2029',
+      // No avatar yet -> falls back to the JHU shield placeholder.
+    },
+    {
+      name: 'Alice Sun',
+      subteam: 'Avionics Subteam Co-Lead',
+      major: "Applied Math & Statistics '29",
+      year: '2029',
+      // No avatar yet -> falls back to the JHU shield placeholder.
+    },
+    {
+      name: 'Niti Sinha',
+      title: 'President 2025-2026',
+      major: "Mechanical Engineering '27",
+      year: '2027',
+      // currentJob: '',
+      avatar: '/assets/images/team/niti.jpg',
+      linkedin: 'https://www.linkedin.com/in/johndoe',
+      github: 'placeholder',
+    },
+    {
+      name: 'Oluwajomiloju (Jommy) Fasehun',
+      title: 'Treasurer 2025-2026',
+      major: "Neuroscience '27",
+      year: '2027',
+      // currentJob: '',
+      avatar: '/assets/images/team/Jommy_Fasehun.webp',
+      // Tall 3:4 portrait; a default center crop lands on her chest. Biasing the
+      // crop upward frames her face and neck. Lower % shows more head.
+      avatarPosition: 'center 35%',
       linkedin: 'https://www.linkedin.com/in/johndoe',
       github: 'placeholder',
     },
