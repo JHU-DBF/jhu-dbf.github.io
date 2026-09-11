@@ -36,16 +36,6 @@ const team = {
       github: 'placeholder',
     },
     {
-      name: 'Huy Lam',
-      title: 'Secretary',
-      major: "Molecular/Cellular Biology and Political Science '28",
-      year: '2028',
-      // currentJob: '',
-      avatar: '/assets/images/team/huy.jpg',
-      linkedin: 'https://www.linkedin.com/in/johndoe',
-      github: 'placeholder',
-    },
-    {
       name: 'Christopher Nguyen',
       title: 'Events Coordinator',
       major: "Mechanical Engineering '29",
@@ -101,11 +91,13 @@ const team = {
       subteam: 'Avionics Subteam Co-Lead',
       major: "Applied Math & Statistics '29",
       year: '2029',
-      // No avatar yet -> falls back to the JHU shield placeholder.
+      avatar: '/assets/images/team/Alice_Sun.webp',
+      // 606x730 portrait; bias the square crop up to centre her face.
+      avatarPosition: 'center 25%',
     },
     {
       name: 'Niti Sinha',
-      title: 'President 2025-2026',
+      title: 'Officer',
       major: "Mechanical Engineering '27",
       year: '2027',
       // currentJob: '',
@@ -115,7 +107,7 @@ const team = {
     },
     {
       name: 'Oluwajomiloju (Jommy) Fasehun',
-      title: 'Treasurer 2025-2026',
+      title: 'Officer',
       major: "Neuroscience '27",
       year: '2027',
       // currentJob: '',
@@ -123,6 +115,16 @@ const team = {
       // Tall 3:4 portrait; a default center crop lands on her chest. Biasing the
       // crop upward frames her face and neck. Lower % shows more head.
       avatarPosition: 'center 35%',
+      linkedin: 'https://www.linkedin.com/in/johndoe',
+      github: 'placeholder',
+    },
+    {
+      name: 'Huy Lam',
+      title: 'Officer',
+      major: "Molecular/Cellular Biology and Political Science '28",
+      year: '2028',
+      // currentJob: '',
+      avatar: '/assets/images/team/huy.jpg',
       linkedin: 'https://www.linkedin.com/in/johndoe',
       github: 'placeholder',
     },
