@@ -96,6 +96,14 @@ const team = {
       avatarPosition: 'center 25%',
     },
     {
+      name: 'Eric Huang',
+      subteam: 'Avionics Subteam Co-Lead',
+      major: "Electrical and Computer Engineering '29",
+      year: '2029',
+      // Pre-cropped square head-and-shoulders, so object-cover does not crop it.
+      avatar: '/assets/images/team/Eric_Huang.webp',
+    },
+    {
       name: 'Niti Sinha',
       title: 'Officer',
       major: "Mechanical Engineering '27",
